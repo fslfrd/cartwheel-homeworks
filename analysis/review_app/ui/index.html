@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<title>Cartwheel review</title>
+<!--
+  Open-coding surface for Homework 4.
+
+  Design rules, from reviewing the standard Langfuse annotation view:
+    1. Nothing on the reading spine requires a click. User question, agent
+       prose and tool outcomes are always visible; a tool result carries a
+       permanent one-line digest and hides only its raw JSON.
+    2. Metadata is available, not present. The header drawer and the
+       scenario's expected outcome start collapsed, so the reviewer forms
+       their own read before checking it.
+  The sidebar summarises every session so 100 of them can be scanned, and the
+  keyboard drives the whole loop.
+
+  Trace content is model-generated and therefore untrusted: every view is
+  built with createElement/textContent, so nothing from a trace is ever
+  parsed as markup.
+-->
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --panel: #ffffff;
+    --ink: #1a1a19;
+    --muted: #6c6a66;
+    --line: #e4e1db;
+    --user: #1f6feb;
+    --user-bg: #eff5ff;
+    --tool: #8a6d1f;
+    --tool-bg: #fdf9ee;
+    --ok: #1a7f52;
+    --bad: #b3261e;
+    --accent: #6b4ea8;
+    --sugg: #0f7d8c;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  button { font: inherit; cursor: pointer; }
+  .hidden { display: none !important; }
+
+  #shell { display: grid; grid-template-columns: 270px minmax(0,1fr) 250px; height: 100vh; }
+  #sidebar { border-right: 1px solid var(--line); overflow-y: auto; background: var(--panel); }
+  #main { overflow-y: auto; }
+  #margin-col { border-left: 1px solid var(--line); overflow-y: auto; padding: 16px 12px; }
+
+  /* ---- sidebar ---- */
+  #side-head {
+    position: sticky; top: 0; background: var(--panel); z-index: 5;
+    padding: 12px; border-bottom: 1px solid var(--line);
+  }
+  #side-head select { font: 12px var(--mono); margin-right: 4px; padding: 3px; }
+  #counter { font: 12px/1.5 var(--mono); color: var(--muted); margin-top: 8px; }
+  #bar { height: 4px; background: var(--line); border-radius: 2px; margin-top: 6px; overflow: hidden; }
+  #bar > div { height: 100%; background: var(--accent); width: 0; transition: width .2s; }
+  .srow {
+    padding: 9px 12px; border-bottom: 1px solid var(--line); cursor: pointer;
+    display: grid; grid-template-columns: 14px 1fr; gap: 8px;
+  }
+  .srow:hover { background: var(--bg); }
+  .srow.sel { background: #f1ecfa; box-shadow: inset 3px 0 0 var(--accent); }
+  .glyph { font: 12px var(--mono); color: var(--muted); text-align: center; }
+  .glyph.noted { color: var(--accent); }
+  .glyph.clean { color: var(--ok); }
+  .glyph.flag { color: var(--bad); }
+  .stitle { font: 12px var(--mono); color: var(--muted); }
+  .sopen {
+    font-size: 13px; margin: 2px 0 3px; overflow: hidden;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  }
+  .sribbon {
+    font: 10.5px var(--mono); color: var(--tool); overflow: hidden;
+    white-space: nowrap; text-overflow: ellipsis;
+  }
+  .sflag { color: var(--bad); }
+
+  /* ---- reading pane ---- */
+  #head {
+    position: sticky; top: 0; z-index: 4; background: var(--panel);
+    border-bottom: 1px solid var(--line); padding: 12px 28px;
+  }
+  #title { font: 600 15px var(--mono); margin: 0; }
+  #ribbon { font: 11.5px var(--mono); color: var(--tool); margin-top: 4px; }
+  .drawer-btn {
+    font: 11px var(--mono); background: none; border: 1px solid var(--line);
+    border-radius: 4px; padding: 2px 7px; color: var(--muted); margin-right: 6px;
+  }
+  .drawer-btn:hover { border-color: var(--muted); color: var(--ink); }
+  .drawer {
+    margin-top: 10px; padding: 9px 12px; background: var(--bg);
+    border: 1px solid var(--line); border-radius: 6px;
+    font: 11.5px/1.7 var(--mono); color: var(--muted);
+  }
+  .drawer b { color: var(--ink); font-weight: 600; }
+  #body { padding: 22px 28px 120px; max-width: 760px; }
+
+  .turn-sep {
+    display: flex; align-items: center; gap: 10px; margin: 34px 0 22px;
+    font: 11px var(--mono); color: var(--muted);
+  }
+  .turn-sep::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  .step { margin-bottom: 18px; border-radius: 8px; }
+  .step.focus { box-shadow: 0 0 0 2px var(--accent); }
+  .role { font: 11px var(--mono); letter-spacing: .06em; color: var(--muted); margin-bottom: 3px; }
+  .msg.user .role { color: var(--user); }
+  .msg.user .text {
+    background: var(--user-bg); border-left: 3px solid var(--user);
+    padding: 10px 14px; border-radius: 0 6px 6px 0;
+  }
+  .text { white-space: pre-wrap; }
+
+  .toolstep {
+    border: 1px solid var(--line); border-left: 3px solid var(--tool);
+    border-radius: 0 6px 6px 0; background: var(--tool-bg); overflow: hidden;
+  }
+  .toolhead {
+    padding: 7px 12px; font: 12px var(--mono); display: flex; gap: 8px;
+    align-items: baseline; flex-wrap: wrap;
+  }
+  .tname { font-weight: 600; color: var(--tool); }
+  .targs { color: var(--muted); overflow: hidden; text-overflow: ellipsis; }
+  .tdigest {
+    padding: 7px 12px; border-top: 1px dashed var(--line);
+    font: 12.5px var(--mono); display: flex; gap: 8px; align-items: baseline;
+  }
+  .tdigest .arrow { color: var(--muted); }
+  .tdigest.ok .dtext { color: var(--ok); }
+  .tdigest.bad .dtext { color: var(--bad); }
+  .errbadge {
+    font: 10.5px var(--mono); background: var(--bad); color: #fff;
+    padding: 1px 6px; border-radius: 3px;
+  }
+  .raw {
+    font: 11.5px/1.5 var(--mono); margin: 0; padding: 10px 12px; background: #fff;
+    border-top: 1px solid var(--line); white-space: pre-wrap; word-break: break-word;
+    max-height: 340px; overflow: auto;
+  }
+  .raw-btn { margin-left: auto; }
+
+  /* ---- annotation ---- */
+  .hl { background: #fff3b0; border-bottom: 2px solid #e0b400; }
+  .hl.sugg { background: none; border-bottom: 2px dashed var(--sugg); }
+  .step.annotated { box-shadow: inset 0 0 0 2px #ffe27a; }
+  .note {
+    background: var(--panel); border: 1px solid var(--line); border-left: 3px solid #e0b400;
+    border-radius: 0 6px 6px 0; padding: 8px 10px; margin-bottom: 10px; font-size: 12.5px;
+  }
+  .note.sugg { border-left-color: var(--sugg); border-left-style: dashed; }
+  .note .quote {
+    color: var(--muted); font-style: italic; margin-bottom: 4px; overflow: hidden;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  }
+  .note .acts { margin-top: 6px; display: flex; gap: 6px; }
+  .note .acts button {
+    font-size: 11px; border: 1px solid var(--line); background: var(--panel);
+    border-radius: 4px; padding: 1px 7px; color: var(--muted);
+  }
+  .note .acts button:hover { color: var(--ink); border-color: var(--muted); }
+  #popover {
+    position: absolute; z-index: 30; background: var(--panel); border: 1px solid var(--muted);
+    border-radius: 8px; padding: 10px; width: 330px; box-shadow: 0 8px 28px rgba(0,0,0,.16);
+  }
+  #popover input {
+    width: 100%; font: 13px inherit; padding: 7px 9px;
+    border: 1px solid var(--line); border-radius: 5px;
+  }
+  #popover .hint { font: 11px var(--mono); color: var(--muted); margin-top: 6px; }
+
+  /* ---- footer ---- */
+  #footer {
+    position: fixed; bottom: 0; left: 270px; right: 250px; background: var(--panel);
+    border-top: 1px solid var(--line); padding: 8px 28px; display: flex;
+    gap: 10px; align-items: center; font: 12px var(--mono); color: var(--muted);
+  }
+  #footer button {
+    border: 1px solid var(--line); background: var(--panel); border-radius: 5px;
+    padding: 3px 10px; font: 12px var(--mono); color: var(--ink);
+  }
+  #footer button:hover { border-color: var(--muted); }
+  kbd {
+    font: 10.5px var(--mono); border: 1px solid var(--line); border-bottom-width: 2px;
+    border-radius: 3px; padding: 0 4px; background: var(--bg);
+  }
+
+  /* ---- other views ---- */
+  .view { display: none; }
+  .view.active { display: block; }
+  #tabs { display: flex; gap: 4px; margin-bottom: 8px; }
+  #tabs button {
+    border: 1px solid var(--line); background: var(--panel); border-radius: 5px 5px 0 0;
+    padding: 3px 12px; font: 12px var(--mono); color: var(--muted);
+  }
+  #tabs button.on { color: var(--ink); border-bottom-color: var(--panel); font-weight: 600; }
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+    padding: 14px 16px; margin-bottom: 12px;
+  }
+  .card h3 { margin: 0 0 4px; font: 600 14px var(--mono); }
+  .card .def { color: var(--muted); font-size: 13px; }
+  .card ul { margin: 8px 0 0; padding-left: 18px; font-size: 12.5px; color: var(--muted); }
+  table.grid { border-collapse: collapse; font: 12px var(--mono); width: 100%; margin-top: 10px; }
+  table.grid th, table.grid td { border: 1px solid var(--line); padding: 4px 8px; text-align: left; }
+  table.grid th { background: var(--bg); }
+  #toast {
+    position: fixed; bottom: 54px; left: 50%; transform: translateX(-50%);
+    background: var(--ink); color: #fff; padding: 7px 14px; border-radius: 6px;
+    font: 12px var(--mono); opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 50;
+  }
+  #toast.on { opacity: .94; }
+</style>
+
+<div id="shell">
+  <aside id="sidebar">
+    <div id="side-head">
+      <select id="f-batch"><option value="">all batches</option></select>
+      <select id="f-status">
+        <option value="">any status</option>
+        <option value="unreviewed">unreviewed</option>
+        <option value="noted">annotated</option>
+        <option value="clean">no failure</option>
+        <option value="flag">flagged</option>
+      </select>
+      <select id="f-role"><option value="">any role</option></select>
+      <div id="counter">0 / 0 reviewed</div>
+      <div id="bar"><div></div></div>
+    </div>
+    <div id="side-list"></div>
+  </aside>
+
+  <main id="main">
+    <div id="head">
+      <div id="tabs">
+        <button data-view="read" class="on">read</button>
+        <button data-view="taxonomy">taxonomy</button>
+        <button data-view="progress">progress</button>
+      </div>
+      <h1 id="title">—</h1>
+      <div id="ribbon"></div>
+      <div style="margin-top:8px">
+        <button class="drawer-btn" data-drawer="meta">▸ metadata</button>
+        <button class="drawer-btn" data-drawer="expected">▸ expected</button>
+      </div>
+      <div id="d-meta" class="drawer hidden"></div>
+      <div id="d-expected" class="drawer hidden"></div>
+    </div>
+
+    <div id="read-view" class="view active"><div id="body"></div></div>
+    <div id="taxonomy-view" class="view" style="padding:22px 28px"></div>
+    <div id="progress-view" class="view" style="padding:22px 28px"></div>
+  </main>
+
+  <aside id="margin-col"></aside>
+</div>
+
+<div id="footer">
+  <button id="btn-clean">⚑ no failure observed <kbd>n</kbd></button>
+  <button id="btn-flag">flag for re-review <kbd>f</kbd></button>
+  <span style="flex:1"></span>
+  <span><kbd>←</kbd><kbd>→</kbd> session · <kbd>↑</kbd><kbd>↓</kbd> step · <kbd>enter</kbd> annotate</span>
+  <span id="pos">0 / 0</span>
+</div>
+
+<div id="popover" class="hidden">
+  <input id="note-input" placeholder="what went wrong? (Enter to save)" autocomplete="off" />
+  <div class="hint">first failure only, in your own words — no categories yet</div>
+</div>
+<div id="toast"></div>
+
+<script>
+/* =====================================================================
+   DOM helpers
+
+   Every view is built from real nodes. Trace text reaches the page only as
+   a text node, never as parsed markup, so a tool result or an agent reply
+   containing angle brackets renders as characters rather than elements.
+   ===================================================================== */
+function el(tag, props, ...kids) {
+  const node = document.createElement(tag);
+  for (const [key, value] of Object.entries(props || {})) {
+    if (value === null || value === undefined || value === false) continue;
+    if (key === 'class') node.className = value;
+    else if (key === 'text') node.textContent = value;
+    else if (key === 'style') node.style.cssText = value;
+    else if (key.startsWith('on')) node.addEventListener(key.slice(2), value);
+    else node.setAttribute(key, value);
+  }
+  add(node, kids);
+  return node;
+}
+
+function add(node, kids) {
+  for (const kid of kids.flat(3)) {
+    if (kid === null || kid === undefined || kid === false || kid === '') continue;
+    node.append(kid.nodeType ? kid : document.createTextNode(String(kid)));
+  }
+  return node;
+}
+
+function fill(node, ...kids) {
+  while (node.firstChild) node.removeChild(node.firstChild);
+  return add(node, kids);
+}
+
+const $ = id => document.getElementById(id);
+const clip = (s, n) => { s = String(s ?? ''); return s.length > n ? s.slice(0, n) + '…' : s; };
+const pretty = v => typeof v === 'string' ? v : JSON.stringify(v, null, 2);
+
+/* A definition-list style row for the collapsed drawers. */
+function field(label, value) {
+  return value === null || value === undefined || value === ''
+    ? null
+    : el('div', {}, el('b', {text: label}), ' ', String(value));
+}
+
+/* =====================================================================
+   State and API
+   ===================================================================== */
+const state = {
+  sessions: [],     // sidebar rows, from the sample manifest
+  filtered: [],     // rows surviving the sidebar filters
+  cur: null,        // full record of the open session
+  curId: null,
+  cursor: 0,        // index into filtered; moved synchronously so that held
+                    // arrow keys cannot race the session fetch
+  epoch: 0,         // discards a fetch that resolves after a newer one
+  annotations: [],
+  suggestions: [],
+  patterns: {modes: []},
+  progress: null,
+  steps: [],        // rendered step descriptors, for keyboard focus
+  focus: -1,
+  pending: null,    // annotation being typed
+};
+
+const api = {
+  async get(path) { const r = await fetch(path); return r.json(); },
+  async post(path, body) {
+    const r = await fetch(path, {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body),
+    });
+    return r.json();
+  },
+};
+
+const asList = a =>
+  Array.isArray(a) ? a : (a && Array.isArray(a.annotations) ? a.annotations : []);
+
+function toast(message) {
+  const t = $('toast');
+  t.textContent = message;
+  t.classList.add('on');
+  clearTimeout(t._hide);
+  t._hide = setTimeout(() => t.classList.remove('on'), 1800);
+}
+
+/* =====================================================================
+   Load
+   ===================================================================== */
+async function loadAll() {
+  const [manifest, anns, suggs, pats] = await Promise.all([
+    api.get('/api/samples'), api.get('/api/annotations'),
+    api.get('/api/suggestions'), api.get('/api/patterns'),
+  ]);
+  let sessions = (manifest && manifest.sessions) || [];
+  // Before Part B writes a manifest, fall back to the whole store so the
+  // interface is usable, and smoke-testable, straight away.
+  if (!sessions.length) sessions = await api.get('/api/store');
+  state.sessions = sessions;
+  state.annotations = asList(anns);
+  state.suggestions = Array.isArray(suggs) ? suggs : [];
+  state.patterns = (pats && pats.modes) ? pats : {modes: []};
+  buildFilters();
+  applyFilters();
+  if (state.filtered.length) await openSession(state.filtered[0].session_id);
+  await refreshProgress();
+}
+
+async function refreshProgress() {
+  state.progress = await api.get('/api/progress');
+  renderCounter();
+  if ($('progress-view').classList.contains('active')) renderProgress();
+}
+
+/* =====================================================================
+   Sidebar
+   ===================================================================== */
+function buildFilters() {
+  const batches = [...new Set(state.sessions.map(s => s.batch).filter(Boolean))];
+  const roles = [...new Set(state.sessions.map(s => (s.meta || {}).role).filter(Boolean))];
+  const fillSelect = (node, values) => {
+    const keep = node.value;
+    const first = node.options[0];
+    fill(node, first, values.map(v => el('option', {value: v, text: v})));
+    node.value = keep;
+  };
+  fillSelect($('f-batch'), batches);
+  fillSelect($('f-role'), roles);
+}
+
+function statusOf(sessionId) {
+  const mine = state.annotations.filter(a => a.session_id === sessionId);
+  if (mine.some(a => a.kind === 'flag')) return 'flag';
+  if (mine.some(a => a.kind === 'note')) return 'noted';
+  if (mine.some(a => a.kind === 'no_failure')) return 'clean';
+  return 'unreviewed';
+}
+
+const GLYPH = {unreviewed: '·', noted: '●', clean: '✓', flag: '⚑'};
+
+function applyFilters() {
+  const batch = $('f-batch').value;
+  const status = $('f-status').value;
+  const role = $('f-role').value;
+  state.filtered = state.sessions.filter(s =>
+    (!batch || s.batch === batch) &&
+    (!role || (s.meta || {}).role === role) &&
+    (!status || statusOf(s.session_id) === status));
+  renderSidebar();
+}
+
+function renderSidebar() {
+  const list = $('side-list');
+  if (!state.filtered.length) {
+    fill(list, el('div', {class: 'srow', text: 'no sessions match'}));
+    return;
+  }
+  fill(list, state.filtered.map(s => {
+    const st = statusOf(s.session_id);
+    const meta = s.meta || {};
+    const denied = (s.flags || []).includes('permission_denied');
+    return el('div', {
+      class: 'srow' + (s.session_id === state.curId ? ' sel' : ''),
+      onclick: () => openSession(s.session_id),
+    },
+      el('div', {class: 'glyph ' + st, text: GLYPH[st]}),
+      el('div', {},
+        el('div', {class: 'stitle'},
+          `${s.scenario_id || ''} · ${meta.role || ''} · ${meta.turn_count || 1}t`,
+          denied ? el('span', {class: 'sflag', text: ' ⛔'}) : null),
+        el('div', {class: 'sopen', text: clip(s.opening, 110)}),
+        el('div', {class: 'sribbon', text: (s.ribbon || []).join(' → ') || '(no tools)'})));
+  }));
+  const at = state.filtered.findIndex(s => s.session_id === state.curId);
+  $('pos').textContent = `${at + 1} / ${state.filtered.length}`;
+}
+
+function renderCounter() {
+  const p = state.progress || {};
+  const total = p.total || state.sessions.length;
+  const done = p.reviewed || 0;
+  $('counter').textContent = `${done} / ${total} reviewed · ${p.annotation_count || 0} notes`;
+  $('bar').firstElementChild.style.width = total ? `${100 * done / total}%` : '0';
+}
+
+/* =====================================================================
+   Reading pane
+   ===================================================================== */
+async function openSession(id) {
+  // Claim the slot synchronously, so a held arrow key advances one session
+  // per press even though the record itself arrives later.
+  const mine = ++state.epoch;
+  state.curId = id;
+  state.cursor = state.filtered.findIndex(s => s.session_id === id);
+  state.focus = -1;
+  renderSidebar();
+
+  const record = await api.get('/api/session?id=' + encodeURIComponent(id));
+  if (mine !== state.epoch) return;  // a newer navigation won
+  state.cur = record;
+  renderHeader();
+  renderTrace();
+  $('main').scrollTop = 0;
+}
+
+function renderHeader() {
+  const s = state.cur;
+  if (!s) return;
+  const meta = s.meta || {};
+  $('title').textContent =
+    `${s.scenario_id} · ${meta.role} · ${meta.turn_count} turn${meta.turn_count === 1 ? '' : 's'}`;
+  const ribbon = s.ribbon || [];
+  $('ribbon').textContent = ribbon.length ? ribbon.join(' → ') + ' → reply' : 'no tool calls';
+
+  fill($('d-meta'),
+    field('session', s.session_id),
+    field('traces', (s.member_trace_ids || []).join(', ')),
+    field('user', meta.user_id),
+    field('store', meta.store_id),
+    field('prompt', meta.prompt_version),
+    field('group', meta.scenario_group),
+    field('intent', meta.intent),
+    field('flags', (s.flags || []).join(', ')));
+
+  const e = s.expected;
+  fill($('d-expected'), e
+    ? [field('evaluation', e.evaluation),
+       field(e.outcome ? 'outcome' : 'criterion', e.outcome || e.criterion),
+       field('reason', e.reason),
+       e.source ? field('source', `${e.source.type} → ${e.source.reference}`) : null]
+    : 'no scenario record');
+}
+
+/* One .step per visible unit. A tool_call and the tool_result that follows
+   it are one step, so a call and its outcome are never separated. */
+function renderTrace() {
+  const s = state.cur;
+  const body = $('body');
+  if (!s) { fill(body); return; }
+  const msgs = s.trace || [];
+  const nodes = [];
+  state.steps = [];
+  let turn = 0;
+
+  for (let i = 0; i < msgs.length; i++) {
+    const m = msgs[i];
+    if (m.turn !== turn) {
+      turn = m.turn;
+      if (turn > 1) nodes.push(el('div', {class: 'turn-sep', text: `turn ${turn}`}));
+    }
+    if (m.role === 'tool_call') {
+      const next = msgs[i + 1];
+      const result = next && next.role === 'tool_result' ? next : null;
+      nodes.push(toolStep(m, result, state.steps.length));
+      state.steps.push({idx: result ? result.idx : m.idx, kind: 'step'});
+      if (result) i++;
+    } else if (m.role === 'tool_result') {
+      nodes.push(toolStep(null, m, state.steps.length));
+      state.steps.push({idx: m.idx, kind: 'step'});
+    } else {
+      nodes.push(textStep(m, state.steps.length));
+      state.steps.push({idx: m.idx, kind: 'text'});
+    }
+  }
+  fill(body, nodes);
+  applyHighlights();
+  renderMargin();
+}
+
+function textStep(m, stepIndex) {
+  const role = m.role === 'user' ? 'user' : 'assistant';
+  return el('div', {
+    class: `step msg ${role}`, 'data-step': stepIndex, 'data-idx': m.idx,
+    onmousedown: () => { state.focus = stepIndex; paintFocus(); },
+  },
+    el('div', {class: 'role', text: role}),
+    el('div', {class: 'text annotatable', 'data-idx': m.idx, text: m.text || pretty(m.content)}));
+}
+
+function toolStep(call, result, stepIndex) {
+  const name = (call && call.name) || (result && result.name) || 'tool';
+  const args = call && call.arguments !== undefined ? JSON.stringify(call.arguments) : '';
+  const d = (result && result.digest) || null;
+  const raw = result ? pretty(result.content !== undefined ? result.content : result.text) : '';
+  const idx = result ? result.idx : (call ? call.idx : 0);
+
+  const rawPre = raw ? el('pre', {class: 'raw hidden', text: raw}) : null;
+  const rawBtn = raw ? el('button', {
+    class: 'drawer-btn raw-btn', text: '▸ full',
+    onclick: ev => {
+      ev.stopPropagation();
+      const hidden = rawPre.classList.toggle('hidden');
+      rawBtn.textContent = hidden ? '▸ full' : '▾ full';
+    },
+  }) : null;
+
+  return el('div', {
+    class: 'step toolstep', 'data-step': stepIndex, 'data-idx': idx,
+    onmousedown: () => { state.focus = stepIndex; paintFocus(); },
+  },
+    el('div', {class: 'toolhead'},
+      el('span', {class: 'tname', text: name}),
+      el('span', {class: 'targs', text: clip(args, 90)}),
+      rawBtn),
+    d ? el('div', {class: 'tdigest ' + (d.ok === false ? 'bad' : 'ok')},
+      el('span', {class: 'arrow', text: '→'}),
+      d.error ? el('span', {class: 'errbadge', text: d.error}) : null,
+      el('span', {class: 'dtext annotatable', 'data-idx': idx, text: d.text})) : null,
+    rawPre);
+}
+
+function paintFocus() {
+  document.querySelectorAll('.step').forEach(node =>
+    node.classList.toggle('focus', Number(node.dataset.step) === state.focus));
+}
+
+/* =====================================================================
+   Annotation
+   ===================================================================== */
+function itemsForSession() {
+  const id = state.curId;
+  return [
+    ...state.annotations
+      .filter(a => a.session_id === id && a.kind === 'note')
+      .map(a => ({...a, origin: 'human'})),
+    ...state.suggestions
+      .filter(s => s.session_id === id && s.decision !== 'rejected')
+      .map(s => ({...s, origin: 'sugg'})),
+  ];
+}
+
+/* Re-wrap each annotated quote as three text nodes and a highlight span. */
+function applyHighlights() {
+  for (const item of itemsForSession()) {
+    const anchor = item.anchor || {};
+    if (anchor.type === 'step') {
+      const step = document.querySelector(`.step[data-idx="${anchor.idx}"]`);
+      if (step) step.classList.add('annotated');
+      continue;
+    }
+    const block = document.querySelector(`.annotatable[data-idx="${anchor.idx}"]`);
+    if (!block || !item.quote) continue;
+    const text = block.textContent;
+    const at = text.slice(anchor.start, anchor.end) === item.quote
+      ? anchor.start
+      : text.indexOf(item.quote);
+    if (at < 0) continue;
+    fill(block,
+      text.slice(0, at),
+      el('span', {
+        class: 'hl' + (item.origin === 'sugg' ? ' sugg' : ''),
+        title: item.note || item.mode || '',
+      }, item.quote),
+      text.slice(at + item.quote.length));
+  }
+}
+
+function renderMargin() {
+  const col = $('margin-col');
+  const items = itemsForSession();
+  if (!items.length) {
+    fill(col, el('div', {
+      style: 'font:11px var(--mono);color:var(--muted)', text: 'no notes yet',
+    }));
+    return;
+  }
+  fill(col, items.map(item => el('div', {class: 'note' + (item.origin === 'sugg' ? ' sugg' : '')},
+    item.quote ? el('div', {class: 'quote', text: `“${clip(item.quote, 90)}”`}) : null,
+    el('div', {text: item.note || item.mode || ''}),
+    el('div', {class: 'acts'}, item.origin === 'sugg'
+      ? [el('button', {text: 'accept', onclick: () => acceptSuggestion(item.id)}),
+         el('button', {text: 'dismiss', onclick: () => dismissSuggestion(item.id)})]
+      : [el('button', {text: 'delete', onclick: () => deleteAnnotation(item.id)})]))));
+}
+
+function openPopover(anchor, quote, rect) {
+  state.pending = {anchor, quote};
+  const pop = $('popover');
+  pop.classList.remove('hidden');
+  pop.style.top = (window.scrollY + rect.bottom + 8) + 'px';
+  pop.style.left = Math.min(rect.left, window.innerWidth - 360) + 'px';
+  const input = $('note-input');
+  input.value = '';
+  input.focus();
+}
+
+function closePopover() {
+  state.pending = null;
+  $('popover').classList.add('hidden');
+}
+
+/* Selecting text inside an annotatable block starts a text-anchored note. */
+document.addEventListener('mouseup', ev => {
+  if (ev.target.closest && ev.target.closest('#popover')) return;
+  const sel = window.getSelection();
+  const quote = sel ? String(sel).trim() : '';
+  if (!quote) return;
+  const node = sel.anchorNode;
+  const block = node && node.parentElement ? node.parentElement.closest('.annotatable') : null;
+  if (!block) return;
+  const start = block.textContent.indexOf(quote);
+  openPopover(
+    {type: 'text', idx: Number(block.dataset.idx), start, end: start + quote.length},
+    quote, sel.getRangeAt(0).getBoundingClientRect());
+});
+
+function annotateFocusedStep() {
+  const step = state.steps[state.focus];
+  if (!step) return;
+  const node = document.querySelector(`.step[data-step="${state.focus}"]`);
+  if (!node) return;
+  const source = step.kind === 'text'
+    ? node.querySelector('.text')
+    : node.querySelector('.toolhead');
+  openPopover({type: 'step', idx: step.idx},
+              clip((source ? source.textContent : '').trim(), 120),
+              node.getBoundingClientRect());
+}
+
+async function commitAnnotation() {
+  const note = $('note-input').value.trim();
+  if (!note || !state.pending) { closePopover(); return; }
+  state.annotations.push({
+    id: 'a' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+    session_id: state.curId,
+    trace_id: state.cur.trace_id,
+    scenario_id: state.cur.scenario_id,
+    kind: 'note',
+    anchor: state.pending.anchor,
+    quote: state.pending.quote,
+    note,
+    ts: new Date().toISOString(),
+  });
+  closePopover();
+  await saveAnnotations();
+  renderTrace();
+}
+
+/* "no failure observed" and "flag" are one-per-session toggles. The first
+   distinguishes a reviewed-clean session from an unread one, which is what
+   makes every later count meaningful. */
+async function markKind(kind, label) {
+  const existing = state.annotations.find(a => a.session_id === state.curId && a.kind === kind);
+  if (existing) {
+    state.annotations = state.annotations.filter(a => a !== existing);
+    toast('cleared ' + label);
+  } else {
+    state.annotations.push({
+      id: 'a' + Date.now().toString(36),
+      session_id: state.curId,
+      trace_id: state.cur.trace_id,
+      scenario_id: state.cur.scenario_id,
+      kind, note: '', ts: new Date().toISOString(),
+    });
+    toast(label);
+  }
+  await saveAnnotations();
+}
+
+async function deleteAnnotation(id) {
+  state.annotations = state.annotations.filter(a => a.id !== id);
+  await saveAnnotations();
+  renderTrace();
+}
+
+async function acceptSuggestion(id) {
+  const s = state.suggestions.find(x => x.id === id);
+  if (!s) return;
+  state.annotations.push({
+    id: 'a' + Date.now().toString(36),
+    session_id: s.session_id, trace_id: s.trace_id, scenario_id: s.scenario_id,
+    kind: 'note', anchor: s.anchor, quote: s.quote, note: s.note || s.mode,
+    source: 'accepted_suggestion', mode: s.mode, suggestion_id: id,
+    ts: new Date().toISOString(),
+  });
+  state.suggestions = state.suggestions.map(x =>
+    x.id === id ? {...x, decision: 'accepted', decided_at: new Date().toISOString()} : x);
+  await Promise.all([saveAnnotations(), saveSuggestions()]);
+  renderTrace();
+}
+
+/* Rejections are kept, never deleted: the handout requires at least one
+   recorded rejected suggestion together with the boundary that excluded it. */
+async function dismissSuggestion(id) {
+  state.suggestions = state.suggestions.map(x =>
+    x.id === id ? {...x, decision: 'rejected', decided_at: new Date().toISOString()} : x);
+  await saveSuggestions();
+  renderTrace();
+  toast('rejected, kept in suggestions.json');
+}
+
+async function saveAnnotations() {
+  try { localStorage.setItem('cw_annotations', JSON.stringify(state.annotations)); } catch (e) {}
+  await api.post('/api/annotations', {annotations: state.annotations});
+  await refreshProgress();
+  applyFilters();
+}
+
+async function saveSuggestions() {
+  await api.post('/api/suggestions', state.suggestions);
+}
+
+/* =====================================================================
+   Taxonomy and progress
+   ===================================================================== */
+function renderTaxonomy() {
+  const modes = state.patterns.modes || [];
+  const view = $('taxonomy-view');
+  if (!modes.length) {
+    fill(view, el('div', {class: 'card'},
+      el('h3', {text: 'no modes yet'}),
+      el('div', {class: 'def', text:
+        'Modes appear here as your open codes are grouped. During Part B you write ' +
+        'notes; grouping them into named modes is axial coding, and comes after.'})));
+    return;
+  }
+  fill(view, modes.map(m => el('div', {class: 'card'},
+    el('h3', {text: m.name}),
+    el('div', {class: 'def', text: m.definition || ''}),
+    el('ul', {},
+      el('li', {text: `status ${m.status || 'candidate'} · spec ${m.spec_ref || '—'} ` +
+                      `· evaluator ${m.evaluator || '—'}`}),
+      el('li', {text: `positives ${(m.positive_sessions || []).length} · ` +
+                      `close negatives ${(m.close_negative_sessions || []).length}`}),
+      el('li', {text: `boundary: ${m.boundary || '—'}`}),
+      el('li', {text: `from annotations: ${(m.created_from || []).join(', ') || '—'}`})))));
+}
+
+function table(headers, rows) {
+  return el('table', {class: 'grid'},
+    el('tr', {}, headers.map(h => el('th', {text: h}))),
+    rows.map(r => el('tr', {}, r.map(c => el('td', {text: c})))));
+}
+
+function renderProgress() {
+  const p = state.progress || {};
+  const batches = Object.entries(p.batches || {});
+  const labels = Object.entries(p.label_counts || {});
+  fill($('progress-view'),
+    el('div', {class: 'card'},
+      el('h3', {text: 'coverage'}),
+      el('div', {class: 'def', text:
+        `${p.reviewed || 0} of ${p.total || 0} sessions reviewed · ` +
+        `${p.annotated || 0} with an open code · ${p.no_failure || 0} clean · ` +
+        `${(p.flagged || []).length} flagged for re-review`}),
+      batches.length
+        ? table(['batch', 'reviewed', 'total'],
+                batches.map(([k, v]) => [k, v.reviewed, v.total]))
+        : null),
+    el('div', {class: 'card'},
+      el('h3', {text: 'labels'}),
+      labels.length
+        ? table(['mode', 'fail', 'pass'], labels.map(([m, c]) => [m, c.fail, c.pass]))
+        : el('div', {class: 'def', text: 'no structured labels yet — that is Part E.'}),
+      el('div', {class: 'def', style: 'margin-top:8px',
+                 text: `${p.incomplete_total || 0} sessions have an unjudged mode.`})));
+}
+
+/* =====================================================================
+   Navigation and keyboard
+   ===================================================================== */
+function step(delta) {
+  const next = Math.min(Math.max(state.cursor + delta, 0), state.filtered.length - 1);
+  if (next !== state.cursor && state.filtered[next]) {
+    openSession(state.filtered[next].session_id);
+  }
+}
+
+function moveFocus(delta) {
+  if (!state.steps.length) return;
+  state.focus = Math.min(Math.max(state.focus + delta, 0), state.steps.length - 1);
+  paintFocus();
+  const node = document.querySelector(`.step[data-step="${state.focus}"]`);
+  if (node) node.scrollIntoView({block: 'center', behavior: 'smooth'});
+}
+
+const KEYS = {
+  ArrowRight: () => step(1),
+  ArrowLeft: () => step(-1),
+  ArrowDown: () => moveFocus(1),
+  ArrowUp: () => moveFocus(-1),
+  Enter: annotateFocusedStep,
+  n: () => markKind('no_failure', 'no failure observed'),
+  f: () => markKind('flag', 'flagged for re-review'),
+  Escape: closePopover,
+};
+
+document.addEventListener('keydown', ev => {
+  // Bindings go dead while typing, so arrows edit text rather than navigate.
+  if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) {
+    if (ev.key === 'Enter' && document.activeElement.id === 'note-input') commitAnnotation();
+    if (ev.key === 'Escape') { closePopover(); document.activeElement.blur(); }
+    return;
+  }
+  const handler = KEYS[ev.key];
+  if (handler) { ev.preventDefault(); handler(); }
+});
+
+function switchView(name) {
+  document.querySelectorAll('#tabs button').forEach(b =>
+    b.classList.toggle('on', b.dataset.view === name));
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  $(name === 'read' ? 'read-view' : name + '-view').classList.add('active');
+  $('margin-col').classList.toggle('hidden', name !== 'read');
+  if (name === 'taxonomy') renderTaxonomy();
+  if (name === 'progress') renderProgress();
+}
+
+/* =====================================================================
+   Wiring
+   ===================================================================== */
+document.querySelectorAll('#tabs button').forEach(b =>
+  b.onclick = () => switchView(b.dataset.view));
+document.querySelectorAll('.drawer-btn[data-drawer]').forEach(b =>
+  b.onclick = () => {
+    const drawer = $('d-' + b.dataset.drawer);
+    const hidden = drawer.classList.toggle('hidden');
+    b.textContent = (hidden ? '▸ ' : '▾ ') + b.dataset.drawer;
+  });
+['f-batch', 'f-status', 'f-role'].forEach(id => $(id).onchange = applyFilters);
+$('btn-clean').onclick = () => markKind('no_failure', 'no failure observed');
+$('btn-flag').onclick = () => markKind('flag', 'flagged for re-review');
+
+/* Poll for agent-pushed taxonomy and suggestions while the human reviews. */
+setInterval(async () => {
+  const [suggs, pats] = await Promise.all([
+    api.get('/api/suggestions'), api.get('/api/patterns'),
+  ]);
+  const before = state.suggestions.length;
+  state.suggestions = Array.isArray(suggs) ? suggs : [];
+  state.patterns = (pats && pats.modes) ? pats : {modes: []};
+  if (state.suggestions.length !== before) { renderTrace(); toast('new suggestions'); }
+}, 4000);
+
+loadAll();
+</script>
