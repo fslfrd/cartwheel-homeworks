@@ -78,6 +78,31 @@ fractions are lower bounds. The detector hits are preserved undecided in
 | `acts_on_stale_premise` | One observation, no further instances, no requirement. |
 | `checked_and_conformant` | A question raised during review that AUTH-1 answers: cross-store product search is permitted to every role. |
 
+## Rejected groupings
+
+Two merges were proposed and rejected. Both pairs pass the handout's merge
+test, that one product change would correct both behaviours, and were still
+kept apart.
+
+**`narrates_intent_before_acting` and `affective_filler_opener`.** Both are
+output that is not the answer, both derive from RESP-5, and one prompt
+instruction ("answer first, no preamble") would plausibly fix both. They were
+kept separate because the evidence a reviewer cites differs: one is a
+procedural announcement of a tool call, the other is affective padding with no
+propositional content. A reviewer applying the merged definition would have to
+decide which of the two it meant on every trace.
+
+**`acts_beyond_request` and `repeats_identical_lookup`.** These share a
+requirement outright, RESP-7, so the merge case is stronger. They were kept
+apart because a mode carries one evaluator type and theirs differ.
+`repeats_identical_lookup` is decidable by code, being a read repeated with
+equivalent arguments and no intervening write, while `acts_beyond_request`
+requires a judgement about what the user asked for. Merging them would force
+the combined mode to an LLM judge and discard the only failure in the taxonomy
+that can be detected exactly and for free. The merge test asks which product
+change fixes the behaviour; the deliverable also asks for a single evaluator
+per mode, and here the second consideration won.
+
 ## Taxonomy revision
 
 `reveals_internal_error_detail` was first defined as a reply exposing
