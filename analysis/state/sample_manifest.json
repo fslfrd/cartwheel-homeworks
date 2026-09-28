@@ -1,0 +1,5706 @@
+{
+ "generated_at": "2026-09-28T18:27:54.039140+00:00",
+ "source": "traces/support_traces.json",
+ "unit": "session",
+ "unit_note": "One session is one conversation. Cartwheel writes one trace per user turn, so these sessions cover more underlying traces than their count.",
+ "target_sessions": 100,
+ "batches": [
+  {
+   "id": "b0_exploratory",
+   "method": "sequential",
+   "n": 56
+  },
+  {
+   "id": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "n": 15
+  },
+  {
+   "id": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "n": 15
+  },
+  {
+   "id": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "n": 30
+  },
+  {
+   "id": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "n": 25
+  },
+  {
+   "id": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "n": 15
+  }
+ ],
+ "sessions": [
+  {
+   "session_id": "a44fb3afc8534402b006e230c3f87d65",
+   "trace_id": "2ca74da79f203cb66a5543b09420af57",
+   "member_trace_ids": [
+    "2ca74da79f203cb66a5543b09420af57",
+    "a2e195d403b5e67c203688ee0f297615"
+   ],
+   "scenario_id": "support-0003",
+   "meta": {
+    "role": "shopper",
+    "user_id": "17",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order",
+    "search_help_center",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "cna you tell me whats goin on with order 54, teh portable crewneck form second stitch",
+   "timing": {
+    "work": 19.6,
+    "elapsed": 19.61,
+    "turns": [
+     5.064,
+     14.537
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "094b6bdfa47b4df1967f8cf96ae1ef07",
+   "trace_id": "570cc455408e869727e84082c01f7293",
+   "member_trace_ids": [
+    "570cc455408e869727e84082c01f7293",
+    "56e805c6625f2696d82f2822a681653a"
+   ],
+   "scenario_id": "support-0004",
+   "meta": {
+    "role": "shopper",
+    "user_id": "470",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "find_order",
+    "list_my_orders",
+    "search_products",
+    "search_products",
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "find_order",
+    "find_order",
+    "find_order",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "following up on a pocket arcade order. compact headphones. no movement visible on my end.",
+   "timing": {
+    "work": 46.23,
+    "elapsed": 46.23,
+    "turns": [
+     28.406,
+     17.825
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "b4c40dfe06444694b6bec10927579a18",
+   "trace_id": "5b5fa8c0e00e878b32d55e48d524c80a",
+   "member_trace_ids": [
+    "5b5fa8c0e00e878b32d55e48d524c80a",
+    "f1c668db7c791423b157716e19e7a176"
+   ],
+   "scenario_id": "support-0005",
+   "meta": {
+    "role": "shopper",
+    "user_id": "410",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order"
+   ],
+   "flags": [],
+   "opening": "im tryin to find out whats happenign with the woven wooden trian i bougth from little fox toys",
+   "timing": {
+    "work": 16.55,
+    "elapsed": 16.55,
+    "turns": [
+     14.264,
+     2.284
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "71443ca460354c8e80c83424a025a65a",
+   "trace_id": "a2750399877319a59f2da331cf53e7b0",
+   "member_trace_ids": [
+    "a2750399877319a59f2da331cf53e7b0",
+    "49385de47763d9d541e79f2bc6047229"
+   ],
+   "scenario_id": "support-0006",
+   "meta": {
+    "role": "shopper",
+    "user_id": "31",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "get_order",
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "hey there, i'm wondering about the walnut building blocks i ordered from little fox toys a while back",
+   "timing": {
+    "work": 13.8,
+    "elapsed": 13.8,
+    "turns": [
+     10.51,
+     3.286
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "69670ba1e4b449a0b2b9e8928ba9f3b1",
+   "trace_id": "af4b74af9a6ed76caa5d220c4aedbe7a",
+   "member_trace_ids": [
+    "af4b74af9a6ed76caa5d220c4aedbe7a",
+    "66ebd65f10b43e6c09023326138b5531"
+   ],
+   "scenario_id": "support-0007",
+   "meta": {
+    "role": "shopper",
+    "user_id": "38",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order",
+    "find_order"
+   ],
+   "flags": [],
+   "opening": "so i think this is order 23? the tea one, the midnight sampler, from saltbox pantry if i've got the name right, and it was a while ago now and i can't tell if it shipped",
+   "timing": {
+    "work": 9.25,
+    "elapsed": 9.25,
+    "turns": [
+     4.804,
+     4.444
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "23042ba9ef72415ca5e68a2ec0ac5601",
+   "trace_id": "c6ee9324eaba2502da853e9582eff5ba",
+   "member_trace_ids": [
+    "c6ee9324eaba2502da853e9582eff5ba"
+   ],
+   "scenario_id": "support-0008",
+   "meta": {
+    "role": "shopper",
+    "user_id": "78",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "search_products",
+    "search_products",
+    "get_order"
+   ],
+   "flags": [
+    "tool_error"
+   ],
+   "opening": "where is my classic rain shell from second stitch. i've asked about this before and i'm asking again. can someone just look it up and tell me where it is",
+   "timing": {
+    "work": 14.75,
+    "elapsed": 14.75,
+    "turns": [
+     14.754
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "457c241ef5df42b3996f239ec25d9e89",
+   "trace_id": "5a51c1665b58e62205dd16cb176c1c55",
+   "member_trace_ids": [
+    "5a51c1665b58e62205dd16cb176c1c55"
+   ],
+   "scenario_id": "support-0009",
+   "meta": {
+    "role": "shopper",
+    "user_id": "419",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "search_products"
+   ],
+   "flags": [],
+   "opening": "quick one, one sentence is fine - status of the rustic tape measure from copperline tools?",
+   "timing": {
+    "work": 6.48,
+    "elapsed": 6.48,
+    "turns": [
+     6.484
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "307ac61b23844eaba971b1793eb654e4",
+   "trace_id": "f202e4d4ce14bf145a2b5ad05bba4a98",
+   "member_trace_ids": [
+    "f202e4d4ce14bf145a2b5ad05bba4a98",
+    "72bbbdbb5b24416d8c64523f124173c8"
+   ],
+   "scenario_id": "support-0010",
+   "meta": {
+    "role": "shopper",
+    "user_id": "169",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "get_order",
+    "get_order",
+    "search_products",
+    "search_products"
+   ],
+   "flags": [],
+   "opening": "ok so there's a speaker, the speckled bluetooth one, and i think it was pocket arcade but honestly it could have been another store, it was a while back and i've lost track of what arrived",
+   "timing": {
+    "work": 22.78,
+    "elapsed": 22.78,
+    "turns": [
+     18.597,
+     4.185
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "b06360c5d2164b6b984f55cdd61e67ff",
+   "trace_id": "f9074b8bd3d1dddfb76cafbb25bec167",
+   "member_trace_ids": [
+    "f9074b8bd3d1dddfb76cafbb25bec167"
+   ],
+   "scenario_id": "support-0011",
+   "meta": {
+    "role": "shopper",
+    "user_id": "489",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "find_order",
+    "find_order"
+   ],
+   "flags": [],
+   "opening": "mechanical keyboard. sturdy one. bright socket. status?",
+   "timing": {
+    "work": 8.84,
+    "elapsed": 8.84,
+    "turns": [
+     8.837
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "a72bb96ea8af44c4b37b88a4a51b99b2",
+   "trace_id": "c93f2187b38aecb3edffb601f005d47b",
+   "member_trace_ids": [
+    "c93f2187b38aecb3edffb601f005d47b",
+    "c6cf8888b9ace22ba1e1150cf08e6eea"
+   ],
+   "scenario_id": "support-0012",
+   "meta": {
+    "role": "shopper",
+    "user_id": "228",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "search_products",
+    "search_products"
+   ],
+   "flags": [
+    "tool_error"
+   ],
+   "opening": "midnight pitcher. blue heron. where is it",
+   "timing": {
+    "work": 27.12,
+    "elapsed": 27.12,
+    "turns": [
+     17.411,
+     9.708
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "a7b42be3403f4ce1971262c2e9a78ee7",
+   "trace_id": "126e96f36f0a84ceebbf9487d62db518",
+   "member_trace_ids": [
+    "126e96f36f0a84ceebbf9487d62db518"
+   ],
+   "scenario_id": "support-0013",
+   "meta": {
+    "role": "shopper",
+    "user_id": "5",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "order 496, travel mechanical keyboard, cascade audio, about a month ago. plain answer please, has it shipped",
+   "timing": {
+    "work": 3.45,
+    "elapsed": 3.45,
+    "turns": [
+     3.45
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "4b98a3912fa44fceb34074ab49f1908f",
+   "trace_id": "9fb65e4bb9db9abd60eae0e0658ea06a",
+   "member_trace_ids": [
+    "9fb65e4bb9db9abd60eae0e0658ea06a"
+   ],
+   "scenario_id": "support-0014",
+   "meta": {
+    "role": "shopper",
+    "user_id": "305",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "order 495 still hasn't turned up and i'm losing patience. the portable rain shell. can someone actually look at it this time",
+   "timing": {
+    "work": 14.7,
+    "elapsed": 14.7,
+    "turns": [
+     14.7
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "e3b2a187ce7d483db0e35f454b7c1194",
+   "trace_id": "21eeb26a449758552da54a3a19b6fbe9",
+   "member_trace_ids": [
+    "21eeb26a449758552da54a3a19b6fbe9",
+    "b679c87c98450079732a621aa838b9fd"
+   ],
+   "scenario_id": "support-0015",
+   "meta": {
+    "role": "shopper",
+    "user_id": "34",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "i ordered some sticky notes, the modern ones, from atlas stationery i think, maybe a couple of weeks ago? and now i can't tell if they're on the way or if i cancelled them",
+   "timing": {
+    "work": 16.61,
+    "elapsed": 16.61,
+    "turns": [
+     13.452,
+     3.162
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "59053f57614142e2a317eda8ade7eb5f",
+   "trace_id": "36221d7169f4d1bedbafdbe2a9bf19a8",
+   "member_trace_ids": [
+    "36221d7169f4d1bedbafdbe2a9bf19a8",
+    "9425baa469c89a7d97ce647fa6dce6ce",
+    "923af6f376650083d880bee7bfb05a39"
+   ],
+   "scenario_id": "support-0016",
+   "meta": {
+    "role": "shopper",
+    "user_id": "382",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "get_order",
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "short answer if you can, the heavy-duty vase from blue heron, is it still coming?",
+   "timing": {
+    "work": 29.13,
+    "elapsed": 29.13,
+    "turns": [
+     19.938,
+     4.699,
+     4.494
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "8c423cf50ec24dac8635a0d4ffdff4e1",
+   "trace_id": "9fd116e55b506e75003362e32d28da15",
+   "member_trace_ids": [
+    "9fd116e55b506e75003362e32d28da15"
+   ],
+   "scenario_id": "support-0017",
+   "meta": {
+    "role": "shopper",
+    "user_id": "123",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "this is getting ridiculous, the midnight building blocks from wooden whale workshop still aren't here and nobody has told me anything",
+   "timing": {
+    "work": 18.79,
+    "elapsed": 18.79,
+    "turns": [
+     18.793
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "1d425082415040d4990d350dec69a553",
+   "trace_id": "46b2e41be8cbba43101f8b93044302cf",
+   "member_trace_ids": [
+    "46b2e41be8cbba43101f8b93044302cf",
+    "949a8a1223e6f4d58ddda2d9acc3fc0e"
+   ],
+   "scenario_id": "support-0018",
+   "meta": {
+    "role": "shopper",
+    "user_id": "440",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "there's a book order, 255 i think, the woven poetry collection from northwind, and i genuinely can't remember if i already asked about this or just meant to",
+   "timing": {
+    "work": 31.22,
+    "elapsed": 31.22,
+    "turns": [
+     13.082,
+     18.134
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "f48d181edbdb4747b69a1b54aec3fbc3",
+   "trace_id": "f3e7f1c286ce4d3861777b1dee7d7f7e",
+   "member_trace_ids": [
+    "f3e7f1c286ce4d3861777b1dee7d7f7e"
+   ],
+   "scenario_id": "support-0019",
+   "meta": {
+    "role": "shopper",
+    "user_id": "165",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "get_order",
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "still nothing on the modern novel from northwind and it's been way too long. i'd like someone to actually deal with this",
+   "timing": {
+    "work": 37.83,
+    "elapsed": 37.83,
+    "turns": [
+     37.825
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "e0cd7dde8d2f476bb312f07991aedecc",
+   "trace_id": "cd89d20614c0477287795441f6dc7312",
+   "member_trace_ids": [
+    "cd89d20614c0477287795441f6dc7312",
+    "d77c62495141f2cce8f87ce22a97afce"
+   ],
+   "scenario_id": "support-0020",
+   "meta": {
+    "role": "shopper",
+    "user_id": "267",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order",
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "whats hapenning wiht order 160, the everday scarf form harbor knits, its been a whiel now",
+   "timing": {
+    "work": 10.8,
+    "elapsed": 10.8,
+    "turns": [
+     4.737,
+     6.064
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "fe16a16d19dc4e4db740c6ccb0f41869",
+   "trace_id": "efebb523d7f4d1da8b82e38216db7e94",
+   "member_trace_ids": [
+    "efebb523d7f4d1da8b82e38216db7e94",
+    "31e257dab59fb62101ecc87fd6badf8b"
+   ],
+   "scenario_id": "support-0081",
+   "meta": {
+    "role": "shopper",
+    "user_id": "375",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "policy_question"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "quick thing, or maybe not so quick, i was reading about sending stuff back and someone mentioned theres a fee taken off the top? i couldnt work out if that applies to everything or only certain items",
+   "timing": {
+    "work": 13.1,
+    "elapsed": 13.1,
+    "turns": [
+     7.183,
+     5.917
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "2533a65c24664676bade22ed1f0fdc9e",
+   "trace_id": "362ba33af74a8e8ced145c66e4c2c771",
+   "member_trace_ids": [
+    "362ba33af74a8e8ced145c66e4c2c771",
+    "3a501d6a2188d1f9a13caba7e37fafa3"
+   ],
+   "scenario_id": "support-0082",
+   "meta": {
+    "role": "support",
+    "user_id": "9504",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "policy_question"
+   },
+   "ribbon": [
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "got a custoemr on the line askign about the retrun window, whats the timefram i shoudl be telling them",
+   "timing": {
+    "work": 6.54,
+    "elapsed": 6.55,
+    "turns": [
+     4.62,
+     1.923
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "e765256ba2214ebc8071b43d773d0c23",
+   "trace_id": "19bca3cdb5ee43d15031ea62de573743",
+   "member_trace_ids": [
+    "19bca3cdb5ee43d15031ea62de573743"
+   ],
+   "scenario_id": "support-0089",
+   "meta": {
+    "role": "support",
+    "user_id": "9504",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "policy_question"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_policy",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "account security questions coming in. what's the line on how accounts are protected?",
+   "timing": {
+    "work": 12.06,
+    "elapsed": 12.06,
+    "turns": [
+     12.065
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "3237d30e5622403aa321ae5b453cd612",
+   "trace_id": "862fc62d684419d249de98ce62d2e1ff",
+   "member_trace_ids": [
+    "862fc62d684419d249de98ce62d2e1ff",
+    "9d62560f12e6e593c2b1377881d31ad2"
+   ],
+   "scenario_id": "support-0100",
+   "meta": {
+    "role": "support",
+    "user_id": "9501",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "policy_question"
+   },
+   "ribbon": [
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "need the return window confirmed, asked elsewhere and got nothing back. what is the return window",
+   "timing": {
+    "work": 10.33,
+    "elapsed": 10.34,
+    "turns": [
+     8.509,
+     1.824
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "26b89ee45b4744578e661ca877d680b0",
+   "trace_id": "f724a4ed7852b7a6958f7c0d13667487",
+   "member_trace_ids": [
+    "f724a4ed7852b7a6958f7c0d13667487"
+   ],
+   "scenario_id": "support-0103",
+   "meta": {
+    "role": "support",
+    "user_id": "9502",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "store_policy_question"
+   },
+   "ribbon": [
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "quick one, customer on the line - what's saltbox pantry's return window? short answer is fine, no explanation needed",
+   "timing": {
+    "work": 4.4,
+    "elapsed": 4.4,
+    "turns": [
+     4.397
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "307d4de33dd444988690e76606e1b12b",
+   "trace_id": "6bb9a6d8473a9133c8d6eb20c29e556f",
+   "member_trace_ids": [
+    "6bb9a6d8473a9133c8d6eb20c29e556f",
+    "aec9a81432190c3e64c6efe95b8f6b38"
+   ],
+   "scenario_id": "support-0106",
+   "meta": {
+    "role": "shopper",
+    "user_id": "47",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "store_policy_question"
+   },
+   "ribbon": [
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "hello! i'm thinking about ordering from meridian cycles and wanted to check how long their return window runs before i commit to it",
+   "timing": {
+    "work": 6.57,
+    "elapsed": 6.57,
+    "turns": [
+     4.212,
+     2.356
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "157cec089ca34165958633fc2ff07ffd",
+   "trace_id": "affdfa81f1eba518eaa6b398e1045d0e",
+   "member_trace_ids": [
+    "affdfa81f1eba518eaa6b398e1045d0e",
+    "510a99a732f48535ab8d52ec6eb24d4c"
+   ],
+   "scenario_id": "support-0109",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9020",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "store_policy_question"
+   },
+   "ribbon": [
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "juniper home goods. return window?",
+   "timing": {
+    "work": 7.48,
+    "elapsed": 7.48,
+    "turns": [
+     5.544,
+     1.938
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "14a033b2cbb84a1db41af458839c7fd8",
+   "trace_id": "1b0d3f03aff540ce247807246417b100",
+   "member_trace_ids": [
+    "1b0d3f03aff540ce247807246417b100",
+    "8c37c7d0073013f5e7935142d839343f"
+   ],
+   "scenario_id": "support-0135",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9020",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_history"
+   },
+   "ribbon": [
+    "list_my_orders"
+   ],
+   "flags": [],
+   "opening": "hey there, i run atlas stationery and id like to go over whats come in lately",
+   "timing": {
+    "work": 21.89,
+    "elapsed": 21.89,
+    "turns": [
+     14.013,
+     7.882
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "11e0dd24c14b4ec6895cb060636a9ed0",
+   "trace_id": "39a19b979e74e639bf3127aa67b349f0",
+   "member_trace_ids": [
+    "39a19b979e74e639bf3127aa67b349f0",
+    "4c506f137c092ae03ce83261fbb23112"
+   ],
+   "scenario_id": "support-0136",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9005",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_history"
+   },
+   "ribbon": [
+    "list_my_orders",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "the order list wont load for me again. cascade audio. can you just tell me whats come in recently",
+   "timing": {
+    "work": 20.37,
+    "elapsed": 20.37,
+    "turns": [
+     12.756,
+     7.615
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "3239dcb6420540c99af57f3282c54c15",
+   "trace_id": "5986acdce9ba8bd22bba9c2cad06fa8b",
+   "member_trace_ids": [
+    "5986acdce9ba8bd22bba9c2cad06fa8b"
+   ],
+   "scenario_id": "support-0137",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9019",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_history"
+   },
+   "ribbon": [
+    "list_my_orders"
+   ],
+   "flags": [],
+   "opening": "so im not totally sure where im meant to look for this, i thought there was a page for it but i cant find it anymore, basically i want to see whats been ordered from pocket arcade lately, thats my shop, well i help run it. anyway, the orders, the recent ones",
+   "timing": {
+    "work": 13.41,
+    "elapsed": 13.41,
+    "turns": [
+     13.41
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "d9d40d2a88cf48ff8409b386cdeee56e",
+   "trace_id": "a83e1e0afb8f7b2a52bbd76ca9d9a798",
+   "member_trace_ids": [
+    "a83e1e0afb8f7b2a52bbd76ca9d9a798"
+   ],
+   "scenario_id": "support-0138",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9013",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_history"
+   },
+   "ribbon": [
+    "list_my_orders"
+   ],
+   "flags": [],
+   "opening": "saltbox pantry - pull recent orders, need fulfillment state on each",
+   "timing": {
+    "work": 10.12,
+    "elapsed": 10.12,
+    "turns": [
+     10.117
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "2d9650558dda4d748eb82691fc1c4547",
+   "trace_id": "ec53425809ae03bf16d6a619f4187ceb",
+   "member_trace_ids": [
+    "ec53425809ae03bf16d6a619f4187ceb",
+    "b1e26b290ce3c05807f25f6f65e69682"
+   ],
+   "scenario_id": "support-0146",
+   "meta": {
+    "role": "support",
+    "user_id": "9503",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order",
+    "search_products",
+    "search_products",
+    "get_order",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "ive had this customer bounced to me twice already. order 859, the webcam. what is actually happening with it",
+   "timing": {
+    "work": 42.22,
+    "elapsed": 42.22,
+    "turns": [
+     13.595,
+     28.621
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "d4e09325119842eea73fba21af615c63",
+   "trace_id": "4d14718e69480daea8b843cdda8c92d5",
+   "member_trace_ids": [
+    "4d14718e69480daea8b843cdda8c92d5"
+   ],
+   "scenario_id": "support-0149",
+   "meta": {
+    "role": "support",
+    "user_id": "9504",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "whats the status on order 597? one line is all i need, customer is on hold",
+   "timing": {
+    "work": 3.67,
+    "elapsed": 3.67,
+    "turns": [
+     3.668
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "e3cbe473e3404cdaa18ccc56e6dc99ba",
+   "trace_id": "afc3d070364ece4eb40b7d9b9e00aed3",
+   "member_trace_ids": [
+    "afc3d070364ece4eb40b7d9b9e00aed3",
+    "09feb59cc4d2cd68dbb941adce85faf6"
+   ],
+   "scenario_id": "support-0150",
+   "meta": {
+    "role": "support",
+    "user_id": "9502",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "order 456 please. ive been going round in circles on this one and the customer is not happy",
+   "timing": {
+    "work": 20.59,
+    "elapsed": 20.59,
+    "turns": [
+     13.097,
+     7.493
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "2704d39d5daf454ebfc0f56f10eaf376",
+   "trace_id": "dbe06b01fc18d66d461c2c11c588d4c3",
+   "member_trace_ids": [
+    "dbe06b01fc18d66d461c2c11c588d4c3"
+   ],
+   "scenario_id": "support-0151",
+   "meta": {
+    "role": "support",
+    "user_id": "9503",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "need order 293 pulled up. customer wrote in about the bath salts from clover field naturals. can you check 293. just the status on 293, she keeps asking me",
+   "timing": {
+    "work": 4.37,
+    "elapsed": 4.37,
+    "turns": [
+     4.371
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "65d4fe64b1f44acbbc90196ecefdfc14",
+   "trace_id": "013a0dfc68186319c45e870a50f4c605",
+   "member_trace_ids": [
+    "013a0dfc68186319c45e870a50f4c605",
+    "efaa0426a895c85f44cd66bb8e39a6a4",
+    "618d7c1ceba3a4fe829579a9f30c1b14"
+   ],
+   "scenario_id": "support-0152",
+   "meta": {
+    "role": "support",
+    "user_id": "9501",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "quick one for you, order 695, what state is it in. short answer is fine",
+   "timing": {
+    "work": 14.67,
+    "elapsed": 14.67,
+    "turns": [
+     3.313,
+     9.883,
+     1.47
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "83ec026aa0904662bc12b2dd4934e798",
+   "trace_id": "85c74ccc3c9d257889c4e06f8b02eb29",
+   "member_trace_ids": [
+    "85c74ccc3c9d257889c4e06f8b02eb29",
+    "dec483b5b558e3099c01b2f51c612166",
+    "c98609d9b608edf6353e92328ae7c71d"
+   ],
+   "scenario_id": "support-0154",
+   "meta": {
+    "role": "support",
+    "user_id": "9501",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order",
+    "get_order",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "custmer emaild us abuot order 75, the headlamp form trailhead supply. can u chekc whats hapening with it",
+   "timing": {
+    "work": 20.1,
+    "elapsed": 20.11,
+    "turns": [
+     4.934,
+     3.744,
+     11.419
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "e452dab406f24ad79d4595993523465d",
+   "trace_id": "49e6114f3fe85ae834ccc683438d966b",
+   "member_trace_ids": [
+    "49e6114f3fe85ae834ccc683438d966b"
+   ],
+   "scenario_id": "support-0163",
+   "meta": {
+    "role": "shopper",
+    "user_id": "349",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "out_of_scope_tax"
+   },
+   "ribbon": [],
+   "flags": [
+    "no_tools"
+   ],
+   "opening": "i need help with my tax return. i know you mostly do orders but im asking anyway, can you help with the return. its the return i need help with, someone please",
+   "timing": {
+    "work": 3.52,
+    "elapsed": 3.52,
+    "turns": [
+     3.517
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "f06e959a0e30472d9e32c5d01c5fe9a5",
+   "trace_id": "9168c7d2cdb8fa49653a8a47012cd1df",
+   "member_trace_ids": [
+    "9168c7d2cdb8fa49653a8a47012cd1df",
+    "0cfd49643815af99391d1998a456af17"
+   ],
+   "scenario_id": "support-0165",
+   "meta": {
+    "role": "shopper",
+    "user_id": "214",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "account_change"
+   },
+   "ribbon": [
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "phone number on my profile is out of date, needs replacing with my current one",
+   "timing": {
+    "work": 8.63,
+    "elapsed": 8.64,
+    "turns": [
+     5.024,
+     3.61
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "1a81c283cc294dd4a510c5424aad1271",
+   "trace_id": "6909c47c5ade89e1ffa919e6428469bc",
+   "member_trace_ids": [
+    "6909c47c5ade89e1ffa919e6428469bc"
+   ],
+   "scenario_id": "support-0167",
+   "meta": {
+    "role": "shopper",
+    "user_id": "47",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "account_change"
+   },
+   "ribbon": [
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "moved recently. default delivery address on the account needs updating before my next order goes out.",
+   "timing": {
+    "work": 5.52,
+    "elapsed": 5.52,
+    "turns": [
+     5.521
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "b232f84d634f43dd95abcec1a3bacdf7",
+   "trace_id": "0849e0d96a8948318194647db71eafda",
+   "member_trace_ids": [
+    "0849e0d96a8948318194647db71eafda",
+    "ad04a9787d9c4bd304b8daf0a4cf6bb3"
+   ],
+   "scenario_id": "support-0169",
+   "meta": {
+    "role": "shopper",
+    "user_id": "28",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "account_change"
+   },
+   "ribbon": [
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "so i think the address on my account might still be my old one? or maybe i did update it and it didnt save, honestly i cant remember now. either way things could be going to the wrong place and id rather sort it",
+   "timing": {
+    "work": 27.23,
+    "elapsed": 27.23,
+    "turns": [
+     19.148,
+     8.081
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "ea46129a86064cca810617ed0a5945a3",
+   "trace_id": "1d53235d995f1e3e26bd97086a3d0e6f",
+   "member_trace_ids": [
+    "1d53235d995f1e3e26bd97086a3d0e6f"
+   ],
+   "scenario_id": "support-0173",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9012",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "payout_question"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "payouts. when do they land. wooden whale workshop",
+   "timing": {
+    "work": 7.49,
+    "elapsed": 7.49,
+    "turns": [
+     7.489
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "3f7934dee77343b3bbc60690786eb8ff",
+   "trace_id": "581052e3d38cc2c414a53f05a1e18875",
+   "member_trace_ids": [
+    "581052e3d38cc2c414a53f05a1e18875",
+    "8379ed1487e9c8fe36d794eb6b810e05"
+   ],
+   "scenario_id": "support-0174",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9007",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "payout_question"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "runing northwind books here, tryng to figur out when the payouts acutally hit the bank",
+   "timing": {
+    "work": 9.95,
+    "elapsed": 9.95,
+    "turns": [
+     6.66,
+     3.29
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "e4ff2f0e4d7142bb80adcd0fbcb89ac5",
+   "trace_id": "88bda5d69e864606b7aba3fb5fb73374",
+   "member_trace_ids": [
+    "88bda5d69e864606b7aba3fb5fb73374"
+   ],
+   "scenario_id": "support-0178",
+   "meta": {
+    "role": "support",
+    "user_id": "9502",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "return_deadline"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "hey, i'm looking at order 8002 for a customer, the classic pencil set from atlas stationery. can you tell me when their return window closes so i can let them know?",
+   "timing": {
+    "work": 16.49,
+    "elapsed": 16.49,
+    "turns": [
+     16.494
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "ce7830432e6f4656bdd3db3ced4867f9",
+   "trace_id": "448b1e2dd05bc320be47ecf8b063a2c6",
+   "member_trace_ids": [
+    "448b1e2dd05bc320be47ecf8b063a2c6",
+    "4214747d6f3bb0f261731e7fe3e93e21",
+    "29278ab880ccab191b233ad62de97780"
+   ],
+   "scenario_id": "support-0183",
+   "meta": {
+    "role": "support",
+    "user_id": "9502",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "challenge",
+    "intent": "order_timeline_question"
+   },
+   "ribbon": [
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "quick one on order 8001, the woven wool socks. the delivery dates on it don't line up and the customer is asking. short answer is fine, no essay",
+   "timing": {
+    "work": 8.29,
+    "elapsed": 8.3,
+    "turns": [
+     4.755,
+     1.997,
+     1.54
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "d40f3d5111114bea9076faeab538b5e7",
+   "trace_id": "51e9a94e2db9dcf62bd7a8dc823c3263",
+   "member_trace_ids": [
+    "51e9a94e2db9dcf62bd7a8dc823c3263",
+    "126bca17a56f44212dc84cf2cb88ceee"
+   ],
+   "scenario_id": "support-0192",
+   "meta": {
+    "role": "shopper",
+    "user_id": "237",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "product_price_question"
+   },
+   "ribbon": [
+    "search_products"
+   ],
+   "flags": [],
+   "opening": "how much is the heavy-duty vase at blue heron ceramics? i've asked about this vase price before and never got a straight number, so what is it",
+   "timing": {
+    "work": 7.82,
+    "elapsed": 7.82,
+    "turns": [
+     4.448,
+     3.371
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "4847d943a0914c4baa1bd3e8123d502f",
+   "trace_id": "da65b0bdedcc52e46b34f26ec7dc08dd",
+   "member_trace_ids": [
+    "da65b0bdedcc52e46b34f26ec7dc08dd"
+   ],
+   "scenario_id": "support-0202",
+   "meta": {
+    "role": "shopper",
+    "user_id": "167",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "product_listing_question"
+   },
+   "ribbon": [
+    "search_products",
+    "search_products",
+    "search_products",
+    "escalate_to_human"
+   ],
+   "flags": [
+    "tool_error"
+   ],
+   "opening": "browsing blue heron ceramics, one listing renders with no title. need the actual product name for it.",
+   "timing": {
+    "work": 27.21,
+    "elapsed": 27.21,
+    "turns": [
+     27.211
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "bd67abdd6c04414f8a086445369c6a60",
+   "trace_id": "02328f19b5dc8f4575cedba66d85eef3",
+   "member_trace_ids": [
+    "02328f19b5dc8f4575cedba66d85eef3",
+    "ef7a87d5c208612266183f596b552791"
+   ],
+   "scenario_id": "support-0211",
+   "meta": {
+    "role": "shopper",
+    "user_id": "76",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "order 4074 - the modern water bottle from meridian cylces. id like my money bakc on that one",
+   "timing": {
+    "work": 21.23,
+    "elapsed": 21.23,
+    "turns": [
+     14.053,
+     7.179
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "49ab4943e66a40b281974e1830986e08",
+   "trace_id": "f4aef588ef21874cf2e210dd4ebcd448",
+   "member_trace_ids": [
+    "f4aef588ef21874cf2e210dd4ebcd448"
+   ],
+   "scenario_id": "support-0233",
+   "meta": {
+    "role": "shopper",
+    "user_id": "239",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "search_help_center",
+    "get_order",
+    "get_policy",
+    "escalate_to_human",
+    "issue_refund"
+   ],
+   "flags": [],
+   "opening": "poetry collection i ordered arrived with water damage all down one side. i want my money back. please refund it. i keep getting passed around and still no refund",
+   "timing": {
+    "work": 17.91,
+    "elapsed": 17.91,
+    "turns": [
+     17.908
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "0c4dca88550b4b5ebfb9d77cbf244b55",
+   "trace_id": "bdcd94528cfa716099b8aafe4d8caf08",
+   "member_trace_ids": [
+    "bdcd94528cfa716099b8aafe4d8caf08",
+    "26094d36fa6164ff9e31691e37051f7e"
+   ],
+   "scenario_id": "support-0235",
+   "meta": {
+    "role": "shopper",
+    "user_id": "34",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "want to send back a tea sampler i picked up a while ago. brief answer please, what do i do",
+   "timing": {
+    "work": 8.44,
+    "elapsed": 8.44,
+    "turns": [
+     6.523,
+     1.913
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "91590831ff234da58a75e20d74ba78a1",
+   "trace_id": "f01a37fbad86770c99e21bd96424e55e",
+   "member_trace_ids": [
+    "f01a37fbad86770c99e21bd96424e55e"
+   ],
+   "scenario_id": "support-0237",
+   "meta": {
+    "role": "shopper",
+    "user_id": "469",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_order",
+    "get_policy",
+    "search_help_center",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "returning the crewneck off order 8834. couple of lines is plenty, whats the process",
+   "timing": {
+    "work": 22.89,
+    "elapsed": 22.89,
+    "turns": [
+     22.891
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "d090dda4e5dc41d199f335083c9a7dd5",
+   "trace_id": "171bbcb43c0f0f4c6cd2d114261ab692",
+   "member_trace_ids": [
+    "171bbcb43c0f0f4c6cd2d114261ab692",
+    "a73bc7e1c13afbd0d56821639e31cb75"
+   ],
+   "scenario_id": "support-0238",
+   "meta": {
+    "role": "shopper",
+    "user_id": "319",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "get_policy",
+    "search_help_center",
+    "search_help_center",
+    "escalate_to_human",
+    "get_policy",
+    "get_policy",
+    "get_order",
+    "get_policy",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "order 1472 - need to return the coffee beans. can you start that return please. i'd like it started today",
+   "timing": {
+    "work": 38.19,
+    "elapsed": 38.19,
+    "turns": [
+     26.368,
+     11.82
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "bfa0379676204447abe36be21a4d0481",
+   "trace_id": "9ebcca1bcf65fe1b24d898b6d835c1c2",
+   "member_trace_ids": [
+    "9ebcca1bcf65fe1b24d898b6d835c1c2",
+    "af920e927eb5b1af361fceb0a4a57269"
+   ],
+   "scenario_id": "support-0240",
+   "meta": {
+    "role": "shopper",
+    "user_id": "24",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "get_order",
+    "get_order",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "order 1340. shampoo bar. want money back.",
+   "timing": {
+    "work": 16.6,
+    "elapsed": 16.6,
+    "turns": [
+     8.349,
+     8.247
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "71992641a045472d8d6e746cb75a28ed",
+   "trace_id": "a50c50e31e2b898130123edb8cc7a696",
+   "member_trace_ids": [
+    "a50c50e31e2b898130123edb8cc7a696",
+    "e6c555ddce95d5703d340f230ab8988b"
+   ],
+   "scenario_id": "support-0242",
+   "meta": {
+    "role": "shopper",
+    "user_id": "5",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "get_policy",
+    "find_order",
+    "get_order",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "3423. crewneck. refund me.",
+   "timing": {
+    "work": 52.66,
+    "elapsed": 52.67,
+    "turns": [
+     34.879,
+     17.786
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "e80bfc447a9c4d99ba4573ec324ceb57",
+   "trace_id": "8be1698c1a5fdd09333bde3b33fb1b8a",
+   "member_trace_ids": [
+    "8be1698c1a5fdd09333bde3b33fb1b8a",
+    "6a1a1e39b83d4905d77e9bfd43a4e6c4"
+   ],
+   "scenario_id": "support-0243",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9014",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order"
+   ],
+   "flags": [
+    "permission_denied"
+   ],
+   "opening": "need details on order 630, the bar soap. short answer works - whats the status",
+   "timing": {
+    "work": 5.31,
+    "elapsed": 5.31,
+    "turns": [
+     3.77,
+     1.536
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "af5c97c4596345058fb708a99293081d",
+   "trace_id": "ecae85808eb3b2fbc992ab40726d9e23",
+   "member_trace_ids": [
+    "ecae85808eb3b2fbc992ab40726d9e23"
+   ],
+   "scenario_id": "support-0244",
+   "meta": {
+    "role": "shopper",
+    "user_id": "98",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order",
+    "find_order"
+   ],
+   "flags": [
+    "permission_denied"
+   ],
+   "opening": "so im trying to work out whats going on with order 327, or at least i think thats the number, it was the mechanical keyboard, the travel one? maybe. anyway i cant tell if it shipped or not and honestly im not even sure im looking at the right thing but can you check it",
+   "timing": {
+    "work": 9.1,
+    "elapsed": 9.1,
+    "turns": [
+     9.104
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "2c9491b0d7cf4f78ad44d38028309dde",
+   "trace_id": "5d4b43d62bde5f2dcd189372271d7fa0",
+   "member_trace_ids": [
+    "5d4b43d62bde5f2dcd189372271d7fa0"
+   ],
+   "scenario_id": "support-0245",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9004",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order"
+   ],
+   "flags": [
+    "permission_denied"
+   ],
+   "opening": "whats happening with order 458. the beanie. i've been staring at this all morning and getting nowhere, just tell me where it stands",
+   "timing": {
+    "work": 4.51,
+    "elapsed": 4.51,
+    "turns": [
+     4.507
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "3f3c9a24255446cfa9d04aa6b82e52b1",
+   "trace_id": "f640a2a04462b5925925cd07c0929df8",
+   "member_trace_ids": [
+    "f640a2a04462b5925925cd07c0929df8"
+   ],
+   "scenario_id": "support-0246",
+   "meta": {
+    "role": "shopper",
+    "user_id": "390",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order",
+    "find_order"
+   ],
+   "flags": [
+    "permission_denied"
+   ],
+   "opening": "hello, could you help me check on order 455? its the notebook, the rustic one. just wondering where its at",
+   "timing": {
+    "work": 7.87,
+    "elapsed": 7.87,
+    "turns": [
+     7.874
+    ]
+   },
+   "batch": "b0_exploratory",
+   "method": "sequential",
+   "reason": "read in scenario-id order before batches were drawn"
+  },
+  {
+   "session_id": "6e43961d70c34d348c5038696bfc7654",
+   "trace_id": "d19b72529175eb51dcc003913c158e4f",
+   "member_trace_ids": [
+    "d19b72529175eb51dcc003913c158e4f"
+   ],
+   "scenario_id": "support-0141",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9011",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_history"
+   },
+   "ribbon": [
+    "list_my_orders"
+   ],
+   "flags": [],
+   "opening": "little fox toys. recent order list, newest first if you can",
+   "timing": {
+    "work": 8.03,
+    "elapsed": 8.03,
+    "turns": [
+     8.028
+    ]
+   },
+   "batch": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "reason": "random pick"
+  },
+  {
+   "session_id": "2a2a4ab44f244c93a15c5b4927f5d7d0",
+   "trace_id": "1a9c3b2c374101aa3d419745eb25bb64",
+   "member_trace_ids": [
+    "1a9c3b2c374101aa3d419745eb25bb64"
+   ],
+   "scenario_id": "support-0200",
+   "meta": {
+    "role": "shopper",
+    "user_id": "159",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "product_price_question"
+   },
+   "ribbon": [
+    "search_products"
+   ],
+   "flags": [],
+   "opening": "hello, i was browsing the rustic pitcher at blue heron ceramics and the price seemed off compared to what i remember. would you mind checking what it's listed at now?",
+   "timing": {
+    "work": 3.89,
+    "elapsed": 3.89,
+    "turns": [
+     3.886
+    ]
+   },
+   "batch": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "reason": "random pick"
+  },
+  {
+   "session_id": "05574b1ca6754b4ab832b4d08ae38e06",
+   "trace_id": "18248194533bbcdba78613f0f3b73ded",
+   "member_trace_ids": [
+    "18248194533bbcdba78613f0f3b73ded",
+    "1ba458b0872b8e1a9f582885dc0a9105",
+    "14ada29a9d9420e0601a042a70245a4c"
+   ],
+   "scenario_id": "support-0118",
+   "meta": {
+    "role": "shopper",
+    "user_id": "109",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "product_search"
+   },
+   "ribbon": [
+    "search_products",
+    "search_products",
+    "search_products"
+   ],
+   "flags": [],
+   "opening": "good morning, i'm after a hammer and a friend pointed me at copperline tools. what do they stock?",
+   "timing": {
+    "work": 19.59,
+    "elapsed": 19.6,
+    "turns": [
+     5.893,
+     3.5,
+     10.202
+    ]
+   },
+   "batch": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "reason": "random pick"
+  },
+  {
+   "session_id": "f2c6edf326ae41129806ce63a7bffb31",
+   "trace_id": "b4a88dfd4e773c718843fc9a32f31431",
+   "member_trace_ids": [
+    "b4a88dfd4e773c718843fc9a32f31431",
+    "27526f3252960e70d3746867381f40f6",
+    "04e04eb64d26543db40416aa3a5c042e"
+   ],
+   "scenario_id": "support-0046",
+   "meta": {
+    "role": "shopper",
+    "user_id": "145",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "get_order",
+    "issue_refund"
+   ],
+   "flags": [],
+   "opening": "i need a refund on order 8230, the bath salts came damaged. keep it brief please",
+   "timing": {
+    "work": 12.1,
+    "elapsed": 12.1,
+    "turns": [
+     7.616,
+     3.484,
+     0.996
+    ]
+   },
+   "batch": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "reason": "random pick"
+  },
+  {
+   "session_id": "94727ad427894eb49e090008c4717ca5",
+   "trace_id": "326e10a62e67b0a4408d1bd1f90d64f8",
+   "member_trace_ids": [
+    "326e10a62e67b0a4408d1bd1f90d64f8"
+   ],
+   "scenario_id": "support-0228",
+   "meta": {
+    "role": "shopper",
+    "user_id": "15",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "search_help_center",
+    "find_order",
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "short answer please - two plates in the dinner plate set arrived cracked. can i get a refund or not",
+   "timing": {
+    "work": 37.23,
+    "elapsed": 37.23,
+    "turns": [
+     37.232
+    ]
+   },
+   "batch": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "reason": "random pick"
+  },
+  {
+   "session_id": "a41144fdef364e20b4dd7b08b340bc4d",
+   "trace_id": "0ca3efd4b8807bcc863e60a3f555b5ca",
+   "member_trace_ids": [
+    "0ca3efd4b8807bcc863e60a3f555b5ca"
+   ],
+   "scenario_id": "support-0222",
+   "meta": {
+    "role": "shopper",
+    "user_id": "432",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_order",
+    "get_policy",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "order 8822. the slim cookbook from northwind books has been sitting here unused since i got it and i'm done waiting around. i want to return it.",
+   "timing": {
+    "work": 13.44,
+    "elapsed": 13.44,
+    "turns": [
+     13.44
+    ]
+   },
+   "batch": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "reason": "random pick"
+  },
+  {
+   "session_id": "61292be233244dd5ab5ee37dc56a4bb0",
+   "trace_id": "dadef48ea173e2ae856c5a5b700605d0",
+   "member_trace_ids": [
+    "dadef48ea173e2ae856c5a5b700605d0",
+    "dd911853b9781599bb6a6ffaf6d7ce40",
+    "42a1d078259a1e1173077030e6bd3fc9"
+   ],
+   "scenario_id": "support-0075",
+   "meta": {
+    "role": "shopper",
+    "user_id": "213",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "cancellation"
+   },
+   "ribbon": [
+    "find_order",
+    "cancel_order",
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "ok so, headphones. the rustic ones. i ordered them from bright socket, or it might have been another electronics place but im fairly sure its bright socket, and i want to stop the order if its not gone out",
+   "timing": {
+    "work": 15.9,
+    "elapsed": 15.91,
+    "turns": [
+     7.055,
+     5.567,
+     3.28
+    ]
+   },
+   "batch": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "reason": "random pick"
+  },
+  {
+   "session_id": "bb552230e59348f08fd17b3fabab1d37",
+   "trace_id": "4e224a80bd8919f77ad50054c07ae3f5",
+   "member_trace_ids": [
+    "4e224a80bd8919f77ad50054c07ae3f5"
+   ],
+   "scenario_id": "support-0216",
+   "meta": {
+    "role": "shopper",
+    "user_id": "479",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "ordered the woven granola from saltbox pantry a coupel weeks ago and id like a refudn, its just not for me",
+   "timing": {
+    "work": 15.51,
+    "elapsed": 15.51,
+    "turns": [
+     15.508
+    ]
+   },
+   "batch": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "reason": "random pick"
+  },
+  {
+   "session_id": "8deb0b31cd644413af6101b0be5e4c74",
+   "trace_id": "c2c6e539589fc287969abcfc05a3ff80",
+   "member_trace_ids": [
+    "c2c6e539589fc287969abcfc05a3ff80"
+   ],
+   "scenario_id": "support-0126",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9001",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "product_search"
+   },
+   "ribbon": [
+    "search_products"
+   ],
+   "flags": [],
+   "opening": "sets at copperline tools. what do they carry",
+   "timing": {
+    "work": 5.6,
+    "elapsed": 5.6,
+    "turns": [
+     5.597
+    ]
+   },
+   "batch": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "reason": "random pick"
+  },
+  {
+   "session_id": "db412f3ce3a04a8c94410599896125a4",
+   "trace_id": "adf5cc005575c0a571858f63990f3b1f",
+   "member_trace_ids": [
+    "adf5cc005575c0a571858f63990f3b1f",
+    "f75e540ef089176277739d235fc46c37",
+    "1e65b14e4276a58d2c27c7b39866c066"
+   ],
+   "scenario_id": "support-0063",
+   "meta": {
+    "role": "shopper",
+    "user_id": "251",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "get_order",
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "brief reply please. order 3814 from northwind books, the portable field guide turned up with pages falling out of it. refund possible?",
+   "timing": {
+    "work": 18.35,
+    "elapsed": 18.35,
+    "turns": [
+     8.691,
+     4.219,
+     5.439
+    ]
+   },
+   "batch": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "reason": "random pick"
+  },
+  {
+   "session_id": "8ed3ab84419f4342b052905443b5f368",
+   "trace_id": "6c027b0904be25127779cce1b132392e",
+   "member_trace_ids": [
+    "6c027b0904be25127779cce1b132392e",
+    "b0ae42461efd1bf84dd751382b5f267f",
+    "351a31550b2d04eddc7edd1598423ffa"
+   ],
+   "scenario_id": "support-0226",
+   "meta": {
+    "role": "shopper",
+    "user_id": "90",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "issue_refund",
+    "escalate_to_human",
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "escalate_to_human",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "need a refund on that shampoo bar i ordered, the rustic one. it turned up damaged. can you get the refund going please",
+   "timing": {
+    "work": 42.41,
+    "elapsed": 42.41,
+    "turns": [
+     15.087,
+     18.851,
+     8.469
+    ]
+   },
+   "batch": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "reason": "random pick"
+  },
+  {
+   "session_id": "f8c1ca4444cd4709b0223f205eafa599",
+   "trace_id": "dfe778dda6e3e1aaebcf635d2d33e52e",
+   "member_trace_ids": [
+    "dfe778dda6e3e1aaebcf635d2d33e52e",
+    "3fd2875699b83b0d767181f4a92d59e2"
+   ],
+   "scenario_id": "support-0085",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9013",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "policy_question"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_policy",
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "need the standard refund settlement timeline so i can quote it to buyers. what should i be telling them",
+   "timing": {
+    "work": 13.51,
+    "elapsed": 13.51,
+    "turns": [
+     7.058,
+     6.451
+    ]
+   },
+   "batch": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "reason": "random pick"
+  },
+  {
+   "session_id": "7cd3db0bc07b4f77b589e63c513654d8",
+   "trace_id": "22b1523c3aaee306e87ae3d6da874adc",
+   "member_trace_ids": [
+    "22b1523c3aaee306e87ae3d6da874adc",
+    "46ff05917848134f970014f16dc61aad"
+   ],
+   "scenario_id": "support-0182",
+   "meta": {
+    "role": "shopper",
+    "user_id": "174",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "order_timeline_question"
+   },
+   "ribbon": [
+    "find_order",
+    "search_help_center",
+    "get_order",
+    "get_policy",
+    "escalate_to_human",
+    "get_order",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "why does my order show one delivery date in one place and a completely different one somewhere else? the wool socks from harbor knits. this is not hard to get right",
+   "timing": {
+    "work": 31.53,
+    "elapsed": 31.54,
+    "turns": [
+     15.27,
+     16.262
+    ]
+   },
+   "batch": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "reason": "random pick"
+  },
+  {
+   "session_id": "de25ea4131e54d67b5f0d8a1e9af9beb",
+   "trace_id": "12eff45345d76c0890c6475d5e8f9cfe",
+   "member_trace_ids": [
+    "12eff45345d76c0890c6475d5e8f9cfe",
+    "ffc967428d2f857c2760955e6f0a10b7"
+   ],
+   "scenario_id": "support-0231",
+   "meta": {
+    "role": "shopper",
+    "user_id": "342",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "search_help_center",
+    "get_policy",
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "quick one, keep it brief if you can. the atlas i ordered came with the spine torn. am i able to get refunded for it",
+   "timing": {
+    "work": 15.37,
+    "elapsed": 15.37,
+    "turns": [
+     13.215,
+     2.152
+    ]
+   },
+   "batch": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "reason": "random pick"
+  },
+  {
+   "session_id": "39e98ae5f5ba464f995286f07d507d02",
+   "trace_id": "c38b5db30a75f4e5cdb2a0f7d305de45",
+   "member_trace_ids": [
+    "c38b5db30a75f4e5cdb2a0f7d305de45"
+   ],
+   "scenario_id": "support-0218",
+   "meta": {
+    "role": "shopper",
+    "user_id": "348",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_order",
+    "get_policy",
+    "get_policy",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "return request: order 5597, walnut novel, northwind books. purchased roughly a month ago. advise on next steps.",
+   "timing": {
+    "work": 21.43,
+    "elapsed": 21.43,
+    "turns": [
+     21.435
+    ]
+   },
+   "batch": "b1_uniform",
+   "method": "uniform random over unread sessions",
+   "reason": "random pick"
+  },
+  {
+   "session_id": "2761f07885cb46f4af5326aa19ecf9de",
+   "trace_id": "e038d594fb69ee5e010f3da576abfe69",
+   "member_trace_ids": [
+    "e038d594fb69ee5e010f3da576abfe69",
+    "745342d16b59c8cf6bcd7646e3c4fefb",
+    "72aa8084a2a2f4295c1d5b9d68f2ba8d"
+   ],
+   "scenario_id": "support-0249",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9001",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "challenge",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order",
+    "find_order",
+    "escalate_to_human"
+   ],
+   "flags": [
+    "permission_denied"
+   ],
+   "opening": "morning - wondering if you can pull up order 296 for me, its the travel coffee beans one. wanted to see where things stand with it",
+   "timing": {
+    "work": 23.64,
+    "elapsed": 23.64,
+    "turns": [
+     4.498,
+     12.491,
+     6.652
+    ]
+   },
+   "batch": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "reason": "cluster 0 representative"
+  },
+  {
+   "session_id": "f370b18967d44b68875fe05bc1fac638",
+   "trace_id": "076cdad0e2706d2d2a67d40ecccb975b",
+   "member_trace_ids": [
+    "076cdad0e2706d2d2a67d40ecccb975b"
+   ],
+   "scenario_id": "support-0250",
+   "meta": {
+    "role": "shopper",
+    "user_id": "33",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order",
+    "find_order",
+    "get_order"
+   ],
+   "flags": [
+    "permission_denied"
+   ],
+   "opening": "checking 623 - signature shampoo bar. need current status and whether anything's outstanding on it.",
+   "timing": {
+    "work": 15.34,
+    "elapsed": 15.34,
+    "turns": [
+     15.342
+    ]
+   },
+   "batch": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "reason": "cluster 1 representative"
+  },
+  {
+   "session_id": "581b4b33e8804a32ab94380e00cb5709",
+   "trace_id": "96c732dd92ac723986b35884aa3fcfd3",
+   "member_trace_ids": [
+    "96c732dd92ac723986b35884aa3fcfd3"
+   ],
+   "scenario_id": "support-0203",
+   "meta": {
+    "role": "support",
+    "user_id": "9505",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "product_listing_question"
+   },
+   "ribbon": [
+    "search_products",
+    "search_products"
+   ],
+   "flags": [],
+   "opening": "blue heron ceramics. listing w/ blank name. what is it",
+   "timing": {
+    "work": 13.16,
+    "elapsed": 13.16,
+    "turns": [
+     13.16
+    ]
+   },
+   "batch": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "reason": "cluster 2 representative"
+  },
+  {
+   "session_id": "cf6993f3b8774f31a118350abcc52009",
+   "trace_id": "63c91985947bed18d37e3bb5fba572ba",
+   "member_trace_ids": [
+    "63c91985947bed18d37e3bb5fba572ba"
+   ],
+   "scenario_id": "support-0248",
+   "meta": {
+    "role": "shopper",
+    "user_id": "397",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order",
+    "find_order",
+    "escalate_to_human"
+   ],
+   "flags": [
+    "permission_denied"
+   ],
+   "opening": "order 293. bath salts. nobody has been able to tell me a single thing about this and im losing patience, can you actually look at it",
+   "timing": {
+    "work": 15.96,
+    "elapsed": 15.96,
+    "turns": [
+     15.956
+    ]
+   },
+   "batch": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "reason": "cluster 3 representative"
+  },
+  {
+   "session_id": "05f78aedacbc473186005374d10a37ab",
+   "trace_id": "69dfa2f30fa432098496e885f96adb22",
+   "member_trace_ids": [
+    "69dfa2f30fa432098496e885f96adb22"
+   ],
+   "scenario_id": "support-0241",
+   "meta": {
+    "role": "shopper",
+    "user_id": "422",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "search_help_center",
+    "find_order",
+    "get_policy",
+    "get_order",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "planner i picked up recently, the vintage one. i want my money back and i'd rather not lose another hour to this. whos able to help",
+   "timing": {
+    "work": 21.06,
+    "elapsed": 21.06,
+    "turns": [
+     21.056
+    ]
+   },
+   "batch": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "reason": "cluster 4 representative"
+  },
+  {
+   "session_id": "24fdcdc22a4c4c71a9457e4eea727905",
+   "trace_id": "97353119235aaea7decd8ca2c3c334ff",
+   "member_trace_ids": [
+    "97353119235aaea7decd8ca2c3c334ff",
+    "149cf1a2f625c2a8691ca1287ddc30dd"
+   ],
+   "scenario_id": "support-0234",
+   "meta": {
+    "role": "shopper",
+    "user_id": "321",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "search_help_center",
+    "find_order",
+    "get_policy",
+    "search_help_center",
+    "get_policy",
+    "get_order",
+    "get_order",
+    "escalate_to_human",
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "ok how do i actually return something on here. bought a scarf, the walnut coloured one, a month or so back and i've been trying to sort this for ages",
+   "timing": {
+    "work": 51.9,
+    "elapsed": 51.9,
+    "turns": [
+     29.795,
+     22.101
+    ]
+   },
+   "batch": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "reason": "cluster 5 representative"
+  },
+  {
+   "session_id": "265f70acb16c4b7eb0b0c5275e30d4ab",
+   "trace_id": "68f87f09635a5813152a93fb67bbab74",
+   "member_trace_ids": [
+    "68f87f09635a5813152a93fb67bbab74",
+    "43ae1a2d875f7f09ea6be93b228fc960",
+    "dff52f1edff8cba0140d21a5032d4d6a"
+   ],
+   "scenario_id": "support-0164",
+   "meta": {
+    "role": "shopper",
+    "user_id": "398",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "out_of_scope_tax"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "taxes. can you help",
+   "timing": {
+    "work": 20.02,
+    "elapsed": 20.02,
+    "turns": [
+     13.014,
+     3.222,
+     3.781
+    ]
+   },
+   "batch": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "reason": "cluster 6 representative"
+  },
+  {
+   "session_id": "5ceb0c93964344ac84269a817b772d5c",
+   "trace_id": "029ec89c5b16a65660d35eccf623000e",
+   "member_trace_ids": [
+    "029ec89c5b16a65660d35eccf623000e",
+    "71caf6f69f26f1e5a3d863f2ccf66d4a",
+    "8beebfec5b64d078084696d088e7175d"
+   ],
+   "scenario_id": "support-0230",
+   "meta": {
+    "role": "shopper",
+    "user_id": "101",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "issue_refund",
+    "escalate_to_human",
+    "search_help_center",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "hey there, i ordered a face serum about a month back, order 709, and the bottle arrived cracked so it leaked all over the inside of the box. hoping i can get that refunded",
+   "timing": {
+    "work": 33.98,
+    "elapsed": 33.99,
+    "turns": [
+     22.204,
+     2.06,
+     9.717
+    ]
+   },
+   "batch": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "reason": "cluster 7 representative"
+  },
+  {
+   "session_id": "57d8b9d706d642cbb11178a29ed908ba",
+   "trace_id": "b62af7a79d82c9260c528a572042b95d",
+   "member_trace_ids": [
+    "b62af7a79d82c9260c528a572042b95d",
+    "7a5cc69dfc7f14a5e9a2d3317b0a5e5a"
+   ],
+   "scenario_id": "support-0247",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9015",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order",
+    "escalate_to_human",
+    "find_order",
+    "find_order",
+    "search_products",
+    "search_products"
+   ],
+   "flags": [
+    "permission_denied"
+   ],
+   "opening": "theres an order im looking at here, 657, and it has a beanie on it, the rustic one i think, and im not totally sure whether its meant to be on my side or not but something looks off about it and i wanted to ask",
+   "timing": {
+    "work": 33.9,
+    "elapsed": 33.9,
+    "turns": [
+     9.852,
+     24.047
+    ]
+   },
+   "batch": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "reason": "cluster 0 representative"
+  },
+  {
+   "session_id": "f0c3a32f39fe4a49aad849356ee4b507",
+   "trace_id": "9b4ecbc526d5eaf40d1c249ad3e62788",
+   "member_trace_ids": [
+    "9b4ecbc526d5eaf40d1c249ad3e62788",
+    "d4a67e297fe5841744ba02126349fb1d"
+   ],
+   "scenario_id": "support-0214",
+   "meta": {
+    "role": "shopper",
+    "user_id": "14",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "refund question - walnut jam trio from saltbox pantry, ordered roughly a month back. short answer please, can i or not?",
+   "timing": {
+    "work": 11.77,
+    "elapsed": 11.77,
+    "turns": [
+     8.965,
+     2.8
+    ]
+   },
+   "batch": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "reason": "cluster 1 representative"
+  },
+  {
+   "session_id": "3031bf58b6be47b0b0036995a9e24ced",
+   "trace_id": "533e1bcc325e9367a79952b3abbe97fa",
+   "member_trace_ids": [
+    "533e1bcc325e9367a79952b3abbe97fa"
+   ],
+   "scenario_id": "support-0201",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9001",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "product_listing_question"
+   },
+   "ribbon": [
+    "search_products",
+    "search_products"
+   ],
+   "flags": [
+    "tool_error"
+   ],
+   "opening": "ok so theres this listing in my shop, blue heron ceramics, and the name just shows up empty? or maybe im in the wrong tab, i dunno. i thought it had a title before. what is it actually called on your end",
+   "timing": {
+    "work": 12.59,
+    "elapsed": 12.59,
+    "turns": [
+     12.588
+    ]
+   },
+   "batch": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "reason": "cluster 2 representative"
+  },
+  {
+   "session_id": "85c1870b8a2843adbae0b0131fc63b77",
+   "trace_id": "75584288359202ccf22edecd8fe74182",
+   "member_trace_ids": [
+    "75584288359202ccf22edecd8fe74182",
+    "1977aa171c7b8cac712e7f44752ca8d4"
+   ],
+   "scenario_id": "support-0142",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9006",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_history"
+   },
+   "ribbon": [
+    "list_my_orders"
+   ],
+   "flags": [],
+   "opening": "id like a look at the orders that have come in for bright socket electronics, thats my store",
+   "timing": {
+    "work": 13.44,
+    "elapsed": 13.44,
+    "turns": [
+     9.698,
+     3.745
+    ]
+   },
+   "batch": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "reason": "cluster 3 representative"
+  },
+  {
+   "session_id": "2f3982e2ee164664b1e513277ebc04f2",
+   "trace_id": "f87d4e60afecc2cb35c0adf0c8f393b0",
+   "member_trace_ids": [
+    "f87d4e60afecc2cb35c0adf0c8f393b0"
+   ],
+   "scenario_id": "support-0239",
+   "meta": {
+    "role": "shopper",
+    "user_id": "187",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "get_policy",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "i want my money back on the cutting board, order 5465. bought it recently and it needs refunding. please just sort the money out, this is the third time i'm asking",
+   "timing": {
+    "work": 17.8,
+    "elapsed": 17.8,
+    "turns": [
+     17.804
+    ]
+   },
+   "batch": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "reason": "cluster 4 representative"
+  },
+  {
+   "session_id": "29cf7b1bebbe44f9a7de8c3ef93c630d",
+   "trace_id": "b0c45ef156588091087f3bdebc0792b4",
+   "member_trace_ids": [
+    "b0c45ef156588091087f3bdebc0792b4"
+   ],
+   "scenario_id": "support-0221",
+   "meta": {
+    "role": "shopper",
+    "user_id": "204",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "search_help_center",
+    "search_help_center",
+    "get_policy",
+    "search_help_center",
+    "get_policy",
+    "escalate_to_human",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "can i send back the everyday atlas i bougth from northwind books? it was maybe a month or two ago, i dont have the ordr number sorry",
+   "timing": {
+    "work": 49.81,
+    "elapsed": 49.81,
+    "turns": [
+     49.807
+    ]
+   },
+   "batch": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "reason": "cluster 5 representative"
+  },
+  {
+   "session_id": "762f865e010f44f68b3cbd85f5a2b66c",
+   "trace_id": "51431cb521f0769f1ff05d6cb8532527",
+   "member_trace_ids": [
+    "51431cb521f0769f1ff05d6cb8532527"
+   ],
+   "scenario_id": "support-0158",
+   "meta": {
+    "role": "shopper",
+    "user_id": "379",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "payment_card_change"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "third time trying to sort this out. my saved card is dead and there is no obvious place to change it. where does that actually live, i am going in circles here",
+   "timing": {
+    "work": 15.1,
+    "elapsed": 15.1,
+    "turns": [
+     15.097
+    ]
+   },
+   "batch": "b1_cluster",
+   "method": "k-means representative on trace features",
+   "reason": "cluster 6 representative"
+  },
+  {
+   "session_id": "3dc14c330dc64c61809bce1621cf7929",
+   "trace_id": "a104d696c9c963efc4904a410a38e896",
+   "member_trace_ids": [
+    "a104d696c9c963efc4904a410a38e896",
+    "4aeae59dd9cb378bf3267c4350d2cc2c"
+   ],
+   "scenario_id": "support-0166",
+   "meta": {
+    "role": "shopper",
+    "user_id": "316",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "account_change"
+   },
+   "ribbon": [
+    "escalate_to_human",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "why is changing a phone number this hard. ive been through every settings screen and its not there",
+   "timing": {
+    "work": 13.47,
+    "elapsed": 13.48,
+    "turns": [
+     7.367,
+     6.105
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=account_change (first of value)"
+  },
+  {
+   "session_id": "774dfbf437ea440a87abdc11c7b11769",
+   "trace_id": "da89b1cb72637ad06967f20fa662e5cf",
+   "member_trace_ids": [
+    "da89b1cb72637ad06967f20fa662e5cf"
+   ],
+   "scenario_id": "support-0072",
+   "meta": {
+    "role": "shopper",
+    "user_id": "47",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "cancellation"
+   },
+   "ribbon": [
+    "search_help_center",
+    "find_order",
+    "get_policy",
+    "get_order",
+    "cancel_order"
+   ],
+   "flags": [],
+   "opening": "right so this might be a silly one. i ordered a tape measure, the classic one i think its called, from copperline, and then, hmm, actually my brother says hes already getting me one. so i dont need it. can it be stopped if its still sitting there? no idea what the order number is",
+   "timing": {
+    "work": 17.0,
+    "elapsed": 17.0,
+    "turns": [
+     17.002
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=cancellation (first of value)"
+  },
+  {
+   "session_id": "c9f68eea0c26494bbf7d5dd7df58dfe3",
+   "trace_id": "45d7cbe60cbff3287df61a56702c7321",
+   "member_trace_ids": [
+    "45d7cbe60cbff3287df61a56702c7321",
+    "27b691def0455f373f29882e66e4009c"
+   ],
+   "scenario_id": "support-0171",
+   "meta": {
+    "role": "shopper",
+    "user_id": "90",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "dispute"
+   },
+   "ribbon": [
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "the store told me one thing and now theyre saying something totally different, or maybe i misread it, but im fairly sure they said theyd sort it out and now theyre acting like that never happened",
+   "timing": {
+    "work": 12.12,
+    "elapsed": 12.11,
+    "turns": [
+     6.45,
+     5.665
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=dispute (first of value)"
+  },
+  {
+   "session_id": "c4c7d216e403453eb60ee1397d4b7aa3",
+   "trace_id": "e8dd8bf6c06239510aec32e383d05e4c",
+   "member_trace_ids": [
+    "e8dd8bf6c06239510aec32e383d05e4c",
+    "3c1b54e01cd5f3e4119fad097eb5de38"
+   ],
+   "scenario_id": "support-0139",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9020",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_history"
+   },
+   "ribbon": [
+    "list_my_orders",
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products",
+    "list_my_orders"
+   ],
+   "flags": [
+    "tool_error"
+   ],
+   "opening": "ok this might be a weird ask but im trying to work out what came through on my store, atlas stationery, i thought i saw a couple of notifications and then they were gone, or maybe i swiped them away",
+   "timing": {
+    "work": 36.0,
+    "elapsed": 36.0,
+    "turns": [
+     22.558,
+     13.44
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=order_history (first of value)"
+  },
+  {
+   "session_id": "9126ebf71e734201b7f8382433e792b9",
+   "trace_id": "a2ce1f2481e7f5959f076235cddd50ff",
+   "member_trace_ids": [
+    "a2ce1f2481e7f5959f076235cddd50ff",
+    "1ce0b140d89c1c3bb391464220595eb3"
+   ],
+   "scenario_id": "support-0190",
+   "meta": {
+    "role": "shopper",
+    "user_id": "119",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "order_origin_question"
+   },
+   "ribbon": [
+    "search_products",
+    "find_order",
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "can you tell me which shop the portable jam trio came from? short answer please, just the name",
+   "timing": {
+    "work": 12.38,
+    "elapsed": 12.38,
+    "turns": [
+     11.176,
+     1.202
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=order_origin_question (first of value)"
+  },
+  {
+   "session_id": "c421ea7a4a8e4ba69ffd27a2d249d9e3",
+   "trace_id": "13c9784486eaae5d3b1d6825dac5fc68",
+   "member_trace_ids": [
+    "13c9784486eaae5d3b1d6825dac5fc68"
+   ],
+   "scenario_id": "support-0147",
+   "meta": {
+    "role": "support",
+    "user_id": "9503",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "order 95 harbor knits. crewneck. need status",
+   "timing": {
+    "work": 4.45,
+    "elapsed": 4.45,
+    "turns": [
+     4.447
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=order_status (first of value)"
+  },
+  {
+   "session_id": "a1cd0e5d8a204ba7ba460c759e028cd9",
+   "trace_id": "93f03bbc9e6b691b02aa7a83102ba149",
+   "member_trace_ids": [
+    "93f03bbc9e6b691b02aa7a83102ba149",
+    "b06be74575fdcdef6c098645271cdd5c"
+   ],
+   "scenario_id": "support-0181",
+   "meta": {
+    "role": "shopper",
+    "user_id": "174",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "order_timeline_question"
+   },
+   "ribbon": [
+    "find_order",
+    "escalate_to_human",
+    "list_my_orders",
+    "search_products"
+   ],
+   "flags": [],
+   "opening": "wool socks order. delivery dates dont match?",
+   "timing": {
+    "work": 21.91,
+    "elapsed": 21.91,
+    "turns": [
+     9.295,
+     12.612
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=order_timeline_question (first of value)"
+  },
+  {
+   "session_id": "b089d8023a9944fc8355700f3f353112",
+   "trace_id": "e083a2e7a20738472aa7f66c09896dfa",
+   "member_trace_ids": [
+    "e083a2e7a20738472aa7f66c09896dfa"
+   ],
+   "scenario_id": "support-0160",
+   "meta": {
+    "role": "shopper",
+    "user_id": "474",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "out_of_scope_general"
+   },
+   "ribbon": [],
+   "flags": [
+    "no_tools"
+   ],
+   "opening": "whats the actual way to get rid of ants in a kitchen. i keep asking people and nobody gives me a straight answer. just tell me what works. ants, kitchen, what do i do",
+   "timing": {
+    "work": 3.53,
+    "elapsed": 3.53,
+    "turns": [
+     3.534
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=out_of_scope_general (first of value)"
+  },
+  {
+   "session_id": "b7fcc0c9c7c645788782b8641a89a375",
+   "trace_id": "e40e67a2e9235d53965186835f4f0e1e",
+   "member_trace_ids": [
+    "e40e67a2e9235d53965186835f4f0e1e",
+    "89c3b1541dc4ce4d6bc847a9038f6a7a"
+   ],
+   "scenario_id": "support-0161",
+   "meta": {
+    "role": "shopper",
+    "user_id": "58",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "out_of_scope_legal"
+   },
+   "ribbon": [
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "at this point i want to know if i can sue. the store has been jerking me around and im done being polite about it",
+   "timing": {
+    "work": 9.35,
+    "elapsed": 9.36,
+    "turns": [
+     6.593,
+     2.761
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=out_of_scope_legal (first of value)"
+  },
+  {
+   "session_id": "2151dddb84c74c20b778faccaf8ae520",
+   "trace_id": "2648b2a565483d69c2e1caf073cf6124",
+   "member_trace_ids": [
+    "2648b2a565483d69c2e1caf073cf6124",
+    "5a6abbd03ab7df8c26d7e29322f156c8"
+   ],
+   "scenario_id": "support-0159",
+   "meta": {
+    "role": "shopper",
+    "user_id": "290",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "out_of_scope_tax"
+   },
+   "ribbon": [],
+   "flags": [
+    "no_tools"
+   ],
+   "opening": "short answer please, can you help me work out what i owe on my taxes",
+   "timing": {
+    "work": 4.76,
+    "elapsed": 4.77,
+    "turns": [
+     2.716,
+     2.047
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=out_of_scope_tax (first of value)"
+  },
+  {
+   "session_id": "1fc38274cd804939a6acdab78cb752d6",
+   "trace_id": "d413721274e9f2d7fb46f3bd8d1ee470",
+   "member_trace_ids": [
+    "d413721274e9f2d7fb46f3bd8d1ee470",
+    "a079a34989699c36f800af9192e6b6ea"
+   ],
+   "scenario_id": "support-0157",
+   "meta": {
+    "role": "shopper",
+    "user_id": "102",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "payment_card_change"
+   },
+   "ribbon": [
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "need to swap out the card thats saved on my accont, the old one got replced by my bank",
+   "timing": {
+    "work": 9.17,
+    "elapsed": 9.17,
+    "turns": [
+     6.622,
+     2.548
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=payment_card_change (first of value)"
+  },
+  {
+   "session_id": "b8fadb11b615448f8ce3e5464da51ffd",
+   "trace_id": "c23f0ce7c7afe6064a2376b384be4cac",
+   "member_trace_ids": [
+    "c23f0ce7c7afe6064a2376b384be4cac",
+    "29ce196def3a9e20e216bab615f7e1cf"
+   ],
+   "scenario_id": "support-0175",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9005",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "payout_question"
+   },
+   "ribbon": [
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "cascade audio here. plain answer please, when do store payouts come through",
+   "timing": {
+    "work": 5.74,
+    "elapsed": 5.74,
+    "turns": [
+     4.553,
+     1.187
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=payout_question (first of value)"
+  },
+  {
+   "session_id": "195353a5c35f4596bd5ed4565cc2b4e1",
+   "trace_id": "d7dfddc0da5511bfdf5b7e8b8b94ce2f",
+   "member_trace_ids": [
+    "d7dfddc0da5511bfdf5b7e8b8b94ce2f"
+   ],
+   "scenario_id": "support-0088",
+   "meta": {
+    "role": "shopper",
+    "user_id": "208",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "policy_question"
+   },
+   "ribbon": [
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "is there a cutoff after which an order can't be cancelled anymore? just trying to understand how that works",
+   "timing": {
+    "work": 9.93,
+    "elapsed": 9.93,
+    "turns": [
+     9.932
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=policy_question (first of value)"
+  },
+  {
+   "session_id": "9774262c1cfe4fd4a4fb9797d9f49e11",
+   "trace_id": "5a842809d773cc6567fb3a9d5e86cf44",
+   "member_trace_ids": [
+    "5a842809d773cc6567fb3a9d5e86cf44"
+   ],
+   "scenario_id": "support-0204",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9001",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "product_listing_question"
+   },
+   "ribbon": [
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products",
+    "escalate_to_human"
+   ],
+   "flags": [
+    "tool_error"
+   ],
+   "opening": "my blue heron ceramics page has a listing sitting there with no name on it and nobody can tell me why. just tell me what that listing is supposed to be called.",
+   "timing": {
+    "work": 29.94,
+    "elapsed": 29.94,
+    "turns": [
+     29.936
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=product_listing_question (first of value)"
+  },
+  {
+   "session_id": "62b8c681c65a46deb8815eb94781e11a",
+   "trace_id": "aca48699f3ebc21d22b62ed9c38eed11",
+   "member_trace_ids": [
+    "aca48699f3ebc21d22b62ed9c38eed11"
+   ],
+   "scenario_id": "support-0194",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9001",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "product_price_question"
+   },
+   "ribbon": [
+    "search_products"
+   ],
+   "flags": [],
+   "opening": "right, so, i run a store and i'm looking at the heavy-duty vase over at blue heron ceramics, or i think that's the one, the big sturdy one anyway, and i can't tell what it's meant to be selling for. sorry, i know that's vague",
+   "timing": {
+    "work": 7.27,
+    "elapsed": 7.27,
+    "turns": [
+     7.267
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=product_price_question (first of value)"
+  },
+  {
+   "session_id": "4f5222c61c3c4ec0a07c769f1d9478d5",
+   "trace_id": "6302ed5134c5a0f59af080c9635b688e",
+   "member_trace_ids": [
+    "6302ed5134c5a0f59af080c9635b688e",
+    "3db9ca1ef4b96db8287bd101c16ddc39"
+   ],
+   "scenario_id": "support-0117",
+   "meta": {
+    "role": "shopper",
+    "user_id": "212",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "product_search"
+   },
+   "ribbon": [
+    "search_products",
+    "search_products",
+    "search_products"
+   ],
+   "flags": [
+    "tool_error"
+   ],
+   "opening": "webcams at bright socket. list?",
+   "timing": {
+    "work": 14.79,
+    "elapsed": 14.79,
+    "turns": [
+     9.307,
+     5.485
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=product_search (first of value)"
+  },
+  {
+   "session_id": "b4d791112e634f5fae764a7f1b0aa42f",
+   "trace_id": "e1d6c4f26ca757fa1d5673e2c6b0fd24",
+   "member_trace_ids": [
+    "e1d6c4f26ca757fa1d5673e2c6b0fd24",
+    "88d080568f5fd4613297e5577000a342"
+   ],
+   "scenario_id": "support-0212",
+   "meta": {
+    "role": "shopper",
+    "user_id": "232",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "search_help_center",
+    "get_order",
+    "get_policy",
+    "search_help_center",
+    "get_policy",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "been trying to sort this out for ages now. classic water bottle, meridian cycles, ordered about a month ago, i want a refund.",
+   "timing": {
+    "work": 29.55,
+    "elapsed": 29.55,
+    "turns": [
+     23.003,
+     6.542
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=refund (first of value)"
+  },
+  {
+   "session_id": "edc6764615f6460baa4f07df7df99e0d",
+   "trace_id": "6e508b10960478ee6435d628b19ea41c",
+   "member_trace_ids": [
+    "6e508b10960478ee6435d628b19ea41c"
+   ],
+   "scenario_id": "support-0177",
+   "meta": {
+    "role": "shopper",
+    "user_id": "392",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "return_deadline"
+   },
+   "ribbon": [
+    "find_order",
+    "search_products",
+    "search_help_center",
+    "search_help_center",
+    "get_policy",
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "need to know my return window on the pencil set from atlas stationery. how many days do i have. please just tell me the return window, i keep asking and i need a number",
+   "timing": {
+    "work": 23.03,
+    "elapsed": 23.03,
+    "turns": [
+     23.031
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=return_deadline (first of value)"
+  },
+  {
+   "session_id": "b74883330b1346759edb4572c47552e4",
+   "trace_id": "81cc66dc5c681cada89d2d5147e17d3d",
+   "member_trace_ids": [
+    "81cc66dc5c681cada89d2d5147e17d3d",
+    "85a1bf814f6778c206318311e3da9b3c"
+   ],
+   "scenario_id": "support-0111",
+   "meta": {
+    "role": "shopper",
+    "user_id": "180",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "store_policy_question"
+   },
+   "ribbon": [
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "the northwind books page says nothing about returns anywhere and ive looked properly. whats their return window",
+   "timing": {
+    "work": 6.25,
+    "elapsed": 6.26,
+    "turns": [
+     4.391,
+     1.863
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=store_policy_question (first of value)"
+  },
+  {
+   "session_id": "bd34a8d2efde4425b593aa974d8a2919",
+   "trace_id": "a20acdc72f6acbd86a22e3c32bdb01dd",
+   "member_trace_ids": [
+    "a20acdc72f6acbd86a22e3c32bdb01dd"
+   ],
+   "scenario_id": "support-0027",
+   "meta": {
+    "role": "shopper",
+    "user_id": "433",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "get_order",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "order 4957, jam trio, still nothing. ive asked about this before and got nowhere. can someone actually pull up 4957 and tell me where it is",
+   "timing": {
+    "work": 9.31,
+    "elapsed": 9.31,
+    "turns": [
+     9.314
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=order_status (proportional fill)"
+  },
+  {
+   "session_id": "c5f87c2d50b844dc96af924d0d7b9f71",
+   "trace_id": "2eaa2fb0f2dcffd545d6f4ee58acd393",
+   "member_trace_ids": [
+    "2eaa2fb0f2dcffd545d6f4ee58acd393",
+    "d6f8e5244ad07ecf690ddbfededcbf2a"
+   ],
+   "scenario_id": "support-0062",
+   "meta": {
+    "role": "shopper",
+    "user_id": "22",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "search_help_center",
+    "find_order",
+    "get_policy",
+    "get_order",
+    "issue_refund",
+    "search_help_center",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "speckled serving bowl, blue heron ceramics, purchased roughly a month back. arrived chipped along the rim. no order ref to hand. refund requested.",
+   "timing": {
+    "work": 24.36,
+    "elapsed": 24.36,
+    "turns": [
+     12.79,
+     11.57
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=refund (proportional fill)"
+  },
+  {
+   "session_id": "2782173eb1c1435a84e8fc8afab39e00",
+   "trace_id": "449cd1aee47a1364d8f6deb1a59fff73",
+   "member_trace_ids": [
+    "449cd1aee47a1364d8f6deb1a59fff73",
+    "7c232222c9b6b409e640f0d72db0490a"
+   ],
+   "scenario_id": "support-0101",
+   "meta": {
+    "role": "shopper",
+    "user_id": "234",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "store_policy_question"
+   },
+   "ribbon": [
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "been going round in circles trying to find out how long i get to return something from juniper home goods. can someone just tell me",
+   "timing": {
+    "work": 7.06,
+    "elapsed": 7.06,
+    "turns": [
+     5.082,
+     1.978
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=store_policy_question (proportional fill)"
+  },
+  {
+   "session_id": "c3312fab63cb4e0fac9289eacbd39b5c",
+   "trace_id": "46dd8b018c7cec5047f195cce2b5040d",
+   "member_trace_ids": [
+    "46dd8b018c7cec5047f195cce2b5040d"
+   ],
+   "scenario_id": "support-0023",
+   "meta": {
+    "role": "shopper",
+    "user_id": "88",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "can someone please explain why the walnut trekking poles from meridian cycles still aren't here. this has dragged on long enough",
+   "timing": {
+    "work": 20.89,
+    "elapsed": 20.89,
+    "turns": [
+     20.892
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=order_status (proportional fill)"
+  },
+  {
+   "session_id": "45155e9b83374318a5a15df478094b56",
+   "trace_id": "1622ce9e7c54e8663ae945794d6a3621",
+   "member_trace_ids": [
+    "1622ce9e7c54e8663ae945794d6a3621"
+   ],
+   "scenario_id": "support-0225",
+   "meta": {
+    "role": "shopper",
+    "user_id": "200",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "search_help_center",
+    "find_order",
+    "get_order",
+    "get_policy",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "paid good money for travel wool socks from harbor knits about a month ago and they arrived damaged. i shouldn't have to chase this. refund.",
+   "timing": {
+    "work": 13.58,
+    "elapsed": 13.58,
+    "turns": [
+     13.584
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=refund (proportional fill)"
+  },
+  {
+   "session_id": "0ec97b4e3bd54a019fed39b81b6ce731",
+   "trace_id": "d47b4666e6c206d7f22f92fcacf1b259",
+   "member_trace_ids": [
+    "d47b4666e6c206d7f22f92fcacf1b259"
+   ],
+   "scenario_id": "support-0227",
+   "meta": {
+    "role": "shopper",
+    "user_id": "320",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "the cookbook i bought a couple weeks back showed up wrecked, cover bent and the pages all creased. i want a refund. please refund it. i've raised this before and nobody has actually refunded anything yet",
+   "timing": {
+    "work": 32.63,
+    "elapsed": 32.63,
+    "turns": [
+     32.63
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=refund (proportional fill)"
+  },
+  {
+   "session_id": "10044374116b4415a7c3f7c8da303265",
+   "trace_id": "54ea45189c4131859c696bc77e5b3f2a",
+   "member_trace_ids": [
+    "54ea45189c4131859c696bc77e5b3f2a"
+   ],
+   "scenario_id": "support-0073",
+   "meta": {
+    "role": "shopper",
+    "user_id": "128",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "cancellation"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "cancel_order"
+   ],
+   "flags": [],
+   "opening": "sticky notes. classic. atlas stationery. cancel before it ships pls",
+   "timing": {
+    "work": 9.61,
+    "elapsed": 9.61,
+    "turns": [
+     9.605
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=cancellation (proportional fill)"
+  },
+  {
+   "session_id": "5e19569c8bd546f28eef5562e8c3ee12",
+   "trace_id": "4dd16943f23d546b71765ea308ad07aa",
+   "member_trace_ids": [
+    "4dd16943f23d546b71765ea308ad07aa"
+   ],
+   "scenario_id": "support-0198",
+   "meta": {
+    "role": "support",
+    "user_id": "9503",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "product_price_question"
+   },
+   "ribbon": [
+    "search_products"
+   ],
+   "flags": [],
+   "opening": "customer flaged the rustic pitcher price at blue heron ceramics as beign wrong, can you pull the curent listed price so i can compair",
+   "timing": {
+    "work": 4.42,
+    "elapsed": 4.42,
+    "turns": [
+     4.416
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=product_price_question (proportional fill)"
+  },
+  {
+   "session_id": "247ccf8ae6a4419188a9bf9fdcc6232c",
+   "trace_id": "ccb4804a7a02958ace0dabdb22acfafd",
+   "member_trace_ids": [
+    "ccb4804a7a02958ace0dabdb22acfafd"
+   ],
+   "scenario_id": "support-0199",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9001",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "product_price_question"
+   },
+   "ribbon": [
+    "search_products"
+   ],
+   "flags": [],
+   "opening": "the rustic pitcher in my blue heron ceramics listing is showing a price i don't recognise. i need the current price confirmed. please confirm the current price on that pitcher, it's the second time i'm raising it",
+   "timing": {
+    "work": 7.06,
+    "elapsed": 7.06,
+    "turns": [
+     7.063
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=product_price_question (proportional fill)"
+  },
+  {
+   "session_id": "64533a81d05841ab9e96ecaa536947cc",
+   "trace_id": "887092951491b8d966a07f3fad06139e",
+   "member_trace_ids": [
+    "887092951491b8d966a07f3fad06139e"
+   ],
+   "scenario_id": "support-0065",
+   "meta": {
+    "role": "shopper",
+    "user_id": "269",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "cancellation"
+   },
+   "ribbon": [
+    "get_order",
+    "cancel_order"
+   ],
+   "flags": [],
+   "opening": "need to cancel order 1532, the travel lip balm, before it goes out. plain answer is fine, can you cancel it?",
+   "timing": {
+    "work": 5.46,
+    "elapsed": 5.46,
+    "turns": [
+     5.459
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=cancellation (proportional fill)"
+  },
+  {
+   "session_id": "766ae980d98e441dba6e08badde9034b",
+   "trace_id": "a6fee40ac8eacb1bb3b585dd3153cc65",
+   "member_trace_ids": [
+    "a6fee40ac8eacb1bb3b585dd3153cc65",
+    "c07ffbbbbf5d9b47c27b79943f280bed"
+   ],
+   "scenario_id": "support-0133",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9009",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_history"
+   },
+   "ribbon": [
+    "list_my_orders",
+    "list_my_orders"
+   ],
+   "flags": [],
+   "opening": "i need my recent orders for trailhead supply, this is the third time im asking",
+   "timing": {
+    "work": 28.48,
+    "elapsed": 28.48,
+    "turns": [
+     7.913,
+     20.563
+    ]
+   },
+   "batch": "b2_intent",
+   "method": "distributed across the intent dimension",
+   "reason": "intent=order_history (proportional fill)"
+  },
+  {
+   "session_id": "ac544fb6ac884f16b29ca85f10d9d1e7",
+   "trace_id": "1d4ef244e2e866dec6bb35f8a07e8790",
+   "member_trace_ids": [
+    "1d4ef244e2e866dec6bb35f8a07e8790",
+    "8593c28508dfceed5e809ffb4ab73086"
+   ],
+   "scenario_id": "support-0093",
+   "meta": {
+    "role": "shopper",
+    "user_id": "83",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "policy_question"
+   },
+   "ribbon": [
+    "search_help_center",
+    "list_my_orders"
+   ],
+   "flags": [],
+   "opening": "delivery time. usual?",
+   "timing": {
+    "work": 11.62,
+    "elapsed": 11.62,
+    "turns": [
+     4.451,
+     7.167
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for applies_rule_without_verifying_record"
+  },
+  {
+   "session_id": "c693c4171b14494f83cf123978022893",
+   "trace_id": "19c321be6dd7c5ec05e5f946cabd6343",
+   "member_trace_ids": [
+    "19c321be6dd7c5ec05e5f946cabd6343"
+   ],
+   "scenario_id": "support-0048",
+   "meta": {
+    "role": "shopper",
+    "user_id": "233",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "search_help_center",
+    "get_order",
+    "get_policy",
+    "search_products",
+    "search_products",
+    "issue_refund"
+   ],
+   "flags": [
+    "tool_error"
+   ],
+   "opening": "dry bag. signature one. trailhead. came faulty. refund?",
+   "timing": {
+    "work": 14.63,
+    "elapsed": 14.63,
+    "turns": [
+     14.631
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "close negative candidate for reveals_internal_error_detail"
+  },
+  {
+   "session_id": "6bbfbf3b154a465199634a77bc396afe",
+   "trace_id": "850f8536cad1887099f1db3eb025dd1c",
+   "member_trace_ids": [
+    "850f8536cad1887099f1db3eb025dd1c"
+   ],
+   "scenario_id": "support-0045",
+   "meta": {
+    "role": "shopper",
+    "user_id": "487",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "search_help_center",
+    "find_order",
+    "get_policy",
+    "get_order",
+    "issue_refund"
+   ],
+   "flags": [],
+   "opening": "refund request - vintage pencil set from atlas stationery arrived faulty. purchased roughly a month back. no order ref on file my end.",
+   "timing": {
+    "work": 15.62,
+    "elapsed": 15.62,
+    "turns": [
+     15.624
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for writes_without_confirming_match"
+  },
+  {
+   "session_id": "3af36583ea8c4541a1fd567b008cc7b4",
+   "trace_id": "154430449cfe2562c4670f98ddde518f",
+   "member_trace_ids": [
+    "154430449cfe2562c4670f98ddde518f",
+    "1109ffab6e2589de8d4d3abda83075f7"
+   ],
+   "scenario_id": "support-0024",
+   "meta": {
+    "role": "shopper",
+    "user_id": "246",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "search_products",
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "marble run. signature. little fox toys. update?",
+   "timing": {
+    "work": 21.05,
+    "elapsed": 21.05,
+    "turns": [
+     11.46,
+     9.59
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for affective_filler_opener"
+  },
+  {
+   "session_id": "48b2898d681143848a7cfd075ae2919e",
+   "trace_id": "bc51d3deeaf27320ed908911b797ffce",
+   "member_trace_ids": [
+    "bc51d3deeaf27320ed908911b797ffce",
+    "964e1a94a6c8424a886756ffb01e7743",
+    "6ffc8fc27e964b8c6e67c6be6d27d934"
+   ],
+   "scenario_id": "support-0108",
+   "meta": {
+    "role": "shopper",
+    "user_id": "259",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "store_policy_question"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_policy",
+    "search_help_center",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "i bougth somethign from juniper home goods and im not sure if i can still send it bakc, hwo long do i have",
+   "timing": {
+    "work": 14.73,
+    "elapsed": 14.74,
+    "turns": [
+     7.066,
+     1.526,
+     6.142
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for applies_rule_without_verifying_record"
+  },
+  {
+   "session_id": "fa43392eb580409da3f869b1e937b328",
+   "trace_id": "4cc1159f5a13f1787f0f1b73b40ba058",
+   "member_trace_ids": [
+    "4cc1159f5a13f1787f0f1b73b40ba058",
+    "a67cc941d7b300e6af204cdae250d892"
+   ],
+   "scenario_id": "support-0115",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9014",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "product_search"
+   },
+   "ribbon": [
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products",
+    "escalate_to_human"
+   ],
+   "flags": [
+    "tool_error"
+   ],
+   "opening": "need a rundown of the puzzle listings live at wooden whale workshop. checking them against our own catalog.",
+   "timing": {
+    "work": 33.45,
+    "elapsed": 33.45,
+    "turns": [
+     19.24,
+     14.206
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "close negative candidate for reveals_internal_error_detail"
+  },
+  {
+   "session_id": "bd3aaf5b432b4028886673f97b9156a7",
+   "trace_id": "7321d210f6cceff8680fead7da6281dc",
+   "member_trace_ids": [
+    "7321d210f6cceff8680fead7da6281dc",
+    "6afcf6c531203ae1de5b86a6bd0e9c46"
+   ],
+   "scenario_id": "support-0049",
+   "meta": {
+    "role": "shopper",
+    "user_id": "2",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "search_help_center",
+    "get_order",
+    "get_policy",
+    "issue_refund"
+   ],
+   "flags": [],
+   "opening": "woven granola from saltbox arrived faulty, about a week back. requesting refund.",
+   "timing": {
+    "work": 15.24,
+    "elapsed": 15.24,
+    "turns": [
+     11.846,
+     3.397
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for writes_without_confirming_match"
+  },
+  {
+   "session_id": "753bcc21643b4bc9a95c0e632a12708d",
+   "trace_id": "3e104021d15cd15d2287ac3662c32a0e",
+   "member_trace_ids": [
+    "3e104021d15cd15d2287ac3662c32a0e",
+    "444a5536de1024a163eca47414512c95",
+    "b71556d3a69c6b3e52520d2347801062"
+   ],
+   "scenario_id": "support-0030",
+   "meta": {
+    "role": "shopper",
+    "user_id": "180",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "so i think i ordered a hat? a beanie i mean, the rustic one, from the knitting place, harbor something... and it hasnt turned up, although now im second guessing whether i even finished the checkout",
+   "timing": {
+    "work": 17.88,
+    "elapsed": 17.88,
+    "turns": [
+     10.179,
+     4.022,
+     3.682
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for affective_filler_opener"
+  },
+  {
+   "session_id": "94d6090dcff4424bbbb14554f20eca3f",
+   "trace_id": "20ec614711438a16deb890d5410aed1b",
+   "member_trace_ids": [
+    "20ec614711438a16deb890d5410aed1b",
+    "d477b127e661b7dca349775c3a90f5fb"
+   ],
+   "scenario_id": "support-0176",
+   "meta": {
+    "role": "shopper",
+    "user_id": "392",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "return_deadline"
+   },
+   "ribbon": [
+    "search_help_center",
+    "search_help_center",
+    "get_policy",
+    "find_order",
+    "get_order",
+    "search_products",
+    "get_order",
+    "escalate_to_human",
+    "search_help_center",
+    "search_help_center",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "bougth a classic pencil set from atlas stationery and its not really what i wnated, how long do i have to sned it back?",
+   "timing": {
+    "work": 42.25,
+    "elapsed": 42.25,
+    "turns": [
+     32.908,
+     9.34
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for applies_rule_without_verifying_record"
+  },
+  {
+   "session_id": "b802abaaee284fee959f7fcebd2301ef",
+   "trace_id": "d692eaeba701141e24ded4224691d282",
+   "member_trace_ids": [
+    "d692eaeba701141e24ded4224691d282",
+    "e05583b204b2b37ea146f0da4592097f"
+   ],
+   "scenario_id": "support-0119",
+   "meta": {
+    "role": "shopper",
+    "user_id": "5",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "product_search"
+   },
+   "ribbon": [
+    "search_products",
+    "search_products",
+    "search_products"
+   ],
+   "flags": [
+    "tool_error"
+   ],
+   "opening": "fern & fog. bath salts. options?",
+   "timing": {
+    "work": 12.73,
+    "elapsed": 12.73,
+    "turns": [
+     7.703,
+     5.03
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "close negative candidate for reveals_internal_error_detail"
+  },
+  {
+   "session_id": "dcbcf4e2a71d46d48212ca6c0a6b34e9",
+   "trace_id": "df619a461c2fdeeec9ae09c6c94e719f",
+   "member_trace_ids": [
+    "df619a461c2fdeeec9ae09c6c94e719f",
+    "db39b1f2c12c5d9394b793fd73db40ec"
+   ],
+   "scenario_id": "support-0051",
+   "meta": {
+    "role": "shopper",
+    "user_id": "188",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "search_help_center",
+    "find_order",
+    "get_policy",
+    "get_policy",
+    "get_order",
+    "issue_refund",
+    "find_order",
+    "get_order",
+    "search_products",
+    "get_order",
+    "search_products",
+    "list_my_orders"
+   ],
+   "flags": [],
+   "opening": "ok so i ordered this pitcher thing, the travel one, from juniper home goods i think it was a couple weeks back and it turned up already faulty, well not broken exactly but the lid doesnt seal at all? anyway i dont have the order paperwork in front of me. can i just get my money back",
+   "timing": {
+    "work": 34.4,
+    "elapsed": 34.4,
+    "turns": [
+     14.558,
+     19.84
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for writes_without_confirming_match"
+  },
+  {
+   "session_id": "86a80dc2ffd14019b262e4e2e8a17b26",
+   "trace_id": "090308f2853153eba173dedb49e3d814",
+   "member_trace_ids": [
+    "090308f2853153eba173dedb49e3d814",
+    "6f165d17cc38550ba349321134c4ab4e"
+   ],
+   "scenario_id": "support-0032",
+   "meta": {
+    "role": "shopper",
+    "user_id": "40",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "get_policy",
+    "get_policy",
+    "escalate_to_human",
+    "find_order"
+   ],
+   "flags": [],
+   "opening": "this is the second time im chasing the bath salts from fern & fog and absolutely nothing has moved",
+   "timing": {
+    "work": 31.63,
+    "elapsed": 31.64,
+    "turns": [
+     23.75,
+     7.882
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for affective_filler_opener"
+  },
+  {
+   "session_id": "c9ad0149e28d49698306992a99258736",
+   "trace_id": "85f245e9269c1eae454e06691f25d112",
+   "member_trace_ids": [
+    "85f245e9269c1eae454e06691f25d112",
+    "cb3e7a598bb5584fb54220f0da0b5327"
+   ],
+   "scenario_id": "support-0179",
+   "meta": {
+    "role": "shopper",
+    "user_id": "392",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "return_deadline"
+   },
+   "ribbon": [
+    "find_order",
+    "search_help_center",
+    "get_order",
+    "get_policy",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "ok so this is going to sound silly but i ordered some pencils, the classic set i think it was called, from that stationery shop, atlas something? and i want to send them back but i genuinely don't know if i'm too late or not. i might have ordered a different set actually, no it was the classic one",
+   "timing": {
+    "work": 18.92,
+    "elapsed": 18.92,
+    "turns": [
+     15.32,
+     3.601
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for applies_rule_without_verifying_record"
+  },
+  {
+   "session_id": "8ef12b189d59456199c3d7eeb1fdcbb5",
+   "trace_id": "0d81d8a4234923315bb12cdb56578789",
+   "member_trace_ids": [
+    "0d81d8a4234923315bb12cdb56578789"
+   ],
+   "scenario_id": "support-0205",
+   "meta": {
+    "role": "shopper",
+    "user_id": "37",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "product_listing_question"
+   },
+   "ribbon": [
+    "search_products",
+    "search_products",
+    "search_products"
+   ],
+   "flags": [
+    "tool_error"
+   ],
+   "opening": "quick one - a product on blue heron ceramics shows up blank where the name should be. what's it called? short answer is fine.",
+   "timing": {
+    "work": 11.09,
+    "elapsed": 11.09,
+    "turns": [
+     11.087
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "close negative candidate for reveals_internal_error_detail"
+  },
+  {
+   "session_id": "34e8b28bc11645e791c485e3dc1c6321",
+   "trace_id": "24615192619cb3e23f9fc4b518076fe2",
+   "member_trace_ids": [
+    "24615192619cb3e23f9fc4b518076fe2",
+    "f060041f2184678aa9a72235ef64e281",
+    "1e7a538a4b5d4fd73fae149a438c1d59"
+   ],
+   "scenario_id": "support-0052",
+   "meta": {
+    "role": "shopper",
+    "user_id": "370",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "search_help_center",
+    "get_order",
+    "get_policy",
+    "get_policy",
+    "issue_refund"
+   ],
+   "flags": [],
+   "opening": "so theres a problem with the headphones i got, the rustic ones from pocket arcade, one side just doesnt make any noise at all. or maybe its very quiet, hard to tell. i think i want a refund",
+   "timing": {
+    "work": 18.09,
+    "elapsed": 18.09,
+    "turns": [
+     13.397,
+     2.601,
+     2.093
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for writes_without_confirming_match"
+  },
+  {
+   "session_id": "962d8cb3031c4fe19dc41d70c357cb3f",
+   "trace_id": "f43c952e70f9acccc1fe86503681ca08",
+   "member_trace_ids": [
+    "f43c952e70f9acccc1fe86503681ca08",
+    "bc5b8d0d88f4df61aeeeb18db6ff5025"
+   ],
+   "scenario_id": "support-0040",
+   "meta": {
+    "role": "shopper",
+    "user_id": "222",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "find_order",
+    "search_products"
+   ],
+   "flags": [],
+   "opening": "im a bit lost here, so theres a keyboard order, the midnight one i think, and the number ive written down is 105 but that seems too short to be an order number?",
+   "timing": {
+    "work": 26.19,
+    "elapsed": 26.19,
+    "turns": [
+     17.766,
+     8.423
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for affective_filler_opener"
+  },
+  {
+   "session_id": "f548228f39e34546a6994ae7af840347",
+   "trace_id": "a91c2fe44dac65bd4440bc711539aef2",
+   "member_trace_ids": [
+    "a91c2fe44dac65bd4440bc711539aef2"
+   ],
+   "scenario_id": "support-0055",
+   "meta": {
+    "role": "shopper",
+    "user_id": "357",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "issue_refund"
+   ],
+   "flags": [],
+   "opening": "desk organizer from atlas. modern one. came cracked. refund?",
+   "timing": {
+    "work": 22.22,
+    "elapsed": 22.22,
+    "turns": [
+     22.217
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for writes_without_confirming_match"
+  },
+  {
+   "session_id": "a871e65522cf4a41a09ca32bb5d33b59",
+   "trace_id": "a6b1ff6ec4de77536aea4ff517fb963e",
+   "member_trace_ids": [
+    "a6b1ff6ec4de77536aea4ff517fb963e",
+    "04237e2c1090a2a0348067a9a365c605",
+    "71692a6ca7fbd377bcaa93651b0af178"
+   ],
+   "scenario_id": "support-0076",
+   "meta": {
+    "role": "shopper",
+    "user_id": "493",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "cancellation"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "cancel_order",
+    "find_order",
+    "search_products",
+    "search_products",
+    "get_order"
+   ],
+   "flags": [],
+   "opening": "i ordered a slim water bottle from trailhead supply not too long ago and i'd like to cancel it if it hasn't gone out yet",
+   "timing": {
+    "work": 28.45,
+    "elapsed": 28.45,
+    "turns": [
+     9.288,
+     12.221,
+     6.936
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for affective_filler_opener"
+  },
+  {
+   "session_id": "60baad3b1c6f4c1aad464e6a79531606",
+   "trace_id": "c22a7d06f15ab17675bd7aa943ad5f03",
+   "member_trace_ids": [
+    "c22a7d06f15ab17675bd7aa943ad5f03"
+   ],
+   "scenario_id": "support-0056",
+   "meta": {
+    "role": "shopper",
+    "user_id": "200",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "issue_refund"
+   ],
+   "flags": [],
+   "opening": "theres an issue with a planner i bought, the signature one? from atlas stationery i believe, it was a while back, maybe a month, and the binding came apart almost straight away which cant be right. i dont have any of the order details saved unfortunately. what can be done about getting my money back",
+   "timing": {
+    "work": 15.54,
+    "elapsed": 15.54,
+    "turns": [
+     15.538
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for writes_without_confirming_match"
+  },
+  {
+   "session_id": "a6414c79c02e4525be82d8f9f0181fd0",
+   "trace_id": "20611b2e30b65313760bc266c2499596",
+   "member_trace_ids": [
+    "20611b2e30b65313760bc266c2499596",
+    "6cf34151f0a8adaf83e9fd331d7d5c9d"
+   ],
+   "scenario_id": "support-0077",
+   "meta": {
+    "role": "shopper",
+    "user_id": "98",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "policy_question"
+   },
+   "ribbon": [
+    "list_my_orders",
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "ok so i'm not totally sure how this works, i put an order in a while back, or maybe it wasnt that long ago actually, and i was wondering if theres still a window where it can be called off? i dont think its moved anywhere yet",
+   "timing": {
+    "work": 25.88,
+    "elapsed": 25.88,
+    "turns": [
+     14.641,
+     11.241
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for affective_filler_opener"
+  },
+  {
+   "session_id": "bec34e1ce9234ccdb4e5dc119451ee92",
+   "trace_id": "d8cfb8a2cbb19debff8672d4eea4dd37",
+   "member_trace_ids": [
+    "d8cfb8a2cbb19debff8672d4eea4dd37",
+    "4bef8e454ff22fd90189e237b74309e1",
+    "6775a698b035ac1b7419418bf869b2d9"
+   ],
+   "scenario_id": "support-0057",
+   "meta": {
+    "role": "shopper",
+    "user_id": "157",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "search_help_center",
+    "get_policy",
+    "get_policy",
+    "get_order",
+    "issue_refund"
+   ],
+   "flags": [],
+   "opening": "i need a refund on the everyday daypack from meridian cycles. the zip broke. please just process the refund.",
+   "timing": {
+    "work": 25.32,
+    "elapsed": 25.32,
+    "turns": [
+     12.737,
+     5.102,
+     7.48
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for writes_without_confirming_match"
+  },
+  {
+   "session_id": "77370248ed7945a6b81d638f19d493b6",
+   "trace_id": "efa51143aadb96b1ef47143efd8cad3d",
+   "member_trace_ids": [
+    "efa51143aadb96b1ef47143efd8cad3d",
+    "1b9fd6e6afa26d8908ad5e4a2ef82e59",
+    "2aa44012e4e41199989ca06e55d8839a"
+   ],
+   "scenario_id": "support-0086",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9014",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "policy_question"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_policy",
+    "search_help_center",
+    "get_policy",
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "getting the same question from buyers over and over and i still dont have a clear answer. is a restocking fee charged on returns or not",
+   "timing": {
+    "work": 46.74,
+    "elapsed": 46.75,
+    "turns": [
+     7.069,
+     13.612,
+     26.06
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for affective_filler_opener"
+  },
+  {
+   "session_id": "b18bcac028a54b8eab41739d7a6f4836",
+   "trace_id": "016f49833a67b179eb488f8f88f64f48",
+   "member_trace_ids": [
+    "016f49833a67b179eb488f8f88f64f48",
+    "06dfba02c0034af5f917fb880e4a33b0"
+   ],
+   "scenario_id": "support-0059",
+   "meta": {
+    "role": "shopper",
+    "user_id": "348",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "search_help_center",
+    "find_order",
+    "get_policy",
+    "get_order",
+    "issue_refund"
+   ],
+   "flags": [],
+   "opening": "the portable tea sampler i ordered from golden hour arrived with two of the tins split open. i want a refund on it, can you do that now please",
+   "timing": {
+    "work": 15.97,
+    "elapsed": 15.98,
+    "turns": [
+     11.973,
+     4.001
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for writes_without_confirming_match"
+  },
+  {
+   "session_id": "74993b4cd54d4943b2274743f35d0b68",
+   "trace_id": "531ee415821d780fafbefe2f4849c410",
+   "member_trace_ids": [
+    "531ee415821d780fafbefe2f4849c410",
+    "59975e14e6ca838f73c034ee707a83ff"
+   ],
+   "scenario_id": "support-0097",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9008",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "policy_question"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "im trying to set expectations on my listings and i've gotten a bit lost, buyers keep asking me how long things take to arrive and i wasnt sure if theres a standard i should be quoting or whether thats all on me to decide",
+   "timing": {
+    "work": 13.9,
+    "elapsed": 13.9,
+    "turns": [
+     10.817,
+     3.079
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for affective_filler_opener"
+  },
+  {
+   "session_id": "c9e2093b7efb4bcea0180f50e49b885e",
+   "trace_id": "126bb8b2e89e595adb63915084525687",
+   "member_trace_ids": [
+    "126bb8b2e89e595adb63915084525687",
+    "0e8c001b0ad6df77d03b265442e6011a"
+   ],
+   "scenario_id": "support-0064",
+   "meta": {
+    "role": "shopper",
+    "user_id": "244",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "search_help_center",
+    "search_help_center",
+    "get_policy",
+    "get_order",
+    "issue_refund"
+   ],
+   "flags": [],
+   "opening": "good morning! we bought the signature building blocks for my nephew maybe a month ago and a few of the pieces were already split when we opened the set. hoping to get a refund sorted",
+   "timing": {
+    "work": 18.91,
+    "elapsed": 18.91,
+    "turns": [
+     14.748,
+     4.16
+    ]
+   },
+   "batch": "b3_depth",
+   "method": "retrieved by depth search for a named mode",
+   "reason": "depth-search hit for writes_without_confirming_match"
+  },
+  {
+   "session_id": "1b94bf09b5f84675a0c1afcb7b8a23bd",
+   "trace_id": "a334e696fa5ca47d89860240ba956e06",
+   "member_trace_ids": [
+    "a334e696fa5ca47d89860240ba956e06",
+    "19c9cc793b7722304e0c669e23c24920",
+    "22618be6d6ded8619ae9f04c8b2a3e99"
+   ],
+   "scenario_id": "support-0131",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9012",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "order_history"
+   },
+   "ribbon": [
+    "list_my_orders"
+   ],
+   "flags": [],
+   "opening": "can i see the recnt orders for wooden whale workshop, im the ownder",
+   "timing": {
+    "work": 15.27,
+    "elapsed": 15.28,
+    "turns": [
+     8.318,
+     2.697,
+     4.26
+    ]
+   },
+   "batch": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "reason": "saturation check"
+  },
+  {
+   "session_id": "16aa4b2944d34ab8b41d4c951dd69a83",
+   "trace_id": "f99650e37e16354863298f0420db3af1",
+   "member_trace_ids": [
+    "f99650e37e16354863298f0420db3af1"
+   ],
+   "scenario_id": "support-0191",
+   "meta": {
+    "role": "merchant",
+    "user_id": "9001",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "product_price_question"
+   },
+   "ribbon": [
+    "search_products"
+   ],
+   "flags": [],
+   "opening": "im tryin to confrim what the heavy-duty vase is listed at on blue heron ceramics rigth now, my back offce is showin somethign odd",
+   "timing": {
+    "work": 10.5,
+    "elapsed": 10.5,
+    "turns": [
+     10.501
+    ]
+   },
+   "batch": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "reason": "saturation check"
+  },
+  {
+   "session_id": "afa687b942644d47b025d73c1f10cafb",
+   "trace_id": "a3b74d27d77ccd64034cf438a2e52977",
+   "member_trace_ids": [
+    "a3b74d27d77ccd64034cf438a2e52977"
+   ],
+   "scenario_id": "support-0121",
+   "meta": {
+    "role": "shopper",
+    "user_id": "10",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "product_search"
+   },
+   "ribbon": [
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products"
+   ],
+   "flags": [],
+   "opening": "ok so i think it was saltbox pantry, or it might have been another pantry sort of shop, anyway they had beans, dried ones i think? or maybe tinned, im really not sure, could you tell me what beans they actually carry cause i might be mixing two shops up",
+   "timing": {
+    "work": 15.15,
+    "elapsed": 15.15,
+    "turns": [
+     15.149
+    ]
+   },
+   "batch": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "reason": "saturation check"
+  },
+  {
+   "session_id": "2be320804323443ab3b516cd6f5c00c0",
+   "trace_id": "2001152c25fcf14ff22b75f4d6978e24",
+   "member_trace_ids": [
+    "2001152c25fcf14ff22b75f4d6978e24"
+   ],
+   "scenario_id": "support-0060",
+   "meta": {
+    "role": "shopper",
+    "user_id": "352",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "get_policy",
+    "issue_refund"
+   ],
+   "flags": [],
+   "opening": "order 3392. dry bag. seam leaks. want refund.",
+   "timing": {
+    "work": 12.08,
+    "elapsed": 12.08,
+    "turns": [
+     12.079
+    ]
+   },
+   "batch": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "reason": "saturation check"
+  },
+  {
+   "session_id": "19f44eaeed2e43d4bd4dca42012b5e5b",
+   "trace_id": "6ed08b5709000b7e3b6adb7ab94a7e2d",
+   "member_trace_ids": [
+    "6ed08b5709000b7e3b6adb7ab94a7e2d"
+   ],
+   "scenario_id": "support-0219",
+   "meta": {
+    "role": "shopper",
+    "user_id": "191",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "search_help_center",
+    "find_order",
+    "get_policy",
+    "search_help_center",
+    "get_order",
+    "get_policy",
+    "search_help_center",
+    "get_policy",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "good morning - i bought a compact journal from northwind books a month or two back and i was hoping to return it. not sure what the process looks like?",
+   "timing": {
+    "work": 27.91,
+    "elapsed": 27.91,
+    "turns": [
+     27.911
+    ]
+   },
+   "batch": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "reason": "saturation check"
+  },
+  {
+   "session_id": "8d9bd05e5dcd4c9095523ebf03bdb14f",
+   "trace_id": "ab11c248a7e42e34001395700dd209ea",
+   "member_trace_ids": [
+    "ab11c248a7e42e34001395700dd209ea"
+   ],
+   "scenario_id": "support-0213",
+   "meta": {
+    "role": "shopper",
+    "user_id": "155",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "search_help_center",
+    "get_order",
+    "get_policy",
+    "search_help_center",
+    "get_policy",
+    "search_help_center",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "my everyday dry bag form meridian cycles isnt workign out for me, orderd it like a month ago. how do i get refudned",
+   "timing": {
+    "work": 29.52,
+    "elapsed": 29.52,
+    "turns": [
+     29.525
+    ]
+   },
+   "batch": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "reason": "saturation check"
+  },
+  {
+   "session_id": "50ee7e1dae2245389c630217ba07deda",
+   "trace_id": "8d046b030df70cbdb8a9d49375e925d2",
+   "member_trace_ids": [
+    "8d046b030df70cbdb8a9d49375e925d2"
+   ],
+   "scenario_id": "support-0022",
+   "meta": {
+    "role": "shopper",
+    "user_id": "259",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "order_status"
+   },
+   "ribbon": [
+    "search_products",
+    "find_order",
+    "find_order"
+   ],
+   "flags": [],
+   "opening": "there's a cookbook, the slim one, from northwind i'm fairly sure, and i honestly don't know what state it's in, i might have ordered it twice or that might have been a different book entirely",
+   "timing": {
+    "work": 12.64,
+    "elapsed": 12.64,
+    "turns": [
+     12.643
+    ]
+   },
+   "batch": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "reason": "saturation check"
+  },
+  {
+   "session_id": "82b66ccf699348c8ab76125a39d6fcd7",
+   "trace_id": "c6afa8ce5e4daf6992ff11fc4d4dbee7",
+   "member_trace_ids": [
+    "c6afa8ce5e4daf6992ff11fc4d4dbee7",
+    "3251d430f892661d4e4d0422e75108d6"
+   ],
+   "scenario_id": "support-0090",
+   "meta": {
+    "role": "shopper",
+    "user_id": "187",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "coverage",
+    "intent": "policy_question"
+   },
+   "ribbon": [
+    "search_help_center",
+    "get_policy"
+   ],
+   "flags": [],
+   "opening": "im a bit worrried abotu my acount, how do you guys keep peoples accounts secur",
+   "timing": {
+    "work": 14.09,
+    "elapsed": 14.1,
+    "turns": [
+     7.372,
+     6.722
+    ]
+   },
+   "batch": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "reason": "saturation check"
+  },
+  {
+   "session_id": "252676a5c932401a9d7a7fe8fb31a178",
+   "trace_id": "d80267000367b410823370d29ebdbce1",
+   "member_trace_ids": [
+    "d80267000367b410823370d29ebdbce1"
+   ],
+   "scenario_id": "support-0208",
+   "meta": {
+    "role": "shopper",
+    "user_id": "265",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "search_help_center",
+    "find_order",
+    "get_policy",
+    "get_order",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "second time i'm asking about the modern dinner plate set i got from juniper home goods about a month ago. i want my money back, that's it.",
+   "timing": {
+    "work": 17.64,
+    "elapsed": 17.64,
+    "turns": [
+     17.636
+    ]
+   },
+   "batch": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "reason": "saturation check"
+  },
+  {
+   "session_id": "ea58936cd2bb4e98b38fc5b463ca7db6",
+   "trace_id": "a3c21772557aa1a416495539fd82e901",
+   "member_trace_ids": [
+    "a3c21772557aa1a416495539fd82e901",
+    "036de94df04320b64cda6461ef99b8c0",
+    "2a2459e870a6a336a617f75c06faa8d9"
+   ],
+   "scenario_id": "support-0125",
+   "meta": {
+    "role": "shopper",
+    "user_id": "478",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "product_search"
+   },
+   "ribbon": [
+    "search_products",
+    "search_products",
+    "search_products"
+   ],
+   "flags": [],
+   "opening": "morning, can you tell me which coffee beans golden hour coffee has in stock at the moment?",
+   "timing": {
+    "work": 16.76,
+    "elapsed": 16.77,
+    "turns": [
+     4.75,
+     6.708,
+     5.304
+    ]
+   },
+   "batch": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "reason": "saturation check"
+  },
+  {
+   "session_id": "aa3a2cba292d4a9181638638b9076919",
+   "trace_id": "9185899d667bb069d934878dc8424c3d",
+   "member_trace_ids": [
+    "9185899d667bb069d934878dc8424c3d"
+   ],
+   "scenario_id": "support-0078",
+   "meta": {
+    "role": "shopper",
+    "user_id": "444",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "policy_question"
+   },
+   "ribbon": [
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "can someone just tell me how long a refund actually takes to show up. i've been waiting and nobody gives me a straight answer",
+   "timing": {
+    "work": 5.64,
+    "elapsed": 5.64,
+    "turns": [
+     5.641
+    ]
+   },
+   "batch": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "reason": "saturation check"
+  },
+  {
+   "session_id": "5e94ced408224c2293bae72a8a31909b",
+   "trace_id": "6a586a4efa115dbeedafb7c44054d8b1",
+   "member_trace_ids": [
+    "6a586a4efa115dbeedafb7c44054d8b1",
+    "920c890e90fa47615de75c8868028e84",
+    "0204b372e1d5b323075389a3ba0adb6a"
+   ],
+   "scenario_id": "support-0217",
+   "meta": {
+    "role": "shopper",
+    "user_id": "352",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "get_order",
+    "search_help_center",
+    "get_policy",
+    "search_help_center",
+    "get_policy",
+    "search_help_center",
+    "get_policy",
+    "list_my_orders",
+    "escalate_to_human",
+    "find_order",
+    "find_order"
+   ],
+   "flags": [],
+   "opening": "vintage jam trio. saltbox. refund",
+   "timing": {
+    "work": 63.38,
+    "elapsed": 63.38,
+    "turns": [
+     29.28,
+     16.101,
+     17.996
+    ]
+   },
+   "batch": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "reason": "saturation check"
+  },
+  {
+   "session_id": "57ada5dbc6644fc89c22483ae8278a5f",
+   "trace_id": "1e35ad6be2afc58324ec22b0b9fa9302",
+   "member_trace_ids": [
+    "1e35ad6be2afc58324ec22b0b9fa9302"
+   ],
+   "scenario_id": "support-0095",
+   "meta": {
+    "role": "shopper",
+    "user_id": "483",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 1,
+    "scenario_group": "coverage",
+    "intent": "policy_question"
+   },
+   "ribbon": [
+    "search_help_center"
+   ],
+   "flags": [],
+   "opening": "one line answer is fine. do returns get hit with a restocking fee",
+   "timing": {
+    "work": 8.59,
+    "elapsed": 8.59,
+    "turns": [
+     8.593
+    ]
+   },
+   "batch": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "reason": "saturation check"
+  },
+  {
+   "session_id": "9d4ecf8acde4413d97a9e5644180f66c",
+   "trace_id": "6e8c0fe011bfb8f037fd515572556c72",
+   "member_trace_ids": [
+    "6e8c0fe011bfb8f037fd515572556c72",
+    "16d5892545a72874bf1807457c6571f7",
+    "12cbfc18aaf458d99d19fa496cd5ef86"
+   ],
+   "scenario_id": "support-0172",
+   "meta": {
+    "role": "shopper",
+    "user_id": "128",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 3,
+    "scenario_group": "coverage",
+    "intent": "dispute"
+   },
+   "ribbon": [
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "the shop promsied me somthing and now theyr denyng they ever said it. how do i get this lookd at",
+   "timing": {
+    "work": 17.67,
+    "elapsed": 17.68,
+    "turns": [
+     6.807,
+     2.625,
+     8.242
+    ]
+   },
+   "batch": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "reason": "saturation check"
+  },
+  {
+   "session_id": "8d884785054b4a81b75b2dbaf5f7a154",
+   "trace_id": "a73349cc5acb5e3ed61d3862af039d42",
+   "member_trace_ids": [
+    "a73349cc5acb5e3ed61d3862af039d42",
+    "f13cf50bbf0c1c11377f61b5abfc19de"
+   ],
+   "scenario_id": "support-0223",
+   "meta": {
+    "role": "shopper",
+    "user_id": "460",
+    "store_id": null,
+    "prompt_version": "e9ca815022ce",
+    "turn_count": 2,
+    "scenario_group": "challenge",
+    "intent": "refund"
+   },
+   "ribbon": [
+    "find_order",
+    "search_help_center",
+    "get_order",
+    "get_order",
+    "get_policy",
+    "get_policy",
+    "escalate_to_human",
+    "get_order",
+    "escalate_to_human"
+   ],
+   "flags": [],
+   "opening": "need to return a modern novel from northwind books, bought it about a month ago. please get that return started.",
+   "timing": {
+    "work": 33.7,
+    "elapsed": 33.71,
+    "turns": [
+     22.832,
+     10.872
+    ]
+   },
+   "batch": "b4_saturation",
+   "method": "uniform random, drawn after the taxonomy was drafted",
+   "reason": "saturation check"
+  }
+ ]
+}

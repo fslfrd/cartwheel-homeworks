@@ -1,1 +1,1392 @@
-{"annotations": []}
+{
+  "annotations": [
+    {
+      "id": "amufvcomqlky9",
+      "session_id": "a44fb3afc8534402b006e230c3f87d65",
+      "trace_id": "2ca74da79f203cb66a5543b09420af57",
+      "scenario_id": "support-0003",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 4,
+        "start": 236,
+        "end": 278
+      },
+      "quote": "currently marked **not refund-eligible** i",
+      "note": "The user did not ask for a refund",
+      "ts": "2026-09-24T18:32:12.722Z"
+    },
+    {
+      "id": "amufvf1g87slo",
+      "session_id": "a44fb3afc8534402b006e230c3f87d65",
+      "trace_id": "2ca74da79f203cb66a5543b09420af57",
+      "scenario_id": "support-0003",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 12,
+        "start": 92,
+        "end": 124
+      },
+      "quote": "I checked the order record again",
+      "note": "second check shows the same result no additional value.",
+      "ts": "2026-09-24T18:34:02.648Z"
+    },
+    {
+      "id": "amufvgs0vqfbc",
+      "session_id": "a44fb3afc8534402b006e230c3f87d65",
+      "trace_id": "2ca74da79f203cb66a5543b09420af57",
+      "scenario_id": "support-0003",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 6,
+        "start": 0,
+        "end": 64
+      },
+      "quote": "I\u2019m going to check Cartwheel\u2019s delivery/missing-package guidance",
+      "note": "ask if the package is not received instead of checking missing package guidance. Confirm if the package was not received.",
+      "ts": "2026-09-24T18:35:23.743Z"
+    },
+    {
+      "id": "amufvixje5re8",
+      "session_id": "094b6bdfa47b4df1967f8cf96ae1ef07",
+      "trace_id": "570cc455408e869727e84082c01f7293",
+      "scenario_id": "support-0004",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 6,
+        "start": 0,
+        "end": 48
+      },
+      "quote": "I didn\u2019t find an order matching \u201cpocket arcade,\u201d",
+      "note": "too much verbosity before searching through all orders",
+      "ts": "2026-09-24T18:37:04.202Z"
+    },
+    {
+      "id": "amufvjgn4z437",
+      "session_id": "094b6bdfa47b4df1967f8cf96ae1ef07",
+      "trace_id": "570cc455408e869727e84082c01f7293",
+      "scenario_id": "support-0004",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 9,
+        "start": 0,
+        "end": 85
+      },
+      "quote": "I\u2019ll look up the product catalog entries for \u201cpocket arcade\u201d and \u201ccompact headphones\u201d",
+      "note": "verbosity. user knows what you are searching for",
+      "ts": "2026-09-24T18:37:28.960Z"
+    },
+    {
+      "id": "amufvkc2klh8t",
+      "session_id": "094b6bdfa47b4df1967f8cf96ae1ef07",
+      "trace_id": "570cc455408e869727e84082c01f7293",
+      "scenario_id": "support-0004",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 17,
+        "start": 0,
+        "end": 51
+      },
+      "quote": "I\u2019ll check the help center for Cartwheel\u2019s shipment",
+      "note": "again too much information without providing order details",
+      "ts": "2026-09-24T18:38:09.692Z"
+    },
+    {
+      "id": "amufvkoctpszr",
+      "session_id": "094b6bdfa47b4df1967f8cf96ae1ef07",
+      "trace_id": "570cc455408e869727e84082c01f7293",
+      "scenario_id": "support-0004",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 20,
+        "start": 0,
+        "end": 66
+      },
+      "quote": "I\u2019ll open the shipping policy result to confirm the exact tracking",
+      "note": "again too much information without providing order details",
+      "ts": "2026-09-24T18:38:25.613Z"
+    },
+    {
+      "id": "amufvn5xfgz3y",
+      "session_id": "094b6bdfa47b4df1967f8cf96ae1ef07",
+      "trace_id": "570cc455408e869727e84082c01f7293",
+      "scenario_id": "support-0004",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 25,
+        "start": 5,
+        "end": 35
+      },
+      "quote": "re-check your account\u2019s orders",
+      "note": "this search was already done in the beginning. You will not find a new result by doing the same search again.",
+      "ts": "2026-09-24T18:40:21.699Z"
+    },
+    {
+      "id": "amufvno5pltuh",
+      "session_id": "094b6bdfa47b4df1967f8cf96ae1ef07",
+      "trace_id": "570cc455408e869727e84082c01f7293",
+      "scenario_id": "support-0004",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 32,
+        "start": 0,
+        "end": 67
+      },
+      "quote": "I can only find one matching Pocket Arcade/Compact Headphones order",
+      "note": "again duplicate of search that were done previously",
+      "ts": "2026-09-24T18:40:45.325Z"
+    },
+    {
+      "id": "amufvp5n7",
+      "session_id": "71443ca460354c8e80c83424a025a65a",
+      "trace_id": "a2750399877319a59f2da331cf53e7b0",
+      "scenario_id": "support-0006",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T18:41:54.643Z"
+    },
+    {
+      "id": "amufvptxl",
+      "session_id": "69670ba1e4b449a0b2b9e8928ba9f3b1",
+      "trace_id": "af4b74af9a6ed76caa5d220c4aedbe7a",
+      "scenario_id": "support-0007",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T18:42:26.121Z"
+    },
+    {
+      "id": "amufvqlwlpjkg",
+      "session_id": "23042ba9ef72415ca5e68a2ec0ac5601",
+      "trace_id": "c6ee9324eaba2502da853e9582eff5ba",
+      "scenario_id": "support-0008",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 7,
+        "start": 0,
+        "end": 106
+      },
+      "quote": "I couldn\u2019t find a catalog store under that exact spelling, so I\u2019ll search the product catalog more broadly",
+      "note": "verbosity",
+      "ts": "2026-09-24T18:43:02.373Z"
+    },
+    {
+      "id": "amufvs9dj3xoe",
+      "session_id": "457c241ef5df42b3996f239ec25d9e89",
+      "trace_id": "5a51c1665b58e62205dd16cb176c1c55",
+      "scenario_id": "support-0009",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 4,
+        "start": 0,
+        "end": 70
+      },
+      "quote": "I\u2019ll quickly verify which matching order is from Copperline Tools so I",
+      "note": "verbosity. user asked for a succinct answer",
+      "ts": "2026-09-24T18:44:19.447Z"
+    },
+    {
+      "id": "amufvtgsgwbsq",
+      "session_id": "307ac61b23844eaba971b1793eb654e4",
+      "trace_id": "f202e4d4ce14bf145a2b5ad05bba4a98",
+      "scenario_id": "support-0010",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 1,
+        "start": 96,
+        "end": 143
+      },
+      "quote": "since you\u2019re not sure which store it came from.",
+      "note": "verbosity. no need to repeat what user mentioned.",
+      "ts": "2026-09-24T18:45:15.712Z"
+    },
+    {
+      "id": "amufvur544rjx",
+      "session_id": "b06360c5d2164b6b984f55cdd61e67ff",
+      "trace_id": "f9074b8bd3d1dddfb76cafbb25bec167",
+      "scenario_id": "support-0011",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 1,
+        "start": 0,
+        "end": 97
+      },
+      "quote": "I\u2019ll search your orders for the product terms you mentioned so I can find the right order status.",
+      "note": "go straight to search instead of setting up the stage",
+      "ts": "2026-09-24T18:46:15.784Z"
+    },
+    {
+      "id": "amufvw9mipens",
+      "session_id": "a72bb96ea8af44c4b37b88a4a51b99b2",
+      "trace_id": "c93f2187b38aecb3edffb601f005d47b",
+      "scenario_id": "support-0012",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 6,
+        "start": 0,
+        "end": 83
+      },
+      "quote": "I\u2019ll search the product catalog for \u201cmidnight pitcher\u201d at Blue Heron to find the it",
+      "note": "the search was already done.",
+      "ts": "2026-09-24T18:47:26.394Z"
+    },
+    {
+      "id": "amufvwqy6l35l",
+      "session_id": "a72bb96ea8af44c4b37b88a4a51b99b2",
+      "trace_id": "c93f2187b38aecb3edffb601f005d47b",
+      "scenario_id": "support-0012",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 9,
+        "start": 61,
+        "end": 119
+      },
+      "quote": "I\u2019ll search all products for \u201cmidnight pitcher blue heron\u201d",
+      "note": "duplicate search to get same result",
+      "ts": "2026-09-24T18:47:48.846Z"
+    },
+    {
+      "id": "amufvxtna",
+      "session_id": "a7b42be3403f4ce1971262c2e9a78ee7",
+      "trace_id": "126e96f36f0a84ceebbf9487d62db518",
+      "scenario_id": "support-0013",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T18:48:38.998Z"
+    },
+    {
+      "id": "amufvz2akht51",
+      "session_id": "4b98a3912fa44fceb34074ab49f1908f",
+      "trace_id": "9fb65e4bb9db9abd60eae0e0658ea06a",
+      "scenario_id": "support-0014",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 4,
+        "start": 48,
+        "end": 152
+      },
+      "quote": "so I\u2019ll check Cartwheel\u2019s missing-delivery policy to confirm the right next step before escalating this.",
+      "note": "additional information without checking with user for next steps",
+      "ts": "2026-09-24T18:49:36.860Z"
+    },
+    {
+      "id": "amufvzj29teh9",
+      "session_id": "4b98a3912fa44fceb34074ab49f1908f",
+      "trace_id": "9fb65e4bb9db9abd60eae0e0658ea06a",
+      "scenario_id": "support-0014",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 7,
+        "start": 0,
+        "end": 45
+      },
+      "quote": "I\u2019ll open the Cartwheel returns policy result",
+      "note": "again user did not ask for return",
+      "ts": "2026-09-24T18:49:58.593Z"
+    },
+    {
+      "id": "amufw0i1q",
+      "session_id": "e3b2a187ce7d483db0e35f454b7c1194",
+      "trace_id": "21eeb26a449758552da54a3a19b6fbe9",
+      "scenario_id": "support-0015",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T18:50:43.934Z"
+    },
+    {
+      "id": "amufw1j7lmj58",
+      "session_id": "59053f57614142e2a317eda8ade7eb5f",
+      "trace_id": "36221d7169f4d1bedbafdbe2a9bf19a8",
+      "scenario_id": "support-0016",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 14,
+        "start": 0,
+        "end": 60
+      },
+      "quote": "I\u2019ll recheck order #580 so I can give you the latest status.",
+      "note": "doing same search again does not change results.",
+      "ts": "2026-09-24T18:51:32.097Z"
+    },
+    {
+      "id": "amufw2wbsc9f3",
+      "session_id": "8c423cf50ec24dac8635a0d4ffdff4e1",
+      "trace_id": "9fd116e55b506e75003362e32d28da15",
+      "scenario_id": "support-0017",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 7,
+        "start": 0,
+        "end": 158
+      },
+      "quote": "I\u2019m going to check Cartwheel\u2019s help-center policy for packages marked delivered but not received, so I can give you the correct next step and cite the policy.",
+      "note": "give the order details first. you are going above and beyond without any user ask",
+      "ts": "2026-09-24T18:52:35.752Z"
+    },
+    {
+      "id": "amufw3ycsc6m1",
+      "session_id": "1d425082415040d4990d350dec69a553",
+      "trace_id": "46b2e41be8cbba43101f8b93044302cf",
+      "scenario_id": "support-0018",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 6,
+        "start": 0,
+        "end": 115
+      },
+      "quote": "I\u2019ll check Cartwheel\u2019s help-center policy for delivered-but-missing packages so I can tell you the right next step.",
+      "note": "ask user instead of starting the next steps",
+      "ts": "2026-09-24T18:53:25.036Z"
+    },
+    {
+      "id": "amufw4alm9z74",
+      "session_id": "1d425082415040d4990d350dec69a553",
+      "trace_id": "46b2e41be8cbba43101f8b93044302cf",
+      "scenario_id": "support-0018",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 9,
+        "start": 0,
+        "end": 45
+      },
+      "quote": "I\u2019ll open the Cartwheel return policy because",
+      "note": "user did not ask about returns",
+      "ts": "2026-09-24T18:53:40.906Z"
+    },
+    {
+      "id": "amufw5b5bhlun",
+      "session_id": "f48d181edbdb4747b69a1b54aec3fbc3",
+      "trace_id": "f3e7f1c286ce4d3861777b1dee7d7f7e",
+      "scenario_id": "support-0019",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 11,
+        "start": 0,
+        "end": 83
+      },
+      "quote": "I\u2019ll check Cartwheel\u2019s help-center guidance for delivered-but-not-received orders s",
+      "note": "provide order details instead of next steps.",
+      "ts": "2026-09-24T18:54:28.271Z"
+    },
+    {
+      "id": "amufw5viexzj4",
+      "session_id": "f48d181edbdb4747b69a1b54aec3fbc3",
+      "trace_id": "f3e7f1c286ce4d3861777b1dee7d7f7e",
+      "scenario_id": "support-0019",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 14,
+        "start": 1,
+        "end": 86
+      },
+      "quote": "\u2019ll open the dispute policy because your message conflicts with the delivered status,",
+      "note": "again doing something pro-actively on user's behalf",
+      "ts": "2026-09-24T18:54:54.662Z"
+    },
+    {
+      "id": "amufw6ppyyu52",
+      "session_id": "e0cd7dde8d2f476bb312f07991aedecc",
+      "trace_id": "cd89d20614c0477287795441f6dc7312",
+      "scenario_id": "support-0020",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 6,
+        "start": 5,
+        "end": 96
+      },
+      "quote": "refresh order 160 to see whether there has been any update since the last status I checked.",
+      "note": "you just checked, a refresh will not change result",
+      "ts": "2026-09-24T18:55:33.814Z"
+    },
+    {
+      "id": "amufw7gwazvkl",
+      "session_id": "e0cd7dde8d2f476bb312f07991aedecc",
+      "trace_id": "cd89d20614c0477287795441f6dc7312",
+      "scenario_id": "support-0020",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 9,
+        "start": 47,
+        "end": 91
+      },
+      "quote": "no new movement showing on order **160**. It",
+      "note": "since it is delivered, there will be no new movement until user ask for a refund or return",
+      "ts": "2026-09-24T18:56:09.034Z"
+    },
+    {
+      "id": "amufwdetj1t5z",
+      "session_id": "e765256ba2214ebc8071b43d773d0c23",
+      "trace_id": "19bca3cdb5ee43d15031ea62de573743",
+      "scenario_id": "support-0089",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 4,
+        "start": 0,
+        "end": 125
+      },
+      "quote": "I found the relevant account-security policy; I\u2019ll open it to confirm the exact wording and boundaries before summarizing it.",
+      "note": "additional information not required",
+      "ts": "2026-09-24T19:00:46.279Z"
+    },
+    {
+      "id": "amufwdjkk1vxm",
+      "session_id": "e765256ba2214ebc8071b43d773d0c23",
+      "trace_id": "19bca3cdb5ee43d15031ea62de573743",
+      "scenario_id": "support-0089",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 7,
+        "start": 0,
+        "end": 120
+      },
+      "quote": "I\u2019ll also check the escalation policy so the guidance includes what to do if the shopper asks to change account details.",
+      "note": "additional information not required",
+      "ts": "2026-09-24T19:00:52.436Z"
+    },
+    {
+      "id": "amufwdzbv",
+      "session_id": "3237d30e5622403aa321ae5b453cd612",
+      "trace_id": "862fc62d684419d249de98ce62d2e1ff",
+      "scenario_id": "support-0100",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:01:12.859Z"
+    },
+    {
+      "id": "amufweeem6nox",
+      "session_id": "26b89ee45b4744578e661ca877d680b0",
+      "trace_id": "f724a4ed7852b7a6958f7c0d13667487",
+      "scenario_id": "support-0103",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 1,
+        "start": 0,
+        "end": 104
+      },
+      "quote": "I\u2019ll look up the Saltbox Pantry return policy so I can give the exact return window and cite the policy.",
+      "note": "verbosity",
+      "ts": "2026-09-24T19:01:32.398Z"
+    },
+    {
+      "id": "amufwer7c",
+      "session_id": "d4e09325119842eea73fba21af615c63",
+      "trace_id": "4d14718e69480daea8b843cdda8c92d5",
+      "scenario_id": "support-0149",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:01:48.984Z"
+    },
+    {
+      "id": "amufwfgd1vef4",
+      "session_id": "e3cbe473e3404cdaa18ccc56e6dc99ba",
+      "trace_id": "afc3d070364ece4eb40b7d9b9e00aed3",
+      "scenario_id": "support-0150",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 4,
+        "start": 0,
+        "end": 136
+      },
+      "quote": "I\u2019ll check the returns/refunds help article as well so I can cite the correct policy when explaining why the order is or isn\u2019t eligible.",
+      "note": "check is not required. the ask is for order status.",
+      "ts": "2026-09-24T19:02:21.589Z"
+    },
+    {
+      "id": "amufwfqur",
+      "session_id": "2704d39d5daf454ebfc0f56f10eaf376",
+      "trace_id": "dbe06b01fc18d66d461c2c11c588d4c3",
+      "scenario_id": "support-0151",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:02:35.187Z"
+    },
+    {
+      "id": "amufwg0ik",
+      "session_id": "65d4fe64b1f44acbbc90196ecefdfc14",
+      "trace_id": "013a0dfc68186319c45e870a50f4c605",
+      "scenario_id": "support-0152",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:02:47.708Z"
+    },
+    {
+      "id": "amufwhfz0rjnn",
+      "session_id": "83ec026aa0904662bc12b2dd4934e798",
+      "trace_id": "85c74ccc3c9d257889c4e06f8b02eb29",
+      "scenario_id": "support-0154",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 8,
+        "start": 5,
+        "end": 28
+      },
+      "quote": "re-check order 75 to se",
+      "note": "recheck will not change result",
+      "ts": "2026-09-24T19:03:54.396Z"
+    },
+    {
+      "id": "amufwikpf",
+      "session_id": "14a033b2cbb84a1db41af458839c7fd8",
+      "trace_id": "1b0d3f03aff540ce247807246417b100",
+      "scenario_id": "support-0135",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:04:47.187Z"
+    },
+    {
+      "id": "amufwj2r2",
+      "session_id": "11e0dd24c14b4ec6895cb060636a9ed0",
+      "trace_id": "39a19b979e74e639bf3127aa67b349f0",
+      "scenario_id": "support-0136",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:05:10.574Z"
+    },
+    {
+      "id": "amufwjg0l",
+      "session_id": "3239dcb6420540c99af57f3282c54c15",
+      "trace_id": "5986acdce9ba8bd22bba9c2cad06fa8b",
+      "scenario_id": "support-0137",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:05:27.765Z"
+    },
+    {
+      "id": "amufwjlnn",
+      "session_id": "d9d40d2a88cf48ff8409b386cdeee56e",
+      "trace_id": "a83e1e0afb8f7b2a52bbd76ca9d9a798",
+      "scenario_id": "support-0138",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:05:35.075Z"
+    },
+    {
+      "id": "amufwlw6k",
+      "session_id": "ea46129a86064cca810617ed0a5945a3",
+      "trace_id": "1d53235d995f1e3e26bd97086a3d0e6f",
+      "scenario_id": "support-0173",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:07:22.028Z"
+    },
+    {
+      "id": "amufwmd1h",
+      "session_id": "3f7934dee77343b3bbc60690786eb8ff",
+      "trace_id": "581052e3d38cc2c414a53f05a1e18875",
+      "scenario_id": "support-0174",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:07:43.877Z"
+    },
+    {
+      "id": "amufxeni1",
+      "session_id": "fe16a16d19dc4e4db740c6ccb0f41869",
+      "trace_id": "efebb523d7f4d1da8b82e38216db7e94",
+      "scenario_id": "support-0081",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:29:43.801Z"
+    },
+    {
+      "id": "amufxexfn",
+      "session_id": "2533a65c24664676bade22ed1f0fdc9e",
+      "trace_id": "362ba33af74a8e8ced145c66e4c2c771",
+      "scenario_id": "support-0082",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:29:56.675Z"
+    },
+    {
+      "id": "amufxfl05",
+      "session_id": "307d4de33dd444988690e76606e1b12b",
+      "trace_id": "6bb9a6d8473a9133c8d6eb20c29e556f",
+      "scenario_id": "support-0106",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:30:27.221Z"
+    },
+    {
+      "id": "amufxg96n",
+      "session_id": "157cec089ca34165958633fc2ff07ffd",
+      "trace_id": "affdfa81f1eba518eaa6b398e1045d0e",
+      "scenario_id": "support-0109",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:30:58.559Z"
+    },
+    {
+      "id": "amufxhdrbmekb",
+      "session_id": "2d9650558dda4d748eb82691fc1c4547",
+      "trace_id": "ec53425809ae03bf16d6a619f4187ceb",
+      "scenario_id": "support-0146",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 11,
+        "start": 5,
+        "end": 38
+      },
+      "quote": "re-check order 859 now to confirm",
+      "note": "recheck will not change results",
+      "ts": "2026-09-24T19:31:51.143Z"
+    },
+    {
+      "id": "amufxhno3vpa5",
+      "session_id": "2d9650558dda4d748eb82691fc1c4547",
+      "trace_id": "ec53425809ae03bf16d6a619f4187ceb",
+      "scenario_id": "support-0146",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 14,
+        "start": 38,
+        "end": 172
+      },
+      "quote": "while the customer is still reporting they have nothing, I\u2019m escalating this as a delivered-but-not-received dispute for human review.",
+      "note": "ask customer for next steps",
+      "ts": "2026-09-24T19:32:03.987Z"
+    },
+    {
+      "id": "amufxi0lb",
+      "session_id": "e452dab406f24ad79d4595993523465d",
+      "trace_id": "49e6114f3fe85ae834ccc683438d966b",
+      "scenario_id": "support-0163",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:32:20.735Z"
+    },
+    {
+      "id": "amufxieu8",
+      "session_id": "f06e959a0e30472d9e32c5d01c5fe9a5",
+      "trace_id": "9168c7d2cdb8fa49653a8a47012cd1df",
+      "scenario_id": "support-0165",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:32:39.200Z"
+    },
+    {
+      "id": "amufxikvt",
+      "session_id": "1a81c283cc294dd4a510c5424aad1271",
+      "trace_id": "6909c47c5ade89e1ffa919e6428469bc",
+      "scenario_id": "support-0167",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:32:47.033Z"
+    },
+    {
+      "id": "amufxiv7c",
+      "session_id": "b232f84d634f43dd95abcec1a3bacdf7",
+      "trace_id": "0849e0d96a8948318194647db71eafda",
+      "scenario_id": "support-0169",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:33:00.408Z"
+    },
+    {
+      "id": "amufxlktl",
+      "session_id": "e4ff2f0e4d7142bb80adcd0fbcb89ac5",
+      "trace_id": "88bda5d69e864606b7aba3fb5fb73374",
+      "scenario_id": "support-0178",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:35:06.921Z"
+    },
+    {
+      "id": "amufxp43i",
+      "session_id": "49ab4943e66a40b281974e1830986e08",
+      "trace_id": "f4aef588ef21874cf2e210dd4ebcd448",
+      "scenario_id": "support-0233",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-24T19:37:51.870Z"
+    },
+    {
+      "id": "amufxtl9z78ga",
+      "session_id": "0c4dca88550b4b5ebfb9d77cbf244b55",
+      "trace_id": "bdcd94528cfa716099b8aafe4d8caf08",
+      "scenario_id": "support-0235",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 7,
+        "start": 0,
+        "end": 76
+      },
+      "quote": "To return it: find the tea sampler order, check whether it\u2019s within **30 day",
+      "note": "did not lookup order details to verify the return window",
+      "ts": "2026-09-24T19:41:20.759Z"
+    },
+    {
+      "id": "amufxu5f7cvyt",
+      "session_id": "91590831ff234da58a75e20d74ba78a1",
+      "trace_id": "f01a37fbad86770c99e21bd96424e55e",
+      "scenario_id": "support-0237",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 6,
+        "start": 2,
+        "end": 119
+      },
+      "quote": "found the returns policy summary, and I\u2019ll open the full policy to confirm the exact return steps and any conditions.",
+      "note": "additional verbiage that does not help user",
+      "ts": "2026-09-24T19:41:46.867Z"
+    },
+    {
+      "id": "amufxvckbgj2z",
+      "session_id": "d090dda4e5dc41d199f335083c9a7dd5",
+      "trace_id": "171bbcb43c0f0f4c6cd2d114261ab692",
+      "scenario_id": "support-0238",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 26,
+        "start": 5,
+        "end": 47
+      },
+      "quote": "recheck order 1472 and the refund policy s",
+      "note": "why check again?",
+      "ts": "2026-09-24T19:42:42.779Z"
+    },
+    {
+      "id": "amufxw0x6vyxt",
+      "session_id": "bfa0379676204447abe36be21a4d0481",
+      "trace_id": "9ebcca1bcf65fe1b24d898b6d835c1c2",
+      "scenario_id": "support-0240",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 6,
+        "start": 0,
+        "end": 60
+      },
+      "quote": "I\u2019ll re-check order 1340 to see whether anything has changed",
+      "note": "checking again does not change the data",
+      "ts": "2026-09-24T19:43:14.346Z"
+    },
+    {
+      "id": "amufxx6iy66yl",
+      "session_id": "e80bfc447a9c4d99ba4573ec324ceb57",
+      "trace_id": "8be1698c1a5fdd09333bde3b33fb1b8a",
+      "scenario_id": "support-0243",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 6,
+        "start": 0,
+        "end": 33
+      },
+      "quote": "Permission denied for order #630.",
+      "note": "The order does not belong to this merchant. Do not share technical error information with user.",
+      "ts": "2026-09-24T19:44:08.266Z"
+    },
+    {
+      "id": "amufxyjunbqlr",
+      "session_id": "2c9491b0d7cf4f78ad44d38028309dde",
+      "trace_id": "5d4b43d62bde5f2dcd189372271d7fa0",
+      "scenario_id": "support-0245",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 4,
+        "start": 71,
+        "end": 140
+      },
+      "quote": "system says your account doesn\u2019t have permission to access that order",
+      "note": "do not share system information with user",
+      "ts": "2026-09-24T19:45:12.191Z"
+    },
+    {
+      "id": "amulk94c0kq82",
+      "session_id": "3f3c9a24255446cfa9d04aa6b82e52b1",
+      "trace_id": "f640a2a04462b5925925cd07c0929df8",
+      "scenario_id": "support-0246",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 4,
+        "start": 0,
+        "end": 42
+      },
+      "quote": "I can\u2019t access order 455 from this account",
+      "note": "toom uch information leak. should just be simple no access to the order.",
+      "ts": "2026-09-28T18:08:07.728Z"
+    },
+    {
+      "id": "amulk9ylemhbb",
+      "session_id": "af5c97c4596345058fb708a99293081d",
+      "trace_id": "ecae85808eb3b2fbc992ab40726d9e23",
+      "scenario_id": "support-0244",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 4,
+        "start": 0,
+        "end": 51
+      },
+      "quote": "I can\u2019t access order 327 under your shopper account",
+      "note": "again extra information that should not be shared.",
+      "ts": "2026-09-28T18:08:46.946Z"
+    },
+    {
+      "id": "amulkc3cb9ilz",
+      "session_id": "71992641a045472d8d6e746cb75a28ed",
+      "trace_id": "a50c50e31e2b898130123edb8cc7a696",
+      "scenario_id": "support-0242",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 24,
+        "start": 0,
+        "end": 224
+      },
+      "quote": "Thanks for clarifying. I found the likely \u201ctravel\u201d order:\n\n- **Order:** 496  \n- **Status in Cartwheel:** delivered  \n- **Delivered date:** 2026-06-01  \n- **Total:** **$180.25**  \n- **Refund eligibility:** eligible for review",
+      "note": "instead of details. point the user to the order page link",
+      "ts": "2026-09-28T18:10:26.411Z"
+    },
+    {
+      "id": "amulkcsxxsjtn",
+      "session_id": "71992641a045472d8d6e746cb75a28ed",
+      "trace_id": "a50c50e31e2b898130123edb8cc7a696",
+      "scenario_id": "support-0242",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 1,
+        "start": 0,
+        "end": 107
+      },
+      "quote": "I\u2019ll look up order 3423 to verify the item, status, and refund eligibility before taking any refund action.",
+      "note": "too much back and forth, no need to mention every internal step",
+      "ts": "2026-09-28T18:10:59.589Z"
+    },
+    {
+      "id": "amulkf7489pwa",
+      "session_id": "bd67abdd6c04414f8a086445369c6a60",
+      "trace_id": "02328f19b5dc8f4575cedba66d85eef3",
+      "scenario_id": "support-0211",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 4,
+        "start": 0,
+        "end": 127
+      },
+      "quote": "I\u2019ll check Cartwheel\u2019s return/refund policy so I can explain why the order is marked ineligible and what options are available.",
+      "note": "why mention this step. It is expected that system knows the policy.",
+      "ts": "2026-09-28T18:12:51.273Z"
+    },
+    {
+      "id": "amulkfnv70jj2",
+      "session_id": "4847d943a0914c4baa1bd3e8123d502f",
+      "trace_id": "da65b0bdedcc52e46b34f26ec7dc08dd",
+      "scenario_id": "support-0202",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 4,
+        "start": 0,
+        "end": 198
+      },
+      "quote": "I found the untitled Blue Heron Ceramics listing in the catalog results, and I\u2019ll do one narrower search around that store and price to see if the same product appears under a proper name elsewhere.",
+      "note": "too much information",
+      "ts": "2026-09-28T18:13:12.979Z"
+    },
+    {
+      "id": "amulkgetozrfl",
+      "session_id": "d40f3d5111114bea9076faeab538b5e7",
+      "trace_id": "51e9a94e2db9dcf62bd7a8dc823c3263",
+      "scenario_id": "support-0192",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 4,
+        "start": 0,
+        "end": 175
+      },
+      "quote": "Blue Heron Ceramics has **multiple listings** named **\u201cHeavy-Duty Vase\u201d**, so there isn\u2019t just one price in the catalog:\n\n- **$9.00**\n- **$134.75**\n- **$281.00**\n- **$298.00**",
+      "note": "Link to the listings instead of just listing prices.",
+      "ts": "2026-09-28T18:13:47.916Z"
+    },
+    {
+      "id": "amulkhgpsfsg6",
+      "session_id": "ce7830432e6f4656bdd3db3ced4867f9",
+      "trace_id": "448b1e2dd05bc320be47ecf8b063a2c6",
+      "scenario_id": "support-0183",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 4,
+        "start": 150,
+        "end": 189
+      },
+      "quote": "So the short answer to the customer is:",
+      "note": "you are already speaking with customer. What is the purpose of this statement?",
+      "ts": "2026-09-28T18:14:37.024Z"
+    },
+    {
+      "id": "amullbib8aqul",
+      "session_id": "61292be233244dd5ab5ee37dc56a4bb0",
+      "trace_id": "dadef48ea173e2ae856c5a5b700605d0",
+      "scenario_id": "support-0075",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 7,
+        "start": 0,
+        "end": 47
+      },
+      "quote": "Done \u2014 I canceled the matching headphones order",
+      "note": "did we cancel too quickly without getting a confirmation that I found the order and it can be cancelled?",
+      "ts": "2026-09-28T18:37:58.772Z"
+    },
+    {
+      "id": "amullcmo1y8oa",
+      "session_id": "bb552230e59348f08fd17b3fabab1d37",
+      "trace_id": "4e224a80bd8919f77ad50054c07ae3f5",
+      "scenario_id": "support-0216",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 4,
+        "start": 0,
+        "end": 87
+      },
+      "quote": "I found two fuzzy matches, so I\u2019ll look up the most likely Saltbox Pantry granola order",
+      "note": "does this add any value?",
+      "ts": "2026-09-28T18:38:51.073Z"
+    },
+    {
+      "id": "amullg85au05w",
+      "session_id": "f8c1ca4444cd4709b0223f205eafa599",
+      "trace_id": "dfe778dda6e3e1aaebcf635d2d33e52e",
+      "scenario_id": "support-0085",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 1,
+        "start": 0,
+        "end": 130
+      },
+      "quote": "I\u2019ll look up Cartwheel\u2019s refund policy so I can give you the current standard settlement wording with the correct policy citation.",
+      "note": "That is the expected behavior. Why do we have to repeat it everytime?",
+      "ts": "2026-09-28T18:41:38.878Z"
+    },
+    {
+      "id": "amullkadzil3g",
+      "session_id": "581b4b33e8804a32ab94380e00cb5709",
+      "trace_id": "96c732dd92ac723986b35884aa3fcfd3",
+      "scenario_id": "support-0203",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 1,
+        "start": 36,
+        "end": 64
+      },
+      "quote": "Blue Heron Ceramics listings",
+      "note": "why did it pass the actual string in query? If query does not take blank string then list all products.",
+      "ts": "2026-09-28T18:44:48.407Z"
+    },
+    {
+      "id": "amullm07pznvk",
+      "session_id": "05f78aedacbc473186005374d10a37ab",
+      "trace_id": "69dfa2f30fa432098496e885f96adb22",
+      "scenario_id": "support-0241",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 6,
+        "start": 0,
+        "end": 47
+      },
+      "quote": "I found the most recent matching planner order,",
+      "note": "order 4197 already marked refunded, why search for the policy?",
+      "ts": "2026-09-28T18:46:08.533Z"
+    },
+    {
+      "id": "amullmxkm1t3b",
+      "session_id": "24fdcdc22a4c4c71a9457e4eea727905",
+      "trace_id": "97353119235aaea7decd8ca2c3c334ff",
+      "scenario_id": "support-0234",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 9,
+        "start": 0,
+        "end": 157
+      },
+      "quote": "I also need the actual return-process instructions, so I\u2019ll search the help center for the return steps rather than relying only on the refund timing policy.",
+      "note": "verbosity, is it helpful to share every step?",
+      "ts": "2026-09-28T18:46:51.766Z"
+    },
+    {
+      "id": "amullnp8adrz6",
+      "session_id": "24fdcdc22a4c4c71a9457e4eea727905",
+      "trace_id": "97353119235aaea7decd8ca2c3c334ff",
+      "scenario_id": "support-0234",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 28,
+        "start": 0,
+        "end": 40
+      },
+      "quote": "Yes \u2014 you\u2019re not shouting into the void.",
+      "note": "not helpful",
+      "ts": "2026-09-28T18:47:27.610Z"
+    },
+    {
+      "id": "amullouui9til",
+      "session_id": "5ceb0c93964344ac84269a817b772d5c",
+      "trace_id": "029ec89c5b16a65660d35eccf623000e",
+      "scenario_id": "support-0230",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 6,
+        "start": 0,
+        "end": 122
+      },
+      "quote": "I\u2019m going to open the refund policy details to confirm how damaged-item refunds and the over-$100 review step are handled.",
+      "note": "explaining your internal steps to users",
+      "ts": "2026-09-28T18:48:21.546Z"
+    },
+    {
+      "id": "amulluuyci46w",
+      "session_id": "29cf7b1bebbe44f9a7de8c3ef93c630d",
+      "trace_id": "b0c45ef156588091087f3bdebc0792b4",
+      "scenario_id": "support-0221",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 7,
+        "start": 0,
+        "end": 55
+      },
+      "quote": "I\u2019ll look up Cartwheel\u2019s return policy so I can explain",
+      "note": "listing each internal step out does not help",
+      "ts": "2026-09-28T18:53:01.620Z"
+    },
+    {
+      "id": "amullzhzkfbv2",
+      "session_id": "9126ebf71e734201b7f8382433e792b9",
+      "trace_id": "a2ce1f2481e7f5959f076235cddd50ff",
+      "scenario_id": "support-0190",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 1,
+        "start": 0,
+        "end": 80
+      },
+      "quote": "I\u2019ll look up the product name in the catalog to identify the shop that sells it.",
+      "note": "just the name, again listing internal steps",
+      "ts": "2026-09-28T18:56:38.096Z"
+    },
+    {
+      "id": "amulm029ya424",
+      "session_id": "c421ea7a4a8e4ba69ffd27a2d249d9e3",
+      "trace_id": "13c9784486eaae5d3b1d6825dac5fc68",
+      "scenario_id": "support-0147",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 1,
+        "start": 0,
+        "end": 57
+      },
+      "quote": "I\u2019ll look up order 95 so I can confirm its current status",
+      "note": "additional information, only needed status",
+      "ts": "2026-09-28T18:57:04.390Z"
+    },
+    {
+      "id": "amulme03h",
+      "session_id": "b4c40dfe06444694b6bec10927579a18",
+      "trace_id": "5b5fa8c0e00e878b32d55e48d524c80a",
+      "scenario_id": "support-0005",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-28T19:07:54.749Z"
+    },
+    {
+      "id": "amulml6urgbtb",
+      "session_id": "c693c4171b14494f83cf123978022893",
+      "trace_id": "19c321be6dd7c5ec05e5f946cabd6343",
+      "scenario_id": "support-0048",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 19,
+        "start": 0,
+        "end": 16
+      },
+      "quote": "Refund approved.",
+      "note": "refund was a question. refund processed without confirmation",
+      "ts": "2026-09-28T19:13:30.099Z"
+    },
+    {
+      "id": "amulmmgvs4enb",
+      "session_id": "6bbfbf3b154a465199634a77bc396afe",
+      "trace_id": "850f8536cad1887099f1db3eb025dd1c",
+      "scenario_id": "support-0045",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 11,
+        "start": 91,
+        "end": 162
+      },
+      "quote": "so I\u2019ll issue the refund now for the order total due to the faulty item",
+      "note": "refund processed without confirmation. is it missing from spec?",
+      "ts": "2026-09-28T19:14:29.752Z"
+    },
+    {
+      "id": "amulmnjrbqjgo",
+      "session_id": "48b2898d681143848a7cfd075ae2919e",
+      "trace_id": "bc51d3deeaf27320ed908911b797ffce",
+      "scenario_id": "support-0108",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 1,
+        "start": 0,
+        "end": 101
+      },
+      "quote": "I\u2019ll look up Cartwheel\u2019s return-window policy so I can answer based on the current help-center rules.",
+      "note": "no need to write out intermediate steps",
+      "ts": "2026-09-28T19:15:20.135Z"
+    },
+    {
+      "id": "amulmpmh7pfjh",
+      "session_id": "fa43392eb580409da3f869b1e937b328",
+      "trace_id": "4cc1159f5a13f1787f0f1b73b40ba058",
+      "scenario_id": "support-0115",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 1,
+        "start": 0,
+        "end": 131
+      },
+      "quote": "I\u2019ll search the product catalog for puzzle listings specifically within Wooden Whale Workshop so I can summarize what\u2019s live there.",
+      "note": "is the agent providing information comparison against another store? is it allowed as per spec?",
+      "ts": "2026-09-28T19:16:56.971Z"
+    },
+    {
+      "id": "amulmqrvhlz8p",
+      "session_id": "bd3aaf5b432b4028886673f97b9156a7",
+      "trace_id": "7321d210f6cceff8680fead7da6281dc",
+      "scenario_id": "support-0049",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 16,
+        "start": 148,
+        "end": 204
+      },
+      "quote": "I\u2019ve already issued the refund for the full order amount",
+      "note": "refund processed before confirmation",
+      "ts": "2026-09-28T19:17:50.621Z"
+    },
+    {
+      "id": "amuln8xd3",
+      "session_id": "74993b4cd54d4943b2274743f35d0b68",
+      "trace_id": "531ee415821d780fafbefe2f4849c410",
+      "scenario_id": "support-0097",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 7,
+        "start": 0,
+        "end": 52
+      },
+      "quote": "Yes \u2014 there *is* a Cartwheel baseline you can quote.",
+      "note": "[affective_filler_opener] opens with affective filler and adds no fact: 'Yes \u2014'",
+      "source": "accepted_suggestion",
+      "mode": "affective_filler_opener",
+      "suggestion_id": "s-filler-support-0097-7",
+      "ts": "2026-09-28T19:31:57.543Z"
+    },
+    {
+      "id": "amuln9c93",
+      "session_id": "c9e2093b7efb4bcea0180f50e49b885e",
+      "trace_id": "126bb8b2e89e595adb63915084525687",
+      "scenario_id": "support-0064",
+      "kind": "note",
+      "anchor": {
+        "type": "step",
+        "idx": 14
+      },
+      "quote": "issue_refund({\"amount_usd\": 89, \"order_id\": 3438, \"reason\": \"Item arrived damaged: several Signature Building Blocks pieces were split when ",
+      "note": "[writes_without_confirming_match] issue_refund on a fuzzy match, first turn, order never named by the user; user hedged about which order they meant",
+      "source": "accepted_suggestion",
+      "mode": "writes_without_confirming_match",
+      "suggestion_id": "s-write-support-0064-14",
+      "ts": "2026-09-28T19:32:16.839Z"
+    },
+    {
+      "id": "amulnivbl",
+      "session_id": "1b94bf09b5f84675a0c1afcb7b8a23bd",
+      "trace_id": "a334e696fa5ca47d89860240ba956e06",
+      "scenario_id": "support-0131",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-28T19:39:41.457Z"
+    },
+    {
+      "id": "amulnmhgbnkuo",
+      "session_id": "82b66ccf699348c8ab76125a39d6fcd7",
+      "trace_id": "c6afa8ce5e4daf6992ff11fc4d4dbee7",
+      "scenario_id": "support-0090",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 9,
+        "start": 0,
+        "end": 86
+      },
+      "quote": "That makes sense \u2014 sharing a laptop can make account security feel a lot less certain.",
+      "note": "This is outside the scope of the cartwheel ecommerce site",
+      "ts": "2026-09-28T19:42:30.107Z"
+    },
+    {
+      "id": "amulnvto7",
+      "session_id": "aa3a2cba292d4a9181638638b9076919",
+      "trace_id": "9185899d667bb069d934878dc8424c3d",
+      "scenario_id": "support-0078",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-28T19:49:45.847Z"
+    },
+    {
+      "id": "amulnwf5u1y0y",
+      "session_id": "5e94ced408224c2293bae72a8a31909b",
+      "trace_id": "6a586a4efa115dbeedafb7c44054d8b1",
+      "scenario_id": "support-0217",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 1,
+        "start": 0,
+        "end": 126
+      },
+      "quote": "I\u2019ll search your orders for \u201cVintage Jam Trio\u201d so I can find the matching Saltbox purchase before checking refund eligibility.",
+      "note": "too many internal steps .. verbosity",
+      "ts": "2026-09-28T19:50:13.698Z"
+    },
+    {
+      "id": "amulnwmx3",
+      "session_id": "57ada5dbc6644fc89c22483ae8278a5f",
+      "trace_id": "1e35ad6be2afc58324ec22b0b9fa9302",
+      "scenario_id": "support-0095",
+      "kind": "no_failure",
+      "note": "",
+      "ts": "2026-09-28T19:50:23.751Z"
+    },
+    {
+      "id": "amulnyhfe",
+      "session_id": "8d884785054b4a81b75b2dbaf5f7a154",
+      "trace_id": "a73349cc5acb5e3ed61d3862af039d42",
+      "scenario_id": "support-0223",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 27,
+        "start": 0,
+        "end": 29
+      },
+      "quote": "Yes \u2014 I\u2019ve followed up on it.",
+      "note": "[affective_filler_opener] opens with affective filler and adds no fact: 'Yes \u2014'",
+      "source": "accepted_suggestion",
+      "mode": "affective_filler_opener",
+      "suggestion_id": "s-filler-support-0223-27",
+      "ts": "2026-09-28T19:51:49.946Z"
+    },
+    {
+      "id": "amulnymac",
+      "session_id": "8d884785054b4a81b75b2dbaf5f7a154",
+      "trace_id": "a73349cc5acb5e3ed61d3862af039d42",
+      "scenario_id": "support-0223",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 27,
+        "start": 0,
+        "end": 29
+      },
+      "quote": "Yes \u2014 I\u2019ve followed up on it.",
+      "note": "[affective_filler_opener] opens with affective filler and adds no fact: 'Yes \u2014'",
+      "source": "accepted_suggestion",
+      "mode": "affective_filler_opener",
+      "suggestion_id": "s-filler-support-0223-27",
+      "ts": "2026-09-28T19:51:56.244Z"
+    },
+    {
+      "id": "amuloaypu",
+      "session_id": "94d6090dcff4424bbbb14554f20eca3f",
+      "trace_id": "20ec614711438a16deb890d5410aed1b",
+      "scenario_id": "support-0176",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 34,
+        "start": 0,
+        "end": 73
+      },
+      "quote": "Yes \u2014 that **does help**, but it doesn\u2019t change the main return deadline.",
+      "note": "[applies_rule_without_verifying_record] applies a dated rule while the delivered order carries no delivery date",
+      "source": "accepted_suggestion",
+      "mode": "applies_rule_without_verifying_record",
+      "suggestion_id": "s-applies_rule-support-0176-34",
+      "ts": "2026-09-28T20:01:32.226Z"
+    },
+    {
+      "id": "amulobdoq",
+      "session_id": "c9ad0149e28d49698306992a99258736",
+      "trace_id": "85f245e9269c1eae454e06691f25d112",
+      "scenario_id": "support-0179",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 14,
+        "start": 0,
+        "end": 150
+      },
+      "quote": "Not silly at all \u2014 I found what looks like the order you mean:\n\n- **Order:** #8002  \n- **Store:** **Atlas Stationery**  \n- **Status:** Delivered  \n- *",
+      "note": "[applies_rule_without_verifying_record] applies a dated rule while the delivered order carries no delivery date",
+      "source": "accepted_suggestion",
+      "mode": "applies_rule_without_verifying_record",
+      "suggestion_id": "s-applies_rule-support-0179-14",
+      "ts": "2026-09-28T20:01:51.626Z"
+    }
+  ]
+}

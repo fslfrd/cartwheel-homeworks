@@ -107,6 +107,7 @@
   .step { margin-bottom: 18px; border-radius: 8px; }
   .step.focus { box-shadow: 0 0 0 2px var(--accent); }
   .role { font: 11px var(--mono); letter-spacing: .06em; color: var(--muted); margin-bottom: 3px; }
+  .dur { color: var(--muted); font: 10.5px var(--mono); margin-left: 8px; font-weight: 400; }
   .msg.user .role { color: var(--user); }
   .msg.user .text {
     background: var(--user-bg); border-left: 3px solid var(--user);
@@ -156,6 +157,11 @@
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
   }
   .note .acts { margin-top: 6px; display: flex; gap: 6px; }
+  .note-edit {
+    width: 100%; font: 12.5px inherit; padding: 5px 7px;
+    border: 1px solid var(--accent); border-radius: 4px;
+  }
+  .note-hint { font: 10px var(--mono); color: var(--muted); margin-top: 4px; }
   .note .acts button {
     font-size: 11px; border: 1px solid var(--line); background: var(--panel);
     border-radius: 4px; padding: 1px 7px; color: var(--muted);
@@ -310,6 +316,30 @@ const $ = id => document.getElementById(id);
 const clip = (s, n) => { s = String(s ?? ''); return s.length > n ? s.slice(0, n) + '…' : s; };
 const pretty = v => typeof v === 'string' ? v : JSON.stringify(v, null, 2);
 
+/* Durations arrive in seconds. Tool calls are local database reads and run in
+   single-digit milliseconds, so seconds would render every one of them as
+   "0.00 sec"; model generations never finish under a second. Switching units
+   at one second therefore puts each in its natural scale. */
+function fmtDuration(seconds) {
+  if (seconds === null || seconds === undefined) return '';
+  return seconds < 1
+    ? `${Math.round(seconds * 1000)} ms`
+    : `${seconds.toFixed(2)} sec`;
+}
+
+/* Session total. "work" sums the turns; "elapsed" also covers the gap between
+   them. Both are shown only when they actually differ — in recorded runs the
+   harness sends each followup immediately, so the two usually coincide and
+   printing them twice would be noise. */
+function fmtSessionTime(timing) {
+  if (!timing || timing.work === null || timing.work === undefined) return '';
+  const differs = timing.elapsed !== null && timing.elapsed !== undefined &&
+                  Math.abs(timing.elapsed - timing.work) > 0.05;
+  return differs
+    ? `${fmtDuration(timing.work)} work / ${fmtDuration(timing.elapsed)} elapsed`
+    : fmtDuration(timing.work);
+}
+
 /* A definition-list style row for the collapsed drawers. */
 function field(label, value) {
   return value === null || value === undefined || value === ''
@@ -442,6 +472,7 @@ function renderSidebar() {
       el('div', {},
         el('div', {class: 'stitle'},
           `${s.scenario_id || ''} · ${meta.role || ''} · ${meta.turn_count || 1}t`,
+          s.timing ? ` · ${fmtDuration(s.timing.work)}` : '',
           denied ? el('span', {class: 'sflag', text: ' ⛔'}) : null),
         el('div', {class: 'sopen', text: clip(s.opening, 110)}),
         el('div', {class: 'sribbon', text: (s.ribbon || []).join(' → ') || '(no tools)'})));
@@ -482,8 +513,10 @@ function renderHeader() {
   const s = state.cur;
   if (!s) return;
   const meta = s.meta || {};
+  const total = fmtSessionTime(s.timing);
   $('title').textContent =
-    `${s.scenario_id} · ${meta.role} · ${meta.turn_count} turn${meta.turn_count === 1 ? '' : 's'}`;
+    `${s.scenario_id} · ${meta.role} · ${meta.turn_count} turn` +
+    `${meta.turn_count === 1 ? '' : 's'}${total ? ' · ' + total : ''}`;
   const ribbon = s.ribbon || [];
   $('ribbon').textContent = ribbon.length ? ribbon.join(' → ') + ' → reply' : 'no tool calls';
 
@@ -521,7 +554,11 @@ function renderTrace() {
     const m = msgs[i];
     if (m.turn !== turn) {
       turn = m.turn;
-      if (turn > 1) nodes.push(el('div', {class: 'turn-sep', text: `turn ${turn}`}));
+      if (turn > 1) {
+        const took = ((s.timing || {}).turns || [])[turn - 1];
+        nodes.push(el('div', {class: 'turn-sep',
+          text: `turn ${turn}${took ? ` · ${fmtDuration(took)}` : ''}`}));
+      }
     }
     if (m.role === 'tool_call') {
       const next = msgs[i + 1];
@@ -548,7 +585,8 @@ function textStep(m, stepIndex) {
     class: `step msg ${role}`, 'data-step': stepIndex, 'data-idx': m.idx,
     onmousedown: () => { state.focus = stepIndex; paintFocus(); },
   },
-    el('div', {class: 'role', text: role}),
+    el('div', {class: 'role'}, role,
+      m.duration ? el('span', {class: 'dur', text: fmtDuration(m.duration)}) : null),
     el('div', {class: 'text annotatable', 'data-idx': m.idx, text: m.text || pretty(m.content)}));
 }
 
@@ -558,6 +596,7 @@ function toolStep(call, result, stepIndex) {
   const d = (result && result.digest) || null;
   const raw = result ? pretty(result.content !== undefined ? result.content : result.text) : '';
   const idx = result ? result.idx : (call ? call.idx : 0);
+  const took = (call && call.duration) ?? (result && result.duration);
 
   const rawPre = raw ? el('pre', {class: 'raw hidden', text: raw}) : null;
   const rawBtn = raw ? el('button', {
@@ -576,6 +615,8 @@ function toolStep(call, result, stepIndex) {
     el('div', {class: 'toolhead'},
       el('span', {class: 'tname', text: name}),
       el('span', {class: 'targs', text: clip(args, 90)}),
+      took !== null && took !== undefined
+        ? el('span', {class: 'dur', text: fmtDuration(took)}) : null,
       rawBtn),
     d ? el('div', {class: 'tdigest ' + (d.ok === false ? 'bad' : 'ok')},
       el('span', {class: 'arrow', text: '→'}),
@@ -598,8 +639,11 @@ function itemsForSession() {
     ...state.annotations
       .filter(a => a.session_id === id && a.kind === 'note')
       .map(a => ({...a, origin: 'human'})),
+    // Only undecided suggestions. An accepted one is already on the page as
+    // the human note it created, and a rejected one is kept on disk for the
+    // record but has no reason to stay in the margin.
     ...state.suggestions
-      .filter(s => s.session_id === id && s.decision !== 'rejected')
+      .filter(s => s.session_id === id && !s.decision)
       .map(s => ({...s, origin: 'sugg'})),
   ];
 }
@@ -639,13 +683,49 @@ function renderMargin() {
     }));
     return;
   }
-  fill(col, items.map(item => el('div', {class: 'note' + (item.origin === 'sugg' ? ' sugg' : '')},
-    item.quote ? el('div', {class: 'quote', text: `“${clip(item.quote, 90)}”`}) : null,
-    el('div', {text: item.note || item.mode || ''}),
-    el('div', {class: 'acts'}, item.origin === 'sugg'
-      ? [el('button', {text: 'accept', onclick: () => acceptSuggestion(item.id)}),
-         el('button', {text: 'dismiss', onclick: () => dismissSuggestion(item.id)})]
-      : [el('button', {text: 'delete', onclick: () => deleteAnnotation(item.id)})]))));
+  fill(col, items.map(item => {
+    const body = el('div', {text: item.note || item.mode || ''});
+    const card = el('div', {class: 'note' + (item.origin === 'sugg' ? ' sugg' : '')},
+      item.quote ? el('div', {class: 'quote', text: `“${clip(item.quote, 90)}”`}) : null,
+      body,
+      el('div', {class: 'acts'}, item.origin === 'sugg'
+        ? [el('button', {text: 'accept', onclick: () => acceptSuggestion(item.id)}),
+           el('button', {text: 'dismiss', onclick: () => dismissSuggestion(item.id)})]
+        : [el('button', {text: 'edit', onclick: () => startEdit(item, card, body)}),
+           el('button', {text: 'delete', onclick: () => deleteAnnotation(item.id)})]));
+    return card;
+  }));
+}
+
+/* Edit a note in place. The annotation keeps its id, because the taxonomy in
+   patterns.json cites those ids as the origin of each mode - replacing one
+   would orphan the mode it supports. Rewording is expected as criteria shift;
+   the original wording is kept alongside the revision. */
+function startEdit(item, card, body) {
+  const input = el('input', {class: 'note-edit', value: item.note || ''});
+  const finish = async (save) => {
+    if (!save) { renderMargin(); return; }
+    const text = input.value.trim();
+    if (!text || text === item.note) { renderMargin(); return; }
+    const target = state.annotations.find(a => a.id === item.id);
+    if (target) {
+      if (!target.note_history) target.note_history = [];
+      target.note_history.push({note: target.note, replaced_at: new Date().toISOString()});
+      target.note = text;
+      target.edited_at = new Date().toISOString();
+    }
+    await saveAnnotations();
+    renderTrace();
+  };
+  input.addEventListener('keydown', ev => {
+    ev.stopPropagation();
+    if (ev.key === 'Enter') finish(true);
+    if (ev.key === 'Escape') finish(false);
+  });
+  card.replaceChild(input, body);
+  card.append(el('div', {class: 'note-hint', text: 'enter saves · esc cancels'}));
+  input.focus();
+  input.select();
 }
 
 function openPopover(anchor, quote, rect) {
@@ -772,7 +852,13 @@ async function saveAnnotations() {
 }
 
 async function saveSuggestions() {
-  await api.post('/api/suggestions', state.suggestions);
+  // The poller must not overwrite a decision that is still in flight.
+  state.savingSuggestions = true;
+  try {
+    await api.post('/api/suggestions', state.suggestions);
+  } finally {
+    state.savingSuggestions = false;
+  }
 }
 
 /* =====================================================================
@@ -897,14 +983,23 @@ $('btn-clean').onclick = () => markKind('no_failure', 'no failure observed');
 $('btn-flag').onclick = () => markKind('flag', 'flagged for re-review');
 
 /* Poll for agent-pushed taxonomy and suggestions while the human reviews. */
+const suggestionFingerprint = list =>
+  list.map(s => `${s.id}:${s.decision || ''}`).sort().join('|');
+
 setInterval(async () => {
+  if (state.savingSuggestions) return;
   const [suggs, pats] = await Promise.all([
     api.get('/api/suggestions'), api.get('/api/patterns'),
   ]);
-  const before = state.suggestions.length;
-  state.suggestions = Array.isArray(suggs) ? suggs : [];
   state.patterns = (pats && pats.modes) ? pats : {modes: []};
-  if (state.suggestions.length !== before) { renderTrace(); toast('new suggestions'); }
+  const incoming = Array.isArray(suggs) ? suggs : [];
+  // Compare decisions too, not just the count: a suggestion decided elsewhere
+  // changes what the margin should show without changing how many there are.
+  if (suggestionFingerprint(incoming) === suggestionFingerprint(state.suggestions)) return;
+  const added = incoming.length - state.suggestions.length;
+  state.suggestions = incoming;
+  renderTrace();
+  if (added > 0) toast(`${added} new suggestion${added === 1 ? '' : 's'}`);
 }, 4000);
 
 loadAll();

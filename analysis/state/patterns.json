@@ -1,1 +1,401 @@
-{"modes": []}
+{
+  "modes": [
+    {
+      "name": "narrates_intent_before_acting",
+      "status": "candidate",
+      "definition": "An assistant message whose content is only an announcement of a tool call the agent is about to make, carrying no information the user did not already have.",
+      "boundary": "Against acts_beyond_request: this mode is about announcing an action that is itself within the user's request. If the announced action is one the user never asked for, the mode is acts_beyond_request.",
+      "spec_ref": "RESP-5 (revised)",
+      "evaluator": "llm_judge",
+      "created_from": [
+        "amufvixje5re8",
+        "amufvjgn4z437",
+        "amufvkc2klh8t",
+        "amufvkoctpszr",
+        "amufvqlwlpjkg",
+        "amufvs9dj3xoe",
+        "amufvtgsgwbsq",
+        "amufvur544rjx",
+        "amufweeem6nox",
+        "amufxu5f7cvyt",
+        "amulkcsxxsjtn",
+        "amulkf7489pwa",
+        "amulkfnv70jj2",
+        "amullcmo1y8oa",
+        "amullg85au05w",
+        "amullmxkm1t3b",
+        "amullouui9til",
+        "amulluuyci46w",
+        "amullzhzkfbv2",
+        "amulm029ya424",
+        "amulmnjrbqjgo",
+        "amulnwf5u1y0y"
+      ],
+      "example_quotes": [
+        "too much verbosity before searching through all orders",
+        "verbosity. user knows what you are searching for",
+        "again too much information without providing order details"
+      ],
+      "positive_sessions": [
+        "support-0004",
+        "support-0008",
+        "support-0009",
+        "support-0010",
+        "support-0011",
+        "support-0085",
+        "support-0103",
+        "support-0108",
+        "support-0147",
+        "support-0190",
+        "support-0202",
+        "support-0211",
+        "support-0216",
+        "support-0217",
+        "support-0221",
+        "support-0230",
+        "support-0234",
+        "support-0237",
+        "support-0242"
+      ],
+      "close_negative_sessions": [],
+      "note_count": 22
+    },
+    {
+      "name": "acts_beyond_request",
+      "status": "candidate",
+      "definition": "The agent looks up or volunteers guidance on a topic the user did not raise, without first asking whether it is wanted.",
+      "boundary": "Against applies_rule_without_verifying_record: the errors are opposite. This mode fetches information nobody asked for; that mode states a rule without fetching the information it depends on.",
+      "spec_ref": "RESP-7 (new)",
+      "evaluator": "llm_judge",
+      "created_from": [
+        "amufvcomqlky9",
+        "amufvgs0vqfbc",
+        "amufvz2akht51",
+        "amufvzj29teh9",
+        "amufw2wbsc9f3",
+        "amufw3ycsc6m1",
+        "amufw4alm9z74",
+        "amufw5b5bhlun",
+        "amufw5viexzj4",
+        "amufwdetj1t5z",
+        "amufwdjkk1vxm",
+        "amufwfgd1vef4",
+        "amufxhno3vpa5"
+      ],
+      "example_quotes": [
+        "The user did not ask for a refund",
+        "ask if the package is not received instead of checking missing package guidance. Confirm if the package was not received.",
+        "additional information without checking with user for next steps"
+      ],
+      "positive_sessions": [
+        "support-0003",
+        "support-0014",
+        "support-0017",
+        "support-0018",
+        "support-0019",
+        "support-0089",
+        "support-0146",
+        "support-0150"
+      ],
+      "close_negative_sessions": [],
+      "note_count": 13
+    },
+    {
+      "name": "repeats_identical_lookup",
+      "status": "candidate",
+      "definition": "The agent calls a read tool with arguments equivalent to an earlier call in the same session, with no intervening write that could have changed the result.",
+      "boundary": "Against narrates_intent_before_acting: this mode is about the duplicate call itself, not the sentence introducing it. A second call with different arguments, or after a write, is not an instance.",
+      "spec_ref": "RESP-7 (new)",
+      "evaluator": "code_check",
+      "created_from": [
+        "amufvf1g87slo",
+        "amufvn5xfgz3y",
+        "amufvno5pltuh",
+        "amufvw9mipens",
+        "amufvwqy6l35l",
+        "amufw1j7lmj58",
+        "amufw6ppyyu52",
+        "amufw7gwazvkl",
+        "amufwhfz0rjnn",
+        "amufxhdrbmekb",
+        "amufxvckbgj2z",
+        "amufxw0x6vyxt"
+      ],
+      "example_quotes": [
+        "second check shows the same result no additional value.",
+        "this search was already done in the beginning. You will not find a new result by doing the same search again.",
+        "again duplicate of search that were done previously"
+      ],
+      "positive_sessions": [
+        "support-0003",
+        "support-0004",
+        "support-0012",
+        "support-0016",
+        "support-0020",
+        "support-0146",
+        "support-0154",
+        "support-0238",
+        "support-0240"
+      ],
+      "close_negative_sessions": [],
+      "note_count": 12
+    },
+    {
+      "name": "writes_without_confirming_match",
+      "status": "candidate",
+      "definition": "The agent runs an irreversible write - cancel_order or issue_refund - against an order it located by fuzzy search, in the same turn, when the user never named the order and never confirmed the match.",
+      "boundary": "Not an instance when the user removed the uncertainty themselves: by giving the order number, by confirming a match already reported, or by instructing the agent to act now on a description they stated without hedging. support-0057 and support-0059 are the reference exclusions - 'please just process the refund' and 'can you do that now please' - where stopping to confirm would obstruct the user. support-0064 is the reference positive: the user hedged and gave no instruction to act. The mode is about acting under uncertainty, not about whether the refund was warranted.",
+      "spec_ref": "RESP-6 (new)",
+      "evaluator": "code_check",
+      "scan_note": "22 sessions matched the first scan, which keyed on the user not naming the order. Review rejected two of those, and the revised boundary is hedging versus an explicit instruction to act. Seven sessions carry an unhedged explicit instruction and are exclusions; seven carry hedging and are the clearest positives. The affected scenarios expect the write to happen - support-0045 expects refund_auto_approved - so these labels rest on RESP-6, added after this review rather than present when the traces were recorded.",
+      "created_from": [
+        "amullbib8aqul",
+        "amulml6urgbtb",
+        "amulmmgvs4enb",
+        "amulmqrvhlz8p",
+        "amuln9c93"
+      ],
+      "example_quotes": [
+        "did we cancel too quickly without getting a confirmation that I found the order and it can be cancelled?",
+        "refund was a question. refund processed without confirmation",
+        "refund processed without confirmation. is it missing from spec?"
+      ],
+      "positive_sessions": [
+        "support-0045",
+        "support-0048",
+        "support-0049",
+        "support-0064",
+        "support-0075"
+      ],
+      "close_negative_sessions": [],
+      "note_count": 5
+    },
+    {
+      "name": "reveals_internal_error_detail",
+      "status": "candidate",
+      "definition": "After a refused or failed tool call, the reply explains the refusal in terms that reveal the record exists outside the caller's scope - 'under your shopper account', 'from your merchant account', 'isn't available to your store' - or exposes internal error wording such as the error code itself. Repeating an identifier the user supplied in their own question is not an instance.",
+      "boundary": "A refusal stating only that the agent cannot access the record, naming neither the caller's scope nor internal wording, is a close negative. support-0247 is the reference case: 'Since I'm not authorized to view that order for your store' attributes the limit to the agent rather than locating the record in someone else's scope.",
+      "spec_ref": "RESP-4",
+      "evaluator": "llm_judge",
+      "revisions": [
+        {
+          "change": "Widened from internal error wording only to include the scope explanation.",
+          "why": "The first definition counted six scope-explaining refusals as close negatives. Reviewer annotations on support-0244 and support-0246 established that naming the caller's account as the reason confirms the record exists and belongs elsewhere, which is the disclosure RESP-4 forbids. Repeating the order number the user themselves supplied was explicitly ruled out as a signal.",
+          "effect": "confirmed positives went from 2 to 7",
+          "from_annotations": [
+            "amulk94c0kq82",
+            "amulk9ylemhbb"
+          ]
+        }
+      ],
+      "close_negative_candidates": [
+        "support-0247",
+        "support-0008",
+        "support-0012",
+        "support-0048",
+        "support-0115",
+        "support-0117",
+        "support-0119",
+        "support-0139",
+        "support-0201",
+        "support-0202",
+        "support-0204",
+        "support-0205"
+      ],
+      "created_from": [
+        "amufxx6iy66yl",
+        "amufxyjunbqlr",
+        "amulk94c0kq82",
+        "amulk9ylemhbb"
+      ],
+      "example_quotes": [
+        "The order does not belong to this merchant. Do not share technical error information with user.",
+        "do not share system information with user",
+        "toom uch information leak. should just be simple no access to the order."
+      ],
+      "positive_sessions": [
+        "support-0243",
+        "support-0244",
+        "support-0245",
+        "support-0246"
+      ],
+      "close_negative_sessions": [],
+      "note_count": 4
+    },
+    {
+      "name": "affective_filler_opener",
+      "status": "candidate",
+      "definition": "The reply opens with reassurance that carries no information: 'No worries', 'Not impossible at all', 'You're not shouting into the void'.",
+      "boundary": "An opener that answers the question is not an instance. 'Yes - order 23 is from Saltbox Pantry' states a fact; 'No worries at all - I understood you' does not.",
+      "spec_ref": "RESP-5 (revised)",
+      "evaluator": "llm_judge",
+      "scan_note": "28 candidates across 26 sessions, awaiting review.",
+      "created_from": [
+        "amullnp8adrz6",
+        "amuln8xd3",
+        "amulnyhfe",
+        "amulnymac"
+      ],
+      "example_quotes": [
+        "not helpful",
+        "[affective_filler_opener] opens with affective filler and adds no fact: 'Yes \u2014'",
+        "[affective_filler_opener] opens with affective filler and adds no fact: 'Yes \u2014'"
+      ],
+      "positive_sessions": [
+        "support-0097",
+        "support-0223",
+        "support-0234"
+      ],
+      "close_negative_sessions": [],
+      "note_count": 4
+    },
+    {
+      "name": "applies_rule_without_verifying_record",
+      "status": "candidate",
+      "definition": "The reply applies a policy rule to the user's case - a deadline, a window, an eligibility - when no tool result in the session supplied the record value that rule depends on.",
+      "boundary": "Quoting a policy in general terms is not an instance. The mode requires the rule to be applied to this user's specific case while the deciding value was never retrieved.",
+      "spec_ref": "RESP-3",
+      "evaluator": "llm_judge",
+      "created_from": [
+        "amufxtl9z78ga",
+        "amuloaypu",
+        "amulobdoq"
+      ],
+      "example_quotes": [
+        "did not lookup order details to verify the return window",
+        "[applies_rule_without_verifying_record] applies a dated rule while the delivered order carries no delivery date",
+        "[applies_rule_without_verifying_record] applies a dated rule while the delivered order carries no delivery date"
+      ],
+      "positive_sessions": [
+        "support-0176",
+        "support-0179",
+        "support-0235"
+      ],
+      "close_negative_sessions": [],
+      "note_count": 3
+    },
+    {
+      "name": "prefers_reference_over_inline_data",
+      "status": "parked",
+      "definition": "The reply lists order fields or prices inline where a link to the order or listing page would let the user confirm the answer themselves.",
+      "boundary": "Not proposed as a failure mode. No Cartwheel tool returns a URL - the result fields are ids, titles, prices and dates only - so the agent cannot produce a link. On support-0192 the agent also did what the scenario expected: it reported that several listings share the title and asked for an identifier. The observation is a product and tool-layer request, recorded for the review summary.",
+      "spec_ref": "n/a - product request, not a requirement violation",
+      "evaluator": "none",
+      "created_from": [
+        "amulkc3cb9ilz",
+        "amulkgetozrfl"
+      ],
+      "example_quotes": [
+        "instead of details. point the user to the order page link",
+        "Link to the listings instead of just listing prices."
+      ],
+      "positive_sessions": [
+        "support-0192",
+        "support-0242"
+      ],
+      "close_negative_sessions": [],
+      "note_count": 2
+    },
+    {
+      "name": "addresses_wrong_party",
+      "status": "dropped",
+      "definition": "The reply is framed as guidance about the customer while the caller is the customer, or vice versa.",
+      "boundary": "Supported by a single observation so far. Needs at least two more instances to stand as a mode, or it should be dropped.",
+      "spec_ref": "none yet",
+      "evaluator": "llm_judge",
+      "drop_reason": "One observation, no further instances found, and no requirement it violates. Recorded in the review summary as an observation rather than carried as a mode.",
+      "created_from": [
+        "amulkhgpsfsg6"
+      ],
+      "example_quotes": [
+        "you are already speaking with customer. What is the purpose of this statement?"
+      ],
+      "positive_sessions": [
+        "support-0183"
+      ],
+      "close_negative_sessions": [],
+      "note_count": 1
+    },
+    {
+      "name": "acts_on_stale_premise",
+      "status": "dropped",
+      "definition": "The agent continues work the record has already settled, such as looking up refund policy for an order already marked refunded.",
+      "boundary": "Against repeats_identical_lookup: that mode repeats a call it already made; this one makes a first call whose answer the record has already rendered moot.",
+      "spec_ref": "none yet",
+      "evaluator": "llm_judge",
+      "drop_reason": "One observation, no further instances found, and no requirement it violates. Recorded in the review summary as an observation rather than carried as a mode.",
+      "created_from": [
+        "amullm07pznvk"
+      ],
+      "example_quotes": [
+        "order 4197 already marked refunded, why search for the policy?"
+      ],
+      "positive_sessions": [
+        "support-0241"
+      ],
+      "close_negative_sessions": [],
+      "note_count": 1
+    },
+    {
+      "name": "malformed_tool_argument",
+      "status": "reported_not_labelled",
+      "definition": "The agent builds a tool argument from the user's description of a defect rather than from the search target, such as querying 'Blue Heron Ceramics blank name' for a listing whose name is blank.",
+      "boundary": "A search that simply returns no results is not an instance. The mode requires the argument itself to be malformed for the tool's contract.",
+      "spec_ref": "none yet",
+      "evaluator": "code_check",
+      "drop_reason": "Well evidenced but no requirement source exists: misusing a tool's argument contract is an engineering defect rather than a policy breach, and inventing a SPEC clause for it would stretch the specification past what it is for. Reported in the review summary as an engineering finding.",
+      "scan_note": "Two variants. The recurring one passes a numeric store id where search_products expects a store name: 8 calls across support-0115, 0139, 0201 and 0202, with support-0139 repeating it five times in one session. The second variant, support-0203, builds the query from the user's description of the defect. Both are deterministic to detect; decide whether one product change fixes both before keeping them in one mode.",
+      "created_from": [
+        "amullkadzil3g"
+      ],
+      "example_quotes": [
+        "why did it pass the actual string in query? If query does not take blank string then list all products."
+      ],
+      "positive_sessions": [
+        "support-0203"
+      ],
+      "close_negative_sessions": [],
+      "note_count": 1
+    },
+    {
+      "name": "checked_and_conformant",
+      "status": "resolved",
+      "definition": "Not a failure mode. Behaviour the reviewer queried that the specification permits.",
+      "boundary": "support-0115: a merchant for store 14 searched Wooden Whale Workshop's puzzle listings. AUTH-1 grants 'Search products / policies' to shopper, merchant and support alike with no store restriction, so cross-store product search is allowed. The scenario's own criterion was that the agent not invent stock claims, and it did not: it reported that the catalog does not expose stock and escalated (ticket 172).",
+      "spec_ref": "AUTH-1",
+      "evaluator": "none",
+      "created_from": [
+        "amulmpmh7pfjh"
+      ],
+      "example_quotes": [
+        "is the agent providing information comparison against another store? is it allowed as per spec?"
+      ],
+      "positive_sessions": [
+        "support-0115"
+      ],
+      "close_negative_sessions": [],
+      "note_count": 1
+    },
+    {
+      "name": "answers_outside_product_scope",
+      "status": "reported_not_labelled",
+      "definition": "The reply gives guidance on a subject outside Cartwheel: general web or device advice, or another company's products.",
+      "boundary": "Answering a Cartwheel policy question is not an instance, even when the user's situation is personal. support-0090 turn 1 cites cw-account-security and stays inside the product; turn 2 advises on shared laptop logins and separate Chrome, Firefox or Safari browser profiles, which SCOPE-2 places outside the agent's remit. Against acts_beyond_request: that mode fetches a Cartwheel record nobody asked for; this one answers a question Cartwheel does not cover.",
+      "spec_ref": "SCOPE-2",
+      "evaluator": "llm_judge",
+      "scan_note": "Found in the batch-4 saturation sample, so it is the one new consequential mode in the final fifteen. A scan of all 250 sessions found only this instance, so it cannot reach three confirmed positives and is reported as a single observation rather than carried as a labelled mode. The same scan cleared all eight out_of_scope_* scenarios: the agent refuses legal and tax questions correctly, and the one leak is sideways drift inside a policy question rather than a failure to refuse.",
+      "created_from": [
+        "amulnmhgbnkuo"
+      ],
+      "example_quotes": [
+        "This is outside the scope of the cartwheel ecommerce site"
+      ],
+      "positive_sessions": [
+        "support-0090"
+      ],
+      "close_negative_sessions": [],
+      "note_count": 1
+    }
+  ],
+  "source": "open codes, batch 0"
+}

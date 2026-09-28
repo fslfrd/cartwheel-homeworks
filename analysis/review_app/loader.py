@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import json
 from collections import defaultdict
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -150,6 +151,98 @@ def digest(name: str, content: Any) -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 
 
+def _timing_index(
+    traces: list[dict[str, Any]],
+) -> tuple[list[tuple[str, float]], list[tuple[str, float]]]:
+    """Collect tool and generation durations for one session, in time order.
+
+    Returns ``(tools, generations)`` where each entry is ``(key, seconds)``:
+    the tool name for a tool call, the emitted text for a model reply.
+    """
+    tools: list[tuple[str, float]] = []
+    generations: list[tuple[str, float]] = []
+    for trace in traces:
+        observations = sorted(
+            trace.get("observations") or [], key=lambda o: o.get("startTime") or ""
+        )
+        for obs in observations:
+            latency = obs.get("latency")
+            if obs.get("type") == "TOOL":
+                tools.append((obs.get("name") or "", latency))
+            elif obs.get("type") == "GENERATION":
+                for item in obs.get("output") or []:
+                    if not isinstance(item, dict):
+                        continue
+                    for part in item.get("parts") or []:
+                        content = (part or {}).get("content") or ""
+                        if part.get("type") == "text" and content.strip():
+                            generations.append((content, latency))
+    return tools, generations
+
+
+def _attach_durations(
+    messages: list[dict[str, Any]],
+    tools: list[tuple[str, float]],
+    generations: list[tuple[str, float]],
+) -> None:
+    """Give each message the duration of the observation that produced it.
+
+    Matching is by content, not by position: a tool call takes the next
+    unconsumed observation carrying the same tool name, and a reply takes the
+    generation that emitted that exact text. Position-based alignment would
+    silently mis-attribute a duration if the normalizer's ordering changed.
+    A message with no match keeps ``duration = None`` and shows no time.
+    """
+    by_text: dict[str, list[float]] = {}
+    for text, latency in generations:
+        by_text.setdefault(text, []).append(latency)
+
+    cursor = 0
+    pending_tool: float | None = None
+    for message in messages:
+        role = message.get("role")
+        if role == "tool_call":
+            name = message.get("name")
+            match = next(
+                (i for i in range(cursor, len(tools)) if tools[i][0] == name), None
+            )
+            if match is None:
+                pending_tool = None
+            else:
+                pending_tool = tools[match][1]
+                cursor = match + 1
+            message["duration"] = pending_tool
+        elif role == "tool_result":
+            # The call and its result come from one observation.
+            message["duration"] = pending_tool
+        elif role == "assistant":
+            bucket = by_text.get(message.get("text") or "")
+            message["duration"] = bucket.pop(0) if bucket else None
+
+
+def _session_timing(traces: list[dict[str, Any]]) -> dict[str, Any]:
+    """Two totals for a session, plus one per turn.
+
+    ``work`` sums each turn's own latency: time the agent spent working.
+    ``elapsed`` runs from the first turn's start to the last turn's end, so it
+    also contains the gap between turns, which for these recorded runs is
+    harness overhead rather than anything the agent did. The two are equal for
+    a single-turn session.
+    """
+    turns = [t.get("latency") or 0.0 for t in traces]
+    work = sum(turns)
+    elapsed = work
+    if len(traces) > 1:
+        first, last = traces[0], traces[-1]
+        try:
+            start = datetime.fromisoformat(first["timestamp"].replace("Z", "+00:00"))
+            end = datetime.fromisoformat(last["timestamp"].replace("Z", "+00:00"))
+            elapsed = (end - start).total_seconds() + (last.get("latency") or 0.0)
+        except (KeyError, ValueError):
+            elapsed = work
+    return {"work": round(work, 2), "elapsed": round(elapsed, 2), "turns": turns}
+
+
 def _load_scenarios(path: Path | None) -> dict[str, dict[str, Any]]:
     path = path or DEFAULT_SCENARIOS
     if not path.exists():
@@ -206,15 +299,16 @@ def build_records(
     """Merge raw traces into one record per session, ready for the UI."""
     scenarios = scenarios if scenarios is not None else _load_scenarios(None)
 
-    # Member trace ids per session, in time order, for score fan-out later.
-    members: dict[str, list[tuple[str, str]]] = defaultdict(list)
+    # Member traces per session, in time order: the ids drive score fan-out,
+    # and the traces themselves carry the timing each message is given.
+    members: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for trace in traces:
         attributes = (trace.get("metadata") or {}).get("attributes") or {}
         session_id = attributes.get("cartwheel.session_id")
         if session_id:
-            members[session_id].append((trace.get("timestamp") or "", trace["id"]))
+            members[session_id].append(trace)
     for values in members.values():
-        values.sort()
+        values.sort(key=lambda t: t.get("timestamp") or "")
 
     records = []
     for merged in normalize_traces(traces):
@@ -224,11 +318,15 @@ def build_records(
         messages = _annotate_turns(merged.get("trace") or [])
         scenario = scenarios.get(scenario_id or "", {})
 
+        session_traces = members.get(session_id, [])
+        _attach_durations(messages, *_timing_index(session_traces))
+
         records.append(
             {
                 "session_id": session_id,
                 "trace_id": merged["trace_id"],
-                "member_trace_ids": [tid for _, tid in members.get(session_id, [])],
+                "member_trace_ids": [t["id"] for t in session_traces],
+                "timing": _session_timing(session_traces),
                 "scenario_id": scenario_id,
                 "timestamp": merged.get("timestamp"),
                 "meta": {
