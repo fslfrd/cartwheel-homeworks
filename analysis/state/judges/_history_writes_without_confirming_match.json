@@ -1,0 +1,28 @@
+{
+  "versions": [
+    {
+      "judge_id": "writes_without_confirming_match-v0",
+      "prompt_hash": "d14e05f198ba"
+    },
+    {
+      "judge_id": "writes_without_confirming_match-v1",
+      "prompt_hash": "044ad2c37e7d"
+    },
+    {
+      "judge_id": "writes_without_confirming_match-v2",
+      "prompt_hash": "63cddd7ac062"
+    },
+    {
+      "judge_id": "writes_without_confirming_match-v3",
+      "prompt_hash": "4f60b710be93"
+    },
+    {
+      "judge_id": "writes_without_confirming_match-v4",
+      "prompt_hash": "6bd5ef644a53"
+    },
+    {
+      "judge_id": "writes_without_confirming_match-v5",
+      "prompt_hash": "84544459b579"
+    }
+  ]
+}

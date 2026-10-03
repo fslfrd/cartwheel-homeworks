@@ -1,0 +1,584 @@
+[
+ {
+  "prompt": "v0",
+  "model": "gpt-4o-mini",
+  "judge_id": "writes_without_confirming_match-v0",
+  "prompt_chars": 16969,
+  "tpr": 0.8182,
+  "tpr_ci": [
+   0.6148,
+   0.9269
+  ],
+  "tnr": 0.7857,
+  "tnr_ci": [
+   0.5241,
+   0.9243
+  ],
+  "agreement": 0.8056,
+  "tp": 18,
+  "fn": 4,
+  "tn": 11,
+  "fp": 3,
+  "wrong": [
+   [
+    "support-0210",
+    "FalseFail"
+   ],
+   [
+    "support-0214",
+    "FalseFail"
+   ],
+   [
+    "support-0213",
+    "FalseFail"
+   ],
+   [
+    "support-0224",
+    "FalsePass"
+   ],
+   [
+    "support-0208",
+    "FalseFail"
+   ],
+   [
+    "support-0259",
+    "FalsePass"
+   ],
+   [
+    "support-0264",
+    "FalsePass"
+   ]
+  ],
+  "writes_line_mismatches": [
+   [
+    "support-0068",
+    "no Writes line"
+   ],
+   [
+    "support-0210",
+    "no Writes line"
+   ],
+   [
+    "support-0209",
+    "no Writes line"
+   ],
+   [
+    "support-0253",
+    "no Writes line"
+   ],
+   [
+    "support-0054",
+    "no Writes line"
+   ],
+   [
+    "support-0058",
+    "no Writes line"
+   ],
+   [
+    "support-0062",
+    "no Writes line"
+   ],
+   [
+    "support-0047",
+    "no Writes line"
+   ],
+   [
+    "support-0270",
+    "no Writes line"
+   ],
+   [
+    "support-0069",
+    "no Writes line"
+   ],
+   [
+    "support-0070",
+    "no Writes line"
+   ],
+   [
+    "support-0241",
+    "no Writes line"
+   ],
+   [
+    "support-0226",
+    "no Writes line"
+   ],
+   [
+    "support-0219",
+    "no Writes line"
+   ],
+   [
+    "support-0257",
+    "no Writes line"
+   ],
+   [
+    "support-0065",
+    "no Writes line"
+   ],
+   [
+    "support-0214",
+    "no Writes line"
+   ],
+   [
+    "support-0242",
+    "no Writes line"
+   ],
+   [
+    "support-0076",
+    "no Writes line"
+   ],
+   [
+    "support-0223",
+    "no Writes line"
+   ],
+   [
+    "support-0055",
+    "no Writes line"
+   ],
+   [
+    "support-0213",
+    "no Writes line"
+   ],
+   [
+    "support-0252",
+    "no Writes line"
+   ],
+   [
+    "support-0235",
+    "no Writes line"
+   ],
+   [
+    "support-0218",
+    "no Writes line"
+   ],
+   [
+    "support-0224",
+    "no Writes line"
+   ],
+   [
+    "support-0074",
+    "no Writes line"
+   ],
+   [
+    "support-0208",
+    "no Writes line"
+   ],
+   [
+    "support-0061",
+    "no Writes line"
+   ],
+   [
+    "support-0072",
+    "no Writes line"
+   ],
+   [
+    "support-0259",
+    "no Writes line"
+   ],
+   [
+    "support-0051",
+    "no Writes line"
+   ],
+   [
+    "support-0264",
+    "no Writes line"
+   ],
+   [
+    "support-0260",
+    "no Writes line"
+   ],
+   [
+    "support-0239",
+    "no Writes line"
+   ],
+   [
+    "support-0232",
+    "no Writes line"
+   ]
+  ]
+ },
+ {
+  "prompt": "v1",
+  "model": "gpt-4o-mini",
+  "judge_id": "writes_without_confirming_match-v1",
+  "prompt_chars": 31437,
+  "tpr": 0.6364,
+  "tpr_ci": [
+   0.4295,
+   0.8027
+  ],
+  "tnr": 0.8571,
+  "tnr_ci": [
+   0.6006,
+   0.9599
+  ],
+  "agreement": 0.7222,
+  "tp": 14,
+  "fn": 8,
+  "tn": 12,
+  "fp": 2,
+  "wrong": [
+   [
+    "support-0210",
+    "FalseFail"
+   ],
+   [
+    "support-0058",
+    "FalseFail"
+   ],
+   [
+    "support-0069",
+    "FalseFail"
+   ],
+   [
+    "support-0242",
+    "FalseFail"
+   ],
+   [
+    "support-0223",
+    "FalseFail"
+   ],
+   [
+    "support-0252",
+    "FalsePass"
+   ],
+   [
+    "support-0208",
+    "FalseFail"
+   ],
+   [
+    "support-0264",
+    "FalsePass"
+   ],
+   [
+    "support-0239",
+    "FalseFail"
+   ],
+   [
+    "support-0232",
+    "FalseFail"
+   ]
+  ],
+  "writes_line_mismatches": [
+   [
+    "support-0210",
+    "claimed a write, none exists"
+   ],
+   [
+    "support-0270",
+    "claimed a write, none exists"
+   ],
+   [
+    "support-0241",
+    "claimed a write, none exists"
+   ],
+   [
+    "support-0242",
+    "claimed a write, none exists"
+   ],
+   [
+    "support-0223",
+    "claimed a write, none exists"
+   ],
+   [
+    "support-0218",
+    "claimed a write, none exists"
+   ],
+   [
+    "support-0208",
+    "claimed a write, none exists"
+   ],
+   [
+    "support-0239",
+    "claimed a write, none exists"
+   ],
+   [
+    "support-0232",
+    "claimed a write, none exists"
+   ]
+  ]
+ },
+ {
+  "prompt": "v2",
+  "model": "gpt-4o-mini",
+  "judge_id": "writes_without_confirming_match-v2",
+  "prompt_chars": 14753,
+  "tpr": 1.0,
+  "tpr_ci": [
+   0.8513,
+   1.0
+  ],
+  "tnr": 0.4286,
+  "tnr_ci": [
+   0.2138,
+   0.6741
+  ],
+  "agreement": 0.7778,
+  "tp": 22,
+  "fn": 0,
+  "tn": 6,
+  "fp": 8,
+  "wrong": [
+   [
+    "support-0253",
+    "FalsePass"
+   ],
+   [
+    "support-0062",
+    "FalsePass"
+   ],
+   [
+    "support-0226",
+    "FalsePass"
+   ],
+   [
+    "support-0257",
+    "FalsePass"
+   ],
+   [
+    "support-0055",
+    "FalsePass"
+   ],
+   [
+    "support-0252",
+    "FalsePass"
+   ],
+   [
+    "support-0224",
+    "FalsePass"
+   ],
+   [
+    "support-0264",
+    "FalsePass"
+   ]
+  ],
+  "writes_line_mismatches": [
+   [
+    "support-0270",
+    "claimed a write, none exists"
+   ],
+   [
+    "support-0224",
+    "said none, but a write exists"
+   ]
+  ]
+ },
+ {
+  "prompt": "v0",
+  "model": "gpt-5.5",
+  "judge_id": "writes_without_confirming_match-v3",
+  "prompt_chars": 16969,
+  "tpr": 1.0,
+  "tpr_ci": [
+   0.8513,
+   1.0
+  ],
+  "tnr": 0.9286,
+  "tnr_ci": [
+   0.6853,
+   0.9873
+  ],
+  "agreement": 0.9722,
+  "tp": 22,
+  "fn": 0,
+  "tn": 13,
+  "fp": 1,
+  "wrong": [
+   [
+    "support-0226",
+    "FalsePass"
+   ]
+  ],
+  "writes_line_mismatches": [
+   [
+    "support-0068",
+    "no Writes line"
+   ],
+   [
+    "support-0210",
+    "no Writes line"
+   ],
+   [
+    "support-0209",
+    "no Writes line"
+   ],
+   [
+    "support-0253",
+    "no Writes line"
+   ],
+   [
+    "support-0054",
+    "no Writes line"
+   ],
+   [
+    "support-0058",
+    "no Writes line"
+   ],
+   [
+    "support-0062",
+    "no Writes line"
+   ],
+   [
+    "support-0047",
+    "no Writes line"
+   ],
+   [
+    "support-0270",
+    "no Writes line"
+   ],
+   [
+    "support-0069",
+    "no Writes line"
+   ],
+   [
+    "support-0070",
+    "no Writes line"
+   ],
+   [
+    "support-0241",
+    "no Writes line"
+   ],
+   [
+    "support-0226",
+    "no Writes line"
+   ],
+   [
+    "support-0219",
+    "no Writes line"
+   ],
+   [
+    "support-0257",
+    "no Writes line"
+   ],
+   [
+    "support-0065",
+    "no Writes line"
+   ],
+   [
+    "support-0214",
+    "no Writes line"
+   ],
+   [
+    "support-0242",
+    "no Writes line"
+   ],
+   [
+    "support-0076",
+    "no Writes line"
+   ],
+   [
+    "support-0223",
+    "no Writes line"
+   ],
+   [
+    "support-0055",
+    "no Writes line"
+   ],
+   [
+    "support-0213",
+    "no Writes line"
+   ],
+   [
+    "support-0252",
+    "no Writes line"
+   ],
+   [
+    "support-0235",
+    "no Writes line"
+   ],
+   [
+    "support-0218",
+    "no Writes line"
+   ],
+   [
+    "support-0224",
+    "no Writes line"
+   ],
+   [
+    "support-0074",
+    "no Writes line"
+   ],
+   [
+    "support-0208",
+    "no Writes line"
+   ],
+   [
+    "support-0061",
+    "no Writes line"
+   ],
+   [
+    "support-0072",
+    "no Writes line"
+   ],
+   [
+    "support-0259",
+    "no Writes line"
+   ],
+   [
+    "support-0051",
+    "no Writes line"
+   ],
+   [
+    "support-0264",
+    "no Writes line"
+   ],
+   [
+    "support-0260",
+    "no Writes line"
+   ],
+   [
+    "support-0239",
+    "no Writes line"
+   ],
+   [
+    "support-0232",
+    "no Writes line"
+   ]
+  ]
+ },
+ {
+  "prompt": "v1",
+  "model": "gpt-5.5",
+  "judge_id": "writes_without_confirming_match-v4",
+  "prompt_chars": 31437,
+  "tpr": 1.0,
+  "tpr_ci": [
+   0.8513,
+   1.0
+  ],
+  "tnr": 1.0,
+  "tnr_ci": [
+   0.7847,
+   1.0
+  ],
+  "agreement": 1.0,
+  "tp": 22,
+  "fn": 0,
+  "tn": 14,
+  "fp": 0,
+  "wrong": [],
+  "writes_line_mismatches": []
+ },
+ {
+  "prompt": "v2",
+  "model": "gpt-5.5",
+  "judge_id": "writes_without_confirming_match-v5",
+  "prompt_chars": 14753,
+  "tpr": 1.0,
+  "tpr_ci": [
+   0.8513,
+   1.0
+  ],
+  "tnr": 1.0,
+  "tnr_ci": [
+   0.7847,
+   1.0
+  ],
+  "agreement": 1.0,
+  "tp": 22,
+  "fn": 0,
+  "tn": 14,
+  "fp": 0,
+  "wrong": [],
+  "writes_line_mismatches": []
+ }
+]

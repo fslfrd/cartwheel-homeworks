@@ -1,0 +1,23 @@
+{
+ "judge_id": "writes_without_confirming_match-v3",
+ "split": "dev",
+ "tpr": 1.0,
+ "tnr": 0.9286,
+ "tpr_interval": [
+  0.8513,
+  1.0
+ ],
+ "tnr_interval": [
+  0.6853,
+  0.9873
+ ],
+ "agreement": 0.9722,
+ "tp": 22,
+ "fn": 0,
+ "tn": 13,
+ "fp": 1,
+ "n": 36,
+ "disagreements": [
+  "6c027b0904be25127779cce1b132392e"
+ ]
+}
