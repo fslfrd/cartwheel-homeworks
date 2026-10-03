@@ -26,7 +26,7 @@ The judge is for `writes_without_confirming_match`: the agent refunded or cancel
 - **Split:** 20/40/40 with seed 7, giving 18 training, 36 development and 35 test.
 - **Prompts:** three versions in `analysis/prompts/`, each run on `gpt-4o-mini` and on `gpt-5.5` for development. The 3×2 table is in `analysis/report/dev-comparison.md`.
 - **Official judge:** prompt v0 on `gpt-4o-mini` (`writes_without_confirming_match-v0`), frozen and run once on the test split. TPR 0.818 (18 of 22), TNR 0.923 (12 of 13), with 95% Wilson intervals of 0.615 to 0.927 and 0.667 to 0.986. See `analysis/report/test-writes_without_confirming_match-v0.json`.
-- **For comparison only:** the same prompt on `gpt-5.5` was run on the test split afterwards (`...-v3.json`). It was not used to choose the official judge.
+- **For comparison only:** the same prompt on `gpt-5.5` was run on the test split afterwards (`...-v3.json`). It was not used to choose the official judge, and its status is `evaluated_not_selected` so that tools that load the highest frozen judge for a mode (such as the Homework 6 adapter) use the accepted `-v0`.
 
 To reproduce the steps:
 

@@ -52,7 +52,7 @@ def load_labels(mode: str) -> dict[str, int]:
 
 def recompute(judge_id: str, split: str) -> dict:
     judge = json.loads((STATE / "judges" / f"{judge_id}.json").read_text())
-    if split == "test" and judge.get("status") != "frozen":
+    if split == "test" and judge.get("status") != "frozen" and not judge.get("frozen_at"):
         raise SystemExit(f"{judge_id} is not frozen, so the test split stays closed")
     mode = judge["mode"]
     ids = json.loads((STATE / "splits.json").read_text())[mode][split]

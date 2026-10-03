@@ -144,7 +144,7 @@ def run_test(judge_id: str) -> dict[str, Any]:
 
     _use_saved_inputs()
     judge = json.loads((STATE_DIR / "judges" / f"{judge_id}.json").read_text())
-    if judge.get("status") != "frozen":
+    if judge.get("status") != "frozen" and not judge.get("frozen_at"):
         freeze_judge(judge_id)
     run_judge(judge_id, split="test", batch_size=10)
     test = judge_alignment(judge_id, split="test")
