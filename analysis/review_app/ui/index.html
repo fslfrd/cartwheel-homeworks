@@ -609,7 +609,7 @@ function renderJudge() {
   box.classList.toggle('miss', !j.agree);
   box.classList.toggle('hit', j.agree);
   fill(box,
-    el('b', {text: `judge v${state.judge.version}: ${j.verdict}`}),
+    el('b', {text: `${state.judge.judge_id} (${state.judge.model}): ${j.verdict}`}),
     ` · you: ${j.human} · `,
     el('b', {text: j.agree ? 'agree' : 'DISAGREE'}),
     el('div', {class: 'crit', text: j.critique}));

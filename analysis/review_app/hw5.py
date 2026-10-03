@@ -132,12 +132,22 @@ def counts(state_dir: Path) -> dict[str, int]:
     }
 
 
-def judge_view(state_dir: Path, judge_id: str | None = None) -> dict[str, Any]:
-    """The latest judge's development-split verdicts, beside the human labels.
+def official_judge_id(state_dir: Path) -> str | None:
+    """The judge chosen for the final test, recorded in ``judges/_official.json``."""
+    path = state_dir / "judges" / "_official.json"
+    if not path.exists():
+        return None
+    return json.loads(path.read_text()).get(MODE)
 
-    Only development predictions are ever served. The test split stays out of
-    this view so a prediction cannot be seen while the prompt is still being
-    chosen; it is read from saved metrics after the judge is frozen.
+
+def judge_view(state_dir: Path, judge_id: str | None = None) -> dict[str, Any]:
+    """A judge's development-split verdicts, beside the human labels.
+
+    With no id it serves the official judge when one is recorded, and otherwise
+    the most recently registered one. Only development predictions are ever
+    served. The test split stays out of this view so a prediction cannot be seen
+    while the prompt is still being chosen; it is read from saved metrics after
+    the judge is frozen.
     """
     history = state_dir / "judges" / f"_history_{MODE}.json"
     if not history.exists():
@@ -145,7 +155,7 @@ def judge_view(state_dir: Path, judge_id: str | None = None) -> dict[str, Any]:
     versions = json.loads(history.read_text())["versions"]
     if not versions:
         return {"judge_id": None, "items": {}}
-    judge_id = judge_id or versions[-1]["judge_id"]
+    judge_id = judge_id or official_judge_id(state_dir) or versions[-1]["judge_id"]
     judge = json.loads((state_dir / "judges" / f"{judge_id}.json").read_text())
     key = judge["prompt_hash"]
     preds = judge.get("predictions", {}).get(key, {})
@@ -166,4 +176,4 @@ def judge_view(state_dir: Path, judge_id: str | None = None) -> dict[str, Any]:
             "human": "Pass" if row["label"] == 1 else "Fail",
             "agree": verdict == int(row["label"]),
         }
-    return {"judge_id": judge_id, "version": judge.get("version"), "items": items}
+    return {"judge_id": judge_id, "version": judge.get("version"), "model": judge.get("model"), "items": items}

@@ -37,6 +37,14 @@ uv run python -m analysis.run_judges dev analysis/prompts/writes_without_confirm
 uv run python -m analysis.run_judges test writes_without_confirming_match-v0
 ```
 
+To recompute a judge's metrics independently from the saved predictions and labels, without the course helper:
+
+```bash
+uv run python -m analysis.recalc_metrics writes_without_confirming_match-v0 test
+```
+
+It prints the confusion matrix, TPR, TNR and 95% Wilson intervals, and checks them against the saved report. It refuses the test split for a judge that was never frozen.
+
 The `dev` and `test` steps call a model and need `OPENAI_API_KEY` in `.env`. `split` should be run once; `analysis/state/splits.json` is committed and must not change. Cached predictions are in `analysis/state/judges/`.
 
 ## Review interface

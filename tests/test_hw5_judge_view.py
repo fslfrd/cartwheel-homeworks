@@ -36,3 +36,22 @@ def test_verdict_and_agreement_follow_the_human_label(tmp_path):
 
 def test_no_judge_yet_gives_an_empty_view(tmp_path):
     assert hw5.judge_view(tmp_path) == {"judge_id": None, "items": {}}
+
+
+def test_the_official_judge_is_the_default_when_one_is_recorded(tmp_path):
+    _state(tmp_path, {"d1": 0})
+    (tmp_path / "judges" / f"_history_{hw5.MODE}.json").write_text(
+        json.dumps({"versions": [{"judge_id": "j-v0"}, {"judge_id": "j-v1"}]})
+    )
+    (tmp_path / "judges" / "j-v1.json").write_text(json.dumps({
+        "prompt_hash": "h2", "version": 1, "model": "m2",
+        "predictions": {"h2": {"d1": 1}}, "critiques": {"h2": {"d1": "other"}},
+    }))
+    # no official recorded: the latest registered judge is served
+    assert hw5.judge_view(tmp_path)["judge_id"] == "j-v1"
+    (tmp_path / "judges" / "_official.json").write_text(json.dumps({hw5.MODE: "j-v0"}))
+    view = hw5.judge_view(tmp_path)
+    assert view["judge_id"] == "j-v0"
+    assert view["items"]["s-d1"]["critique"] == "critique d1"
+    # an explicit id still wins
+    assert hw5.judge_view(tmp_path, "j-v1")["judge_id"] == "j-v1"

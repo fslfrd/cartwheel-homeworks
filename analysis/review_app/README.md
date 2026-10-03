@@ -52,7 +52,7 @@ Pick one of the `HW5` options in the dropdown. The queue holds the sessions wher
 
 - **Label.** `p` saves Pass and `x` saves Fail. Type evidence first, then press Enter, then `p` or `x`: the note saves with the label. Labels go to `analysis/state/hw5_labels/<mode>.jsonl` with **1 = Pass and 0 = Fail**, the reverse of Homework 4. Relabelling marks the earlier row `superseded_by` and keeps it.
 - **Judge view.** `HW5 dev: judge disagrees with me` shows the judge's verdict and critique beside your label for the **development split only**. Test predictions are never served by this view.
-- **Which judge.** The view shows the most recently registered judge. Append `?id=<judge_id>` to `/api/hw5/judge` to read another one.
+- **Which judge.** The view shows the official judge recorded in `analysis/state/judges/_official.json` (`writes_without_confirming_match-v0`). Append `?id=<judge_id>` to `/api/hw5/judge` to read another one; without an official judge it falls back to the most recently registered.
 
 ## State files
 
