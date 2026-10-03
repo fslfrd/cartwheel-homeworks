@@ -34,6 +34,8 @@ from analysis.helpers.normalization import normalize_traces
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_EXPORT = REPO_ROOT / "traces" / "support_traces.json"
 DEFAULT_SCENARIOS = REPO_ROOT / "scenarios" / "support_scenarios.jsonl"
+# Targeted scenarios generated for Homework 5; read alongside the Homework 3 plan.
+EXTRA_SCENARIOS = (REPO_ROOT / "scenarios" / "hw5_scenarios.jsonl",)
 
 # Scenario families that belong to the Homework 4 review frame. The Langfuse
 # project also holds pilot and ad-hoc traces from earlier sessions; they ran
@@ -151,6 +153,55 @@ def digest(name: str, content: Any) -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 
 
+def _timing_schema(trace: dict[str, Any]) -> str | None:
+    """Which timing schema a trace carries, decided from the trace itself.
+
+    ``export`` is the raw Langfuse export (``latency``, ``startTime``);
+    ``langfuse`` is what ``langfuse_io.fetch_traces`` returns
+    (``latency_seconds``, ``start_time``, no trace-level figure). ``None`` means
+    the trace carries no timing, and nothing is shown for it: a missing value
+    is never reported as zero.
+    """
+    observations = trace.get("observations") or []
+    if "latency" in trace or any("latency" in o for o in observations):
+        return "export"
+    if any("latency_seconds" in o for o in observations):
+        return "langfuse"
+    return None
+
+
+def _obs_start(trace: dict[str, Any], obs: dict[str, Any]) -> str:
+    key = "startTime" if _timing_schema(trace) == "export" else "start_time"
+    return obs.get(key) or ""
+
+
+def _obs_latency(trace: dict[str, Any], obs: dict[str, Any]) -> float | None:
+    schema = _timing_schema(trace)
+    if schema == "export":
+        return obs.get("latency")
+    if schema == "langfuse":
+        return obs.get("latency_seconds")
+    return None
+
+
+def _trace_latency(trace: dict[str, Any]) -> float | None:
+    """A turn's latency, or None when the trace carries no timing.
+
+    The Langfuse fetch has no trace-level figure, so there it is the root
+    span's, which is also how the export's figure is defined.
+    """
+    schema = _timing_schema(trace)
+    if schema == "export":
+        return trace.get("latency")
+    if schema == "langfuse":
+        root = next(
+            (o for o in trace.get("observations") or [] if o.get("name") == "cartwheel.session_message"),
+            None,
+        )
+        return root.get("latency_seconds") if root else None
+    return None
+
+
 def _timing_index(
     traces: list[dict[str, Any]],
 ) -> tuple[list[tuple[str, float]], list[tuple[str, float]]]:
@@ -163,10 +214,10 @@ def _timing_index(
     generations: list[tuple[str, float]] = []
     for trace in traces:
         observations = sorted(
-            trace.get("observations") or [], key=lambda o: o.get("startTime") or ""
+            trace.get("observations") or [], key=lambda o, t=trace: _obs_start(t, o)
         )
         for obs in observations:
-            latency = obs.get("latency")
+            latency = _obs_latency(trace, obs)
             if obs.get("type") == "TOOL":
                 tools.append((obs.get("name") or "", latency))
             elif obs.get("type") == "GENERATION":
@@ -220,8 +271,8 @@ def _attach_durations(
             message["duration"] = bucket.pop(0) if bucket else None
 
 
-def _session_timing(traces: list[dict[str, Any]]) -> dict[str, Any]:
-    """Two totals for a session, plus one per turn.
+def _session_timing(traces: list[dict[str, Any]]) -> dict[str, Any] | None:
+    """Two totals for a session, plus one per turn, or None without timing.
 
     ``work`` sums each turn's own latency: time the agent spent working.
     ``elapsed`` runs from the first turn's start to the last turn's end, so it
@@ -229,29 +280,34 @@ def _session_timing(traces: list[dict[str, Any]]) -> dict[str, Any]:
     harness overhead rather than anything the agent did. The two are equal for
     a single-turn session.
     """
-    turns = [t.get("latency") or 0.0 for t in traces]
-    work = sum(turns)
+    turns = [_trace_latency(t) for t in traces]
+    known = [t for t in turns if t is not None]
+    if not known:
+        return None
+    work = sum(known)
     elapsed = work
-    if len(traces) > 1:
+    last_latency = turns[-1]
+    if len(traces) > 1 and last_latency is not None:
         first, last = traces[0], traces[-1]
         try:
             start = datetime.fromisoformat(first["timestamp"].replace("Z", "+00:00"))
             end = datetime.fromisoformat(last["timestamp"].replace("Z", "+00:00"))
-            elapsed = (end - start).total_seconds() + (last.get("latency") or 0.0)
+            elapsed = (end - start).total_seconds() + last_latency
         except (KeyError, ValueError):
             elapsed = work
     return {"work": round(work, 2), "elapsed": round(elapsed, 2), "turns": turns}
 
 
 def _load_scenarios(path: Path | None) -> dict[str, dict[str, Any]]:
-    path = path or DEFAULT_SCENARIOS
-    if not path.exists():
-        return {}
+    paths = [path] if path else [DEFAULT_SCENARIOS, *EXTRA_SCENARIOS]
     out = {}
-    for line in path.read_text().splitlines():
-        if line.strip():
-            row = json.loads(line)
-            out[row["id"]] = row
+    for item in paths:
+        if not item.exists():
+            continue
+        for line in item.read_text().splitlines():
+            if line.strip():
+                row = json.loads(line)
+                out[row["id"]] = row
     return out
 
 

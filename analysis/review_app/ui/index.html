@@ -67,6 +67,20 @@
   .glyph.noted { color: var(--accent); }
   .glyph.clean { color: var(--ok); }
   .glyph.flag { color: var(--bad); }
+  .glyph.pass { color: var(--ok); font-weight: 700; }
+  .glyph.fail { color: var(--bad); font-weight: 700; }
+  #hw5 { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+  #hw5 .row { display: flex; gap: 8px; align-items: center; font: 12px var(--mono); }
+  #hw5 button {
+    border: 1px solid var(--line); background: var(--panel); border-radius: 5px;
+    padding: 3px 12px; font: 12px var(--mono); color: var(--ink); cursor: pointer;
+  }
+  #hw5 button.pass.on { background: var(--ok); color: #fff; border-color: var(--ok); }
+  #hw5 button.fail.on { background: var(--bad); color: #fff; border-color: var(--bad); }
+  #hw5-note {
+    flex: 1; font: 12.5px inherit; padding: 5px 8px;
+    border: 1px solid var(--line); border-radius: 5px;
+  }
   .stitle { font: 12px var(--mono); color: var(--muted); }
   .sopen {
     font-size: 13px; margin: 2px 0 3px; overflow: hidden;
@@ -232,6 +246,13 @@
         <option value="flag">flagged</option>
       </select>
       <select id="f-role"><option value="">any role</option></select>
+      <select id="f-hw5">
+        <option value="">HW5 queue: off</option>
+        <option value="todo">HW5: unlabelled</option>
+        <option value="fuzzy_write">HW5 1 · wrote after fuzzy lookup</option>
+        <option value="named_write">HW5 2 · wrote, order given</option>
+        <option value="no_write">HW5 3 · no write</option>
+      </select>
       <div id="counter">0 / 0 reviewed</div>
       <div id="bar"><div></div></div>
     </div>
@@ -253,6 +274,14 @@
       </div>
       <div id="d-meta" class="drawer hidden"></div>
       <div id="d-expected" class="drawer hidden"></div>
+      <div id="hw5" class="hidden">
+        <div class="row">
+          <span id="hw5-state"></span>
+          <button class="pass" id="hw5-pass">Pass (1) <kbd>p</kbd></button>
+          <button class="fail" id="hw5-fail">Fail (0) <kbd>x</kbd></button>
+          <input id="hw5-note" placeholder="evidence, then Enter, then p or x to save" autocomplete="off" />
+        </div>
+      </div>
     </div>
 
     <div id="read-view" class="view active"><div id="body"></div></div>
@@ -365,6 +394,8 @@ const state = {
   steps: [],        // rendered step descriptors, for keyboard focus
   focus: -1,
   pending: null,    // annotation being typed
+  store: new Map(),  // every loaded session, for rows outside the HW4 manifest
+  hw5: {queue: [], labels: {}, counts: {pass: 0, fail: 0}, tiers: {}, mode: ''},
 };
 
 const api = {
@@ -405,6 +436,8 @@ async function loadAll() {
   state.annotations = asList(anns);
   state.suggestions = Array.isArray(suggs) ? suggs : [];
   state.patterns = (pats && pats.modes) ? pats : {modes: []};
+  state.hw5 = await api.get('/api/hw5');
+  state.store = new Map((await api.get('/api/store')).map(r => [r.session_id, r]));
   buildFilters();
   applyFilters();
   if (state.filtered.length) await openSession(state.filtered[0].session_id);
@@ -441,16 +474,29 @@ function statusOf(sessionId) {
   return 'unreviewed';
 }
 
-const GLYPH = {unreviewed: '·', noted: '●', clean: '✓', flag: '⚑'};
+const GLYPH = {unreviewed: '·', noted: '●', clean: '✓', flag: '⚑', pass: 'P', fail: 'F'};
 
 function applyFilters() {
   const batch = $('f-batch').value;
   const status = $('f-status').value;
   const role = $('f-role').value;
-  state.filtered = state.sessions.filter(s =>
+  const queue = hw5Queue();
+  const inQueue = new Map(queue.map(q => [q.session_id, q]));
+  const hw5Mode = $('f-hw5').value;
+  let rows = state.sessions.filter(s =>
     (!batch || s.batch === batch) &&
     (!role || (s.meta || {}).role === role) &&
     (!status || statusOf(s.session_id) === status));
+  if (hw5Mode) {
+    // The queue's own order is the review order, so it overrides scenario order.
+    const bySession = new Map(rows.map(s => [s.session_id, s]));
+    rows = queue
+      .filter(q => (hw5Mode === 'todo'
+        ? !(q.session_id in state.hw5.labels) : q.tier === hw5Mode))
+      .map(q => bySession.get(q.session_id) || state.store.get(q.session_id));
+  }
+  state.filtered = rows;
+  $('hw5').classList.toggle('hidden', !inQueue.size || !hw5Mode);
   renderSidebar();
 }
 
@@ -461,7 +507,11 @@ function renderSidebar() {
     return;
   }
   fill(list, state.filtered.map(s => {
-    const st = statusOf(s.session_id);
+    const hw5Mode = $('f-hw5').value;
+    const mine = state.hw5.labels[s.session_id];
+    const st = hw5Mode
+      ? (mine ? (mine.label === 1 ? 'pass' : 'fail') : 'unreviewed')
+      : statusOf(s.session_id);
     const meta = s.meta || {};
     const denied = (s.flags || []).includes('permission_denied');
     return el('div', {
@@ -472,7 +522,7 @@ function renderSidebar() {
       el('div', {},
         el('div', {class: 'stitle'},
           `${s.scenario_id || ''} · ${meta.role || ''} · ${meta.turn_count || 1}t`,
-          s.timing ? ` · ${fmtDuration(s.timing.work)}` : '',
+          fmtSessionTime(s.timing) ? ` · ${fmtDuration(s.timing.work)}` : '',
           denied ? el('span', {class: 'sflag', text: ' ⛔'}) : null),
         el('div', {class: 'sopen', text: clip(s.opening, 110)}),
         el('div', {class: 'sribbon', text: (s.ribbon || []).join(' → ') || '(no tools)'})));
@@ -481,7 +531,18 @@ function renderSidebar() {
   $('pos').textContent = `${at + 1} / ${state.filtered.length}`;
 }
 
+function hw5Queue() { return (state.hw5 && state.hw5.queue) || []; }
+
 function renderCounter() {
+  if ($('f-hw5').value) {
+    const c = state.hw5.counts;
+    const total = hw5Queue().length;
+    $('counter').textContent =
+      `HW5 · Pass ${c.pass}/30 · Fail ${c.fail}/30 · ${c.pass + c.fail}/${total} labelled`;
+    $('bar').firstElementChild.style.width =
+      `${100 * Math.min(1, Math.min(c.pass, 30) / 30 / 2 + Math.min(c.fail, 30) / 30 / 2)}%`;
+    return;
+  }
   const p = state.progress || {};
   const total = p.total || state.sessions.length;
   const done = p.reviewed || 0;
@@ -506,7 +567,32 @@ async function openSession(id) {
   state.cur = record;
   renderHeader();
   renderTrace();
+  renderHw5();
   $('main').scrollTop = 0;
+}
+
+/* =====================================================================
+   Homework 5 labelling. 1 = Pass, 0 = Fail: the reverse of Homework 4.
+   ===================================================================== */
+function renderHw5() {
+  const mine = state.hw5.labels[state.curId];
+  $('hw5-pass').classList.toggle('on', !!mine && mine.label === 1);
+  $('hw5-fail').classList.toggle('on', !!mine && mine.label === 0);
+  $('hw5-state').textContent = mine ? (mine.label === 1 ? 'labelled Pass' : 'labelled Fail') : 'unlabelled';
+  $('hw5-note').value = mine ? mine.note : '';
+}
+
+async function setHw5(label) {
+  if (!state.curId || $('hw5').classList.contains('hidden')) return;
+  const note = $('hw5-note').value.trim();
+  const res = await api.post('/api/hw5/label', {session_id: state.curId, label, note});
+  if (!res.ok) { toast(res.error || 'label not saved'); return; }
+  state.hw5.labels[state.curId] = {label, note};
+  state.hw5.counts = res.counts;
+  renderHw5();
+  renderCounter();
+  renderSidebar();
+  toast(label === 1 ? 'Pass saved' : 'Fail saved');
 }
 
 function renderHeader() {
@@ -943,6 +1029,8 @@ const KEYS = {
   Enter: annotateFocusedStep,
   n: () => markKind('no_failure', 'no failure observed'),
   f: () => markKind('flag', 'flagged for re-review'),
+  p: () => setHw5(1),
+  x: () => setHw5(0),
   Escape: closePopover,
 };
 
@@ -978,7 +1066,30 @@ document.querySelectorAll('.drawer-btn[data-drawer]').forEach(b =>
     const hidden = drawer.classList.toggle('hidden');
     b.textContent = (hidden ? '▸ ' : '▾ ') + b.dataset.drawer;
   });
-['f-batch', 'f-status', 'f-role'].forEach(id => $(id).onchange = applyFilters);
+// A focused <select> would swallow the arrow and label keys, so each filter
+// hands focus back to the page once a choice is made.
+['f-batch', 'f-status', 'f-role'].forEach(id => $(id).onchange = ev => {
+  ev.target.blur();
+  applyFilters();
+});
+$('f-hw5').onchange = async ev => {
+  ev.target.blur();
+  applyFilters(); renderCounter();
+  if (state.filtered.length) await openSession(state.filtered[0].session_id);
+};
+$('hw5-pass').onclick = () => setHw5(1);
+$('hw5-fail').onclick = () => setHw5(0);
+// While the evidence box has focus the page treats p and x as typing, so Enter
+// hands focus back; the next p or x then saves label and evidence together.
+// On a session that already has a label, leaving the box with changed text
+// re-saves that label so an edited note is never lost.
+$('hw5-note').addEventListener('keydown', ev => {
+  if (ev.key === 'Enter' || ev.key === 'Escape') ev.target.blur();
+});
+$('hw5-note').addEventListener('blur', () => {
+  const mine = state.hw5.labels[state.curId];
+  if (mine && $('hw5-note').value.trim() !== mine.note) setHw5(mine.label);
+});
 $('btn-clean').onclick = () => markKind('no_failure', 'no failure observed');
 $('btn-flag').onclick = () => markKind('flag', 'flagged for re-review');
 

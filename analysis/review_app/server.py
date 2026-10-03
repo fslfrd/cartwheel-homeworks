@@ -32,7 +32,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qs, urlparse
 
-from analysis.review_app import loader
+from analysis.review_app import hw5, loader
 
 HERE = Path(__file__).resolve().parent
 STATE_DIR = HERE.parent / "state"
@@ -328,6 +328,21 @@ class ReviewHandler(BaseHTTPRequestHandler):
             self._send_json(_all_labels())
             return
 
+        if path == "/api/hw5":
+            self._send_json(
+                {
+                    "mode": hw5.MODE,
+                    "tiers": hw5.TIERS,
+                    "queue": hw5.build_queue(STORE),
+                    "labels": {
+                        sid: {"label": row["label"], "note": row.get("note", "")}
+                        for sid, row in hw5.live_labels(STATE_DIR).items()
+                    },
+                    "counts": hw5.counts(STATE_DIR),
+                }
+            )
+            return
+
         if path in API_FILES:
             self._send_json(_read_json(API_FILES[path], API_DEFAULTS[path]))
             return
@@ -339,6 +354,21 @@ class ReviewHandler(BaseHTTPRequestHandler):
         data = self._body()
         if data is None:
             self._send_json({"error": "expected a JSON body"}, status=400)
+            return
+
+        if path == "/api/hw5/label":
+            record = STORE.get(str(data.get("session_id")))
+            if record is None or hw5.classify(record) is None:
+                self._send_json({"error": "session is not in the HW5 queue"}, status=404)
+                return
+            try:
+                row = hw5.write_label(
+                    STATE_DIR, record, int(data.get("label", -1)), str(data.get("note") or "")
+                )
+            except ValueError as exc:
+                self._send_json({"error": str(exc)}, status=400)
+                return
+            self._send_json({"ok": True, "label": row["label"], "counts": hw5.counts(STATE_DIR)})
             return
 
         if path == "/api/labels":
@@ -384,6 +414,11 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    if args.source == "langfuse":
+        # Credentials live in .env, referred to by name only.
+        from observability.instrument import load_env
+
+        load_env()
     records = loader.load(args.source)
     STORE.clear()
     STORE.update({r["session_id"]: r for r in records})

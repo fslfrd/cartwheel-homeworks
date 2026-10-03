@@ -19,3 +19,7 @@ __pycache__/
 .venv/
 .pytest_cache/
 scenarios/demo_pilot_gt.json
+
+# Skill tooling installed by `npx skills add`, not coursework
+.agents/
+skills-lock.json
