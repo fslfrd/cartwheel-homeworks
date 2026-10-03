@@ -130,3 +130,40 @@ def counts(state_dir: Path) -> dict[str, int]:
         "pass": sum(1 for r in live if r["label"] == 1),
         "fail": sum(1 for r in live if r["label"] == 0),
     }
+
+
+def judge_view(state_dir: Path, judge_id: str | None = None) -> dict[str, Any]:
+    """The latest judge's development-split verdicts, beside the human labels.
+
+    Only development predictions are ever served. The test split stays out of
+    this view so a prediction cannot be seen while the prompt is still being
+    chosen; it is read from saved metrics after the judge is frozen.
+    """
+    history = state_dir / "judges" / f"_history_{MODE}.json"
+    if not history.exists():
+        return {"judge_id": None, "items": {}}
+    versions = json.loads(history.read_text())["versions"]
+    if not versions:
+        return {"judge_id": None, "items": {}}
+    judge_id = judge_id or versions[-1]["judge_id"]
+    judge = json.loads((state_dir / "judges" / f"{judge_id}.json").read_text())
+    key = judge["prompt_hash"]
+    preds = judge.get("predictions", {}).get(key, {})
+    critiques = judge.get("critiques", {}).get(key, {})
+    splits = json.loads((state_dir / "splits.json").read_text()).get(MODE, {})
+    dev_ids = set(splits.get("dev", []))
+    by_trace = {row["trace_id"]: row for row in live_labels(state_dir).values()}
+
+    items = {}
+    for trace_id in dev_ids & set(preds):
+        row = by_trace.get(trace_id)
+        if row is None:
+            continue
+        verdict = int(preds[trace_id])  # 1 = Pass, 0 = Fail for a pass_positive judge
+        items[row["session_id"]] = {
+            "verdict": "Pass" if verdict == 1 else "Fail",
+            "critique": str(critiques.get(trace_id, "")),
+            "human": "Pass" if row["label"] == 1 else "Fail",
+            "agree": verdict == int(row["label"]),
+        }
+    return {"judge_id": judge_id, "version": judge.get("version"), "items": items}

@@ -77,6 +77,10 @@
   }
   #hw5 button.pass.on { background: var(--ok); color: #fff; border-color: var(--ok); }
   #hw5 button.fail.on { background: var(--bad); color: #fff; border-color: var(--bad); }
+  #judge-box { margin-top: 8px; font-size: 12.5px; border-left: 3px solid var(--muted); padding: 6px 10px; background: var(--bg); }
+  #judge-box.miss { border-left-color: var(--bad); }
+  #judge-box.hit { border-left-color: var(--ok); }
+  #judge-box .crit { white-space: pre-wrap; margin-top: 4px; color: var(--ink); }
   #hw5-note {
     flex: 1; font: 12.5px inherit; padding: 5px 8px;
     border: 1px solid var(--line); border-radius: 5px;
@@ -252,6 +256,8 @@
         <option value="fuzzy_write">HW5 1 · wrote after fuzzy lookup</option>
         <option value="named_write">HW5 2 · wrote, order given</option>
         <option value="no_write">HW5 3 · no write</option>
+        <option value="dev_miss">HW5 dev: judge disagrees with me</option>
+        <option value="dev_all">HW5 dev: all judged</option>
       </select>
       <div id="counter">0 / 0 reviewed</div>
       <div id="bar"><div></div></div>
@@ -281,6 +287,7 @@
           <button class="fail" id="hw5-fail">Fail (0) <kbd>x</kbd></button>
           <input id="hw5-note" placeholder="evidence, then Enter, then p or x to save" autocomplete="off" />
         </div>
+        <div id="judge-box" class="hidden"></div>
       </div>
     </div>
 
@@ -395,6 +402,7 @@ const state = {
   focus: -1,
   pending: null,    // annotation being typed
   store: new Map(),  // every loaded session, for rows outside the HW4 manifest
+  judge: {judge_id: null, items: {}},
   hw5: {queue: [], labels: {}, counts: {pass: 0, fail: 0}, tiers: {}, mode: ''},
 };
 
@@ -437,6 +445,7 @@ async function loadAll() {
   state.suggestions = Array.isArray(suggs) ? suggs : [];
   state.patterns = (pats && pats.modes) ? pats : {modes: []};
   state.hw5 = await api.get('/api/hw5');
+  state.judge = await api.get('/api/hw5/judge');
   state.store = new Map((await api.get('/api/store')).map(r => [r.session_id, r]));
   buildFilters();
   applyFilters();
@@ -491,8 +500,13 @@ function applyFilters() {
     // The queue's own order is the review order, so it overrides scenario order.
     const bySession = new Map(rows.map(s => [s.session_id, s]));
     rows = queue
-      .filter(q => (hw5Mode === 'todo'
-        ? !(q.session_id in state.hw5.labels) : q.tier === hw5Mode))
+      .filter(q => {
+        const j = state.judge.items[q.session_id];
+        if (hw5Mode === 'todo') return !(q.session_id in state.hw5.labels);
+        if (hw5Mode === 'dev_all') return !!j;
+        if (hw5Mode === 'dev_miss') return !!j && !j.agree;
+        return q.tier === hw5Mode;
+      })
       .map(q => bySession.get(q.session_id) || state.store.get(q.session_id));
   }
   state.filtered = rows;
@@ -523,7 +537,9 @@ function renderSidebar() {
         el('div', {class: 'stitle'},
           `${s.scenario_id || ''} · ${meta.role || ''} · ${meta.turn_count || 1}t`,
           fmtSessionTime(s.timing) ? ` · ${fmtDuration(s.timing.work)}` : '',
-          denied ? el('span', {class: 'sflag', text: ' ⛔'}) : null),
+          denied ? el('span', {class: 'sflag', text: ' ⛔'}) : null,
+          (state.judge.items[s.session_id] && !state.judge.items[s.session_id].agree)
+            ? el('span', {class: 'sflag', text: ' ≠'}) : null),
         el('div', {class: 'sopen', text: clip(s.opening, 110)}),
         el('div', {class: 'sribbon', text: (s.ribbon || []).join(' → ') || '(no tools)'})));
   }));
@@ -580,6 +596,23 @@ function renderHw5() {
   $('hw5-fail').classList.toggle('on', !!mine && mine.label === 0);
   $('hw5-state').textContent = mine ? (mine.label === 1 ? 'labelled Pass' : 'labelled Fail') : 'unlabelled';
   $('hw5-note').value = mine ? mine.note : '';
+  renderJudge();
+}
+
+/* The judge's verdict and critique, beside the human label. The critique is
+   model output, so it is shown as text only. */
+function renderJudge() {
+  const box = $('judge-box');
+  const j = state.judge.items[state.curId];
+  box.classList.toggle('hidden', !j);
+  if (!j) return;
+  box.classList.toggle('miss', !j.agree);
+  box.classList.toggle('hit', j.agree);
+  fill(box,
+    el('b', {text: `judge v${state.judge.version}: ${j.verdict}`}),
+    ` · you: ${j.human} · `,
+    el('b', {text: j.agree ? 'agree' : 'DISAGREE'}),
+    el('div', {class: 'crit', text: j.critique}));
 }
 
 async function setHw5(label) {

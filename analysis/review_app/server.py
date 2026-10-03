@@ -328,6 +328,10 @@ class ReviewHandler(BaseHTTPRequestHandler):
             self._send_json(_all_labels())
             return
 
+        if path == "/api/hw5/judge":
+            self._send_json(hw5.judge_view(STATE_DIR, (query.get("id") or [None])[0]))
+            return
+
         if path == "/api/hw5":
             self._send_json(
                 {
