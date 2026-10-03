@@ -67,7 +67,7 @@ With a populated `.env`, one upstream test in `tests/test_cli.py` leaks the Lang
 CARTWHEEL_JUDGE_TRACE_SOURCE=analysis/state/store_traces.json uv run pytest tests/
 ```
 
-That gives 161 passed, plus 4 skipped, 18 expected failures and 9 unexpected passes, which come from the homework templates.
+That gives 171 passed, plus 4 skipped, 18 expected failures and 9 unexpected passes, which come from the homework templates.
 
 ## Not yet in the repository
 
