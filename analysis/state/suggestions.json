@@ -400,7 +400,9 @@
       "idx": 12
     },
     "note": "[writes_without_confirming_match] issue_refund on a fuzzy match, first turn, order never named by the user",
-    "source": "depth_scan"
+    "source": "depth_scan",
+    "decision": "accepted",
+    "decided_at": "2026-10-01T18:21:55.812Z"
   },
   {
     "id": "s-write-support-0064-14",
@@ -486,7 +488,9 @@
       "idx": 12
     },
     "note": "[writes_without_confirming_match] cancel_order on a fuzzy match, first turn, order never named by the user; user hedged about which order they meant",
-    "source": "depth_scan"
+    "source": "depth_scan",
+    "decision": "accepted",
+    "decided_at": "2026-10-01T18:26:57.840Z"
   },
   {
     "id": "s-write-support-0073-8",
@@ -500,7 +504,9 @@
       "idx": 8
     },
     "note": "[writes_without_confirming_match] cancel_order on a fuzzy match, first turn, order never named by the user",
-    "source": "depth_scan"
+    "source": "depth_scan",
+    "decision": "accepted",
+    "decided_at": "2026-10-01T18:27:38.396Z"
   },
   {
     "id": "s-write-support-0075-5",
@@ -528,7 +534,9 @@
       "idx": 8
     },
     "note": "[writes_without_confirming_match] cancel_order on a fuzzy match, first turn, order never named by the user",
-    "source": "depth_scan"
+    "source": "depth_scan",
+    "decision": "accepted",
+    "decided_at": "2026-10-01T18:28:24.746Z"
   },
   {
     "id": "s-write-support-0224-12",
@@ -542,7 +550,9 @@
       "idx": 12
     },
     "note": "[writes_without_confirming_match] issue_refund on a fuzzy match, first turn, order never named by the user",
-    "source": "depth_scan"
+    "source": "depth_scan",
+    "decision": "accepted",
+    "decided_at": "2026-10-01T18:28:39.284Z"
   },
   {
     "id": "s-write-support-0226-8",
@@ -556,7 +566,9 @@
       "idx": 8
     },
     "note": "[writes_without_confirming_match] issue_refund on a fuzzy match, first turn, order never named by the user",
-    "source": "depth_scan"
+    "source": "depth_scan",
+    "decision": "accepted",
+    "decided_at": "2026-10-01T18:28:51.355Z"
   },
   {
     "id": "s-write-support-0233-14",
@@ -570,7 +582,9 @@
       "idx": 14
     },
     "note": "[writes_without_confirming_match] issue_refund on a fuzzy match, first turn, order never named by the user",
-    "source": "depth_scan"
+    "source": "depth_scan",
+    "decision": "accepted",
+    "decided_at": "2026-10-01T18:29:38.383Z"
   },
   {
     "id": "s-filler-support-0020-9",

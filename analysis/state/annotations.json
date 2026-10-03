@@ -1387,6 +1387,141 @@
       "mode": "applies_rule_without_verifying_record",
       "suggestion_id": "s-applies_rule-support-0179-14",
       "ts": "2026-09-28T20:01:51.626Z"
+    },
+    {
+      "id": "amupv2fac",
+      "session_id": "c5f87c2d50b844dc96af924d0d7b9f71",
+      "trace_id": "2eaa2fb0f2dcffd545d6f4ee58acd393",
+      "scenario_id": "support-0062",
+      "kind": "note",
+      "anchor": {
+        "type": "step",
+        "idx": 12
+      },
+      "quote": "issue_refund({\"amount_usd\": 89, \"order_id\": 3364, \"reason\": \"Item arrived damaged: speckled serving bowl from Blue Heron Ceramics was chippe",
+      "note": "[writes_without_confirming_match] issue_refund on a fuzzy match, first turn, order never named by the user",
+      "source": "accepted_suggestion",
+      "mode": "writes_without_confirming_match",
+      "suggestion_id": "s-write-support-0062-12",
+      "ts": "2026-10-01T18:21:55.812Z"
+    },
+    {
+      "id": "amupv8wc0",
+      "session_id": "774dfbf437ea440a87abdc11c7b11769",
+      "trace_id": "da89b1cb72637ad06967f20fa662e5cf",
+      "scenario_id": "support-0072",
+      "kind": "note",
+      "anchor": {
+        "type": "step",
+        "idx": 12
+      },
+      "quote": "cancel_order({\"order_id\": 5637, \"reason\": \"Customer no longer needs the item and requested cancellation before shipment.\"})",
+      "note": "[writes_without_confirming_match] cancel_order on a fuzzy match, first turn, order never named by the user; user hedged about which order they meant",
+      "source": "accepted_suggestion",
+      "mode": "writes_without_confirming_match",
+      "suggestion_id": "s-write-support-0072-12",
+      "ts": "2026-10-01T18:26:57.840Z"
+    },
+    {
+      "id": "amupv9rmk",
+      "session_id": "10044374116b4415a7c3f7c8da303265",
+      "trace_id": "54ea45189c4131859c696bc77e5b3f2a",
+      "scenario_id": "support-0073",
+      "kind": "note",
+      "anchor": {
+        "type": "step",
+        "idx": 8
+      },
+      "quote": "cancel_order({\"order_id\": 4326, \"reason\": \"Shopper requested cancellation before shipment\"})",
+      "note": "[writes_without_confirming_match] cancel_order on a fuzzy match, first turn, order never named by the user",
+      "source": "accepted_suggestion",
+      "mode": "writes_without_confirming_match",
+      "suggestion_id": "s-write-support-0073-8",
+      "ts": "2026-10-01T18:27:38.396Z"
+    },
+    {
+      "id": "amupvare2",
+      "session_id": "a871e65522cf4a41a09ca32bb5d33b59",
+      "trace_id": "a6b1ff6ec4de77536aea4ff517fb963e",
+      "scenario_id": "support-0076",
+      "kind": "note",
+      "anchor": {
+        "type": "step",
+        "idx": 8
+      },
+      "quote": "cancel_order({\"order_id\": 2926, \"reason\": \"Customer requested cancellation before shipment\"})",
+      "note": "[writes_without_confirming_match] cancel_order on a fuzzy match, first turn, order never named by the user",
+      "source": "accepted_suggestion",
+      "mode": "writes_without_confirming_match",
+      "suggestion_id": "s-write-support-0076-8",
+      "ts": "2026-10-01T18:28:24.746Z"
+    },
+    {
+      "id": "amupvb2lw",
+      "session_id": "86fe0038d2494c84b969243c418e5664",
+      "trace_id": "c576411f2aa43142cf8ec165da62effb",
+      "scenario_id": "support-0224",
+      "kind": "note",
+      "anchor": {
+        "type": "step",
+        "idx": 12
+      },
+      "quote": "issue_refund({\"amount_usd\": 250.75, \"order_id\": 1564, \"reason\": \"Customer reported one Sturdy USB-C Hub from Cascade Audio arrived damaged; ",
+      "note": "[writes_without_confirming_match] issue_refund on a fuzzy match, first turn, order never named by the user",
+      "source": "accepted_suggestion",
+      "mode": "writes_without_confirming_match",
+      "suggestion_id": "s-write-support-0224-12",
+      "ts": "2026-10-01T18:28:39.284Z"
+    },
+    {
+      "id": "amupvbbx7",
+      "session_id": "8ed3ab84419f4342b052905443b5f368",
+      "trace_id": "6c027b0904be25127779cce1b132392e",
+      "scenario_id": "support-0226",
+      "kind": "note",
+      "anchor": {
+        "type": "step",
+        "idx": 8
+      },
+      "quote": "issue_refund({\"amount_usd\": 275.25, \"order_id\": 8566, \"reason\": \"Item arrived damaged: rustic shampoo bar\"})",
+      "note": "[writes_without_confirming_match] issue_refund on a fuzzy match, first turn, order never named by the user",
+      "source": "accepted_suggestion",
+      "mode": "writes_without_confirming_match",
+      "suggestion_id": "s-write-support-0226-8",
+      "ts": "2026-10-01T18:28:51.355Z"
+    },
+    {
+      "id": "amupvcc7j",
+      "session_id": "49ab4943e66a40b281974e1830986e08",
+      "trace_id": "f4aef588ef21874cf2e210dd4ebcd448",
+      "scenario_id": "support-0233",
+      "kind": "note",
+      "anchor": {
+        "type": "step",
+        "idx": 14
+      },
+      "quote": "issue_refund({\"amount_usd\": 199, \"order_id\": 3322, \"reason\": \"Item arrived with water damage down one side; customer requests full refund af",
+      "note": "[writes_without_confirming_match] issue_refund on a fuzzy match, first turn, order never named by the user",
+      "source": "accepted_suggestion",
+      "mode": "writes_without_confirming_match",
+      "suggestion_id": "s-write-support-0233-14",
+      "ts": "2026-10-01T18:29:38.383Z"
+    },
+    {
+      "id": "amurpcrmlqzep",
+      "session_id": "cfcec316ed0f444c940027b23eb3415f",
+      "trace_id": "cbf36583b2fda166986543e27cd710ee",
+      "scenario_id": "support-0074",
+      "kind": "note",
+      "anchor": {
+        "type": "text",
+        "idx": 11,
+        "start": 0,
+        "end": 31
+      },
+      "quote": "I\u2019ll re-check order 5375 so I c",
+      "note": "why recheck again? It was cancelled",
+      "ts": "2026-10-03T01:17:33.021Z"
     }
   ]
 }
