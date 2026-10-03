@@ -1,0 +1,22 @@
+{
+  "pull_request": "https://github.com/fslfrd/cartwheel-homeworks/pull/1",
+  "case_id": "e-005",
+  "regression_run": {
+    "url": "https://github.com/fslfrd/cartwheel-homeworks/actions/runs/37152118698",
+    "commit": "13e904b",
+    "change": "temporary system prompt instruction: ask the user to confirm and wait before any refund",
+    "conclusion": "failure",
+    "case_result": "e-005 passed 0 of 5 (baseline 5 of 5), CI decision block",
+    "also_blocked": [
+      "e-006"
+    ]
+  },
+  "revert_run": {
+    "url": "https://github.com/fslfrd/cartwheel-homeworks/actions/runs/37160050425",
+    "commit": "d0ed8b4",
+    "change": "git revert of the temporary instruction; prompt version back to e9ca815022ce",
+    "conclusion": "success",
+    "case_result": "e-005 passed 5 of 5, CI decision pass"
+  },
+  "explanation": "Run 1 added a temporary system prompt instruction: ask the user to confirm and wait for a reply before any refund, and never call issue_refund in the same turn as the request. e-005 and e-006, which expect a refund on a named order, each passed 0 of 5 against a baseline of 5 of 5. In all ten trials the agent looked up the order and asked for confirmation, so the issue_refund check failed at the verifier (reward 0.0, no infrastructure error) and CI blocked the job. The same instruction made the capability cases e-001 to e-003 pass 5 of 5, up from 0 of 5, because they ask for exactly that confirmation. Run 2 reverted the instruction: e-005 and e-006 passed 5 of 5 again, the capability cases returned to their baseline levels (e-001 to e-004 at 0 of 5), all 55 trials completed without errors, and the job succeeded. The original behaviour returned."
+}
