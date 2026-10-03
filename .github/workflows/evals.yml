@@ -68,13 +68,10 @@ jobs:
             -a harbor_adapter.agent:CartwheelAgent \
             -m "$CARTWHEEL_MODEL" \
             -e docker \
-            --include-task-name "*e-005" \
             --n-attempts 5 \
             --job-name hw6-evals \
             --jobs-dir .harbor/jobs \
             --yes
-          # TEMPORARY: the --include-task-name line above is a one-case smoke
-          # test of this workflow and is removed before the real runs.
 
       # Exits 1 when a regression case fails any run; a capability case never
       # blocks. Also writes the table to the job summary.
