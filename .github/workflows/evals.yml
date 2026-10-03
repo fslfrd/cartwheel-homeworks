@@ -4,6 +4,9 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   offline-checks:
     name: offline checks
@@ -21,6 +24,12 @@ jobs:
     name: Harbor evaluations
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    timeout-minutes: 90
+    # A newer push to the same pull request replaces a run still in progress,
+    # so a quick second push does not pay for two full evaluations.
+    concurrency:
+      group: harbor-evals-${{ github.ref }}
+      cancel-in-progress: true
     env:
       CARTWHEEL_MODEL: ${{ vars.CARTWHEEL_MODEL }}
       PYTHONPATH: ${{ github.workspace }}
@@ -35,9 +44,45 @@ jobs:
       - uses: astral-sh/setup-uv@v5
       - run: uv sync
 
-      # Homework 6: install Harbor 0.23.0.
-      # Generate the classified tasks in eval_cases/cases.jsonl.
-      # Run five attempts per task in fresh Docker containers.
-      # Pass the agent and judge provider keys to Harbor.
-      # Summarize the job and upload the job files with `if: always()` so a
-      # failed regression keeps its evidence.
+      # Fail in seconds, before any Docker build, if the repository is not set up.
+      - name: Check configuration
+        run: |
+          test -n "$CARTWHEEL_MODEL" || { echo "Set the CARTWHEEL_MODEL repository variable"; exit 1; }
+          test -n "$OPENAI_API_KEY" || { echo "Add the OPENAI_API_KEY repository secret"; exit 1; }
+
+      - name: Install Harbor
+        run: |
+          uv tool install 'harbor==0.23.0'
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      # Rejects any case that is missing its baseline classification.
+      - name: Generate the classified Harbor tasks
+        run: uv run python scripts/export_harbor_tasks.py
+
+      # The Cartwheel agent adapter reads the provider key from this step's
+      # environment (the job env above), so no key is written to a file.
+      - name: Run five attempts per task in fresh Docker containers
+        run: |
+          harbor run \
+            -p .harbor/tasks \
+            -a harbor_adapter.agent:CartwheelAgent \
+            -m "$CARTWHEEL_MODEL" \
+            -e docker \
+            --n-attempts 5 \
+            --job-name hw6-evals \
+            --jobs-dir .harbor/jobs \
+            --yes
+
+      # Exits 1 when a regression case fails any run; a capability case never
+      # blocks. Also writes the table to the job summary.
+      - name: Summarize the evaluation job
+        if: always()
+        run: uv run python scripts/summarize_harbor_job.py .harbor/jobs/hw6-evals --expected-attempts 5
+
+      - name: Upload the job files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hw6-evals-job
+          path: .harbor/jobs/hw6-evals
+          if-no-files-found: warn
