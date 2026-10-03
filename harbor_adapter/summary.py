@@ -17,6 +17,41 @@ def _case_id(task_name: str, known_ids: set[str]) -> str | None:
     return max(matches, key=len) if matches else None
 
 
+EMBEDDED_ORDER = "result.json trial_results order"
+PER_TRIAL_ORDER = "per-trial result.json files sorted by started_at"
+
+
+def load_trial_results(job_dir: Path) -> tuple[list[dict[str, Any]], str]:
+    """Return a job's trial records and a label for the order they are in.
+
+    Harbor 0.23.0 writes the job-level ``result.json`` without its
+    ``trial_results`` list and keeps each trial's record in
+    ``<job>/<trial>/result.json``. A job file that does embed the list is used
+    as it is, in the order stored. Otherwise the per-trial files are read and
+    ordered by when each trial started, which is the order the runs happened in
+    (a trial's folder name ends in a random suffix, so it is not chronological).
+    A file that is not a trial record, or cannot be parsed, is skipped; the
+    caller's expected-attempts check then reports the missing trial.
+    """
+    result_path = job_dir / "result.json"
+    if not result_path.exists():
+        raise FileNotFoundError(f"Harbor result not found: {result_path}")
+    embedded = json.loads(result_path.read_text()).get("trial_results")
+    if embedded:
+        return list(embedded), EMBEDDED_ORDER
+
+    trials: list[dict[str, Any]] = []
+    for path in job_dir.glob("*/result.json"):
+        try:
+            trial = json.loads(path.read_text())
+        except (OSError, json.JSONDecodeError):
+            continue
+        if isinstance(trial, dict) and trial.get("trial_name"):
+            trials.append(trial)
+    trials.sort(key=lambda t: (str(t.get("started_at") or ""), str(t["trial_name"])))
+    return trials, PER_TRIAL_ORDER
+
+
 def _reward(trial: dict[str, Any]) -> float | None:
     verifier = trial.get("verifier_result")
     if not isinstance(verifier, dict):
@@ -43,13 +78,10 @@ def summarize_job(
     else:
         cases = load_cases(cases_path)
     by_id = {case["id"]: case for case in cases}
-    result_path = job_dir / "result.json"
-    if not result_path.exists():
-        raise FileNotFoundError(f"Harbor result not found: {result_path}")
-    result = json.loads(result_path.read_text())
+    trial_results, _ = load_trial_results(job_dir)
     trials: dict[str, list[dict[str, Any]]] = defaultdict(list)
     unknown: list[str] = []
-    for trial in result.get("trial_results", []):
+    for trial in trial_results:
         case_id = _case_id(str(trial.get("task_name", "")), set(by_id))
         if case_id is None:
             unknown.append(str(trial.get("task_name", "")))

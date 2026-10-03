@@ -326,3 +326,125 @@ def test_capability_analysis_uses_5_10_and_15_observed_runs(
         "10",
         "15",
     }
+
+
+def _write_trial_dir(
+    job: Path, name: str, case_id: str, reward: float, started_at: str
+) -> None:
+    """One trial as Harbor 0.23.0 lays it out: <job>/<trial>/result.json."""
+    (job / name).mkdir(parents=True)
+    (job / name / "result.json").write_text(
+        json.dumps(
+            {
+                "task_name": f"cartwheel/evals__{case_id}",
+                "trial_name": name,
+                "started_at": started_at,
+                "verifier_result": {"rewards": {"reward": reward}},
+                "agent_info": {"model_info": {"provider": "student", "name": "m"}},
+                "exception_info": None,
+            }
+        )
+    )
+
+
+def test_summary_reads_trials_from_the_per_trial_files(
+    tmp_path: Path, monkeypatch
+) -> None:
+    import tests.eval.passk as passk
+    from harbor_adapter.summary import PER_TRIAL_ORDER, load_trial_results
+
+    monkeypatch.setattr(
+        passk, "case_passes", lambda kind, passes, k, baseline_pass_rate=None: {"decision": "pass", "reason": "test"}
+    )
+    monkeypatch.setattr(passk, "pass_at_k", lambda n, c, k: c / n)
+    monkeypatch.setattr(passk, "pass_hat_k", lambda n, c, k: c / n)
+
+    cases_path = tmp_path / "cases.jsonl"
+    _write_cases(
+        cases_path,
+        [
+            {
+                "id": "e-501",
+                "mode": "response_quality",
+                "kind": "capability",
+                "baseline_pass_rate": 0.4,
+                "input": {"role": "shopper", "user_id": 1, "message": "hello"},
+                "initial_state": {"world": "reseed", "fixture": None},
+                "expected": {
+                    "assertions": ["The reply asks a question."],
+                    "checks": [{"check": "reply_asks_question"}],
+                },
+            }
+        ],
+    )
+    job = tmp_path / "job"
+    job.mkdir()
+    # The job file as Harbor 0.23.0 writes it: statistics only, no trial list.
+    (job / "result.json").write_text(json.dumps({"n_total_trials": 5, "stats": {}}))
+    for i, reward in enumerate([0, 0, 1, 0, 1]):
+        _write_trial_dir(job, f"e-501__t{i}", "e-501", reward, f"2026-10-03T15:00:0{i}")
+
+    trials, order = load_trial_results(job)
+    markdown, _ = summarize_job(job, cases_path=cases_path, expected_attempts=5)
+
+    assert len(trials) == 5 and order == PER_TRIAL_ORDER
+    assert "| `e-501` | capability | 2 | 5 | 0.400" in markdown
+
+
+def test_per_trial_files_are_ordered_by_start_time_not_folder_name(
+    tmp_path: Path,
+) -> None:
+    from harbor_adapter.summary import PER_TRIAL_ORDER, load_trial_results
+
+    job = tmp_path / "job"
+    job.mkdir()
+    (job / "result.json").write_text(json.dumps({"stats": {}, "trial_results": []}))
+    # Folder names sort one way, start times the other: the runs happened in
+    # the order c, b, a.
+    for name, started in [("e-1__a", "2026-10-03T15:00:03"),
+                          ("e-1__b", "2026-10-03T15:00:02"),
+                          ("e-1__c", "2026-10-03T15:00:01")]:
+        _write_trial_dir(job, name, "e-1", 1, started)
+
+    trials, order = load_trial_results(job)
+
+    assert [t["trial_name"] for t in trials] == ["e-1__c", "e-1__b", "e-1__a"]
+    assert order == PER_TRIAL_ORDER
+
+
+def test_analysis_labels_the_order_it_used(tmp_path: Path, monkeypatch) -> None:
+    import tests.eval.passk as passk
+
+    monkeypatch.setattr(passk, "pass_at_k", lambda n, c, k: c / n)
+    monkeypatch.setattr("harbor_adapter.analysis.pass_at_k", lambda n, c, k: c / n)
+    job = tmp_path / "job"
+    job.mkdir()
+    (job / "result.json").write_text(json.dumps({"stats": {}}))
+    for i in range(5):
+        _write_trial_dir(job, f"e-9__t{i}", "e-9", i % 2, f"2026-10-03T15:00:0{i}")
+
+    result = analyze_capability_job(job, "e-9", expected_attempts=5)
+
+    assert result["trial_order"].startswith("per-trial result.json files")
+    assert result["rewards"] == [0, 1, 0, 1, 0]
+
+
+def test_an_embedded_trial_list_still_wins_in_its_stored_order(tmp_path: Path) -> None:
+    from harbor_adapter.summary import EMBEDDED_ORDER, load_trial_results
+
+    job = tmp_path / "job"
+    job.mkdir()
+    embedded = [{"trial_name": "z", "task_name": "x"}, {"trial_name": "a", "task_name": "x"}]
+    (job / "result.json").write_text(json.dumps({"trial_results": embedded}))
+    _write_trial_dir(job, "e-1__q", "e-1", 1, "2026-10-03T15:00:00")  # must be ignored
+
+    trials, order = load_trial_results(job)
+
+    assert [t["trial_name"] for t in trials] == ["z", "a"] and order == EMBEDDED_ORDER
+
+
+def test_a_job_with_no_result_file_is_still_an_error(tmp_path: Path) -> None:
+    from harbor_adapter.summary import load_trial_results
+
+    with pytest.raises(FileNotFoundError):
+        load_trial_results(tmp_path)
